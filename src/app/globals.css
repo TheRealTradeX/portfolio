@@ -235,18 +235,30 @@ html.rv-on .rv:not(.in) {
 }
 
 /* ── Skip link: revealed only by keyboard focus ────────────────
-   Off-screen by default. :focus-visible (not :focus) means taps and
-   browser focus restoration on mobile never reveal it — only a real
-   keyboard Tab does. */
+   Clip-hidden by default: paints nothing at any scroll position, so
+   iOS overscroll bounce can never reveal it (moving it off-screen
+   with a transform did). :focus-visible (not :focus) means taps and
+   mobile focus restoration never reveal it — only a keyboard Tab. */
 .skip-link {
   position: fixed;
   top: 8px;
   left: 8px;
   z-index: 100;
-  transform: translateY(-250%);
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  pointer-events: none;
 }
 .skip-link:focus-visible {
-  transform: none;
+  width: auto;
+  height: auto;
+  padding: 8px 16px;
+  overflow: visible;
+  clip-path: none;
+  pointer-events: auto;
 }
 
 /* ── Nav shell: readable over scrolling content ────────────── */
