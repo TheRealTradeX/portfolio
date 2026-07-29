@@ -10,7 +10,7 @@ export const siteConfig = {
   role: "Full-Stack Product Engineer",
   description:
     "Full-stack product engineer and technical founder. I build the systems businesses actually run on — payments, trading operations, internal CRMs, automation, and AI-assisted analytics.",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://jefreyperalta.dev",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://jefrey-peralta.vercel.app",
   location: "New Jersey, USA",
   availability: "Open to software engineering opportunities",
   email: "peraltajefrey@gmail.com",
