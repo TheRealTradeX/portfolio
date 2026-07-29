@@ -270,13 +270,9 @@ export default function VelocityCaseStudy() {
             decisions, and systems I personally owned.
           </p>
           <p>
-            Every number here was measured from the repository — route and
-            table counts by file inspection, authorship by{" "}
-            <code className="font-mono-technical text-[12.5px]">git log</code>
-            , the launch record from the platform&apos;s 1,576-line
-            architecture document and its launch-day migration. A public
-            architecture overview is available on GitHub, and I&apos;m happy
-            to walk through any subsystem in depth in an interview.
+            A public architecture overview is available on GitHub, and
+            I&apos;m happy to walk through any subsystem in depth in an
+            interview.
           </p>
         </EvidenceNote>
       </CaseStudyShell>

@@ -135,9 +135,7 @@ export default function VelocitySiteCaseStudy() {
         <EvidenceNote>
           <p>
             The source repository is private, but the shipped result is
-            public. The claims above trace to the repo&apos;s commit history
-            (60 commits, sole author, 2026-03-28 → 2026-07-01), its
-            architecture document, and the live site&apos;s response headers.
+            public — open the site, view the source, check the headers.
           </p>
         </EvidenceNote>
       </CaseStudyShell>

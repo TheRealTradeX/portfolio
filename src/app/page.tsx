@@ -140,9 +140,6 @@ export default function HomePage() {
               </div>
             ))}
           </div>
-          <p className="rv mt-3 text-right font-mono-technical text-[10.5px] text-ink-muted">
-            measured from the Velocity platform repository, not estimated
-          </p>
         </section>
 
         {/* ── Featured work ── */}
@@ -151,10 +148,6 @@ export default function HomePage() {
           <h2 className="rv mt-6 font-display text-[clamp(1.75rem,4.4vw,2.9rem)] leading-tight font-semibold tracking-tight">
             Systems I&apos;ve built and operated.
           </h2>
-          <p className="rv mt-3 max-w-[54ch] text-ink-secondary">
-            Each case study documents what I owned, what broke, and what
-            shipped. Where source is private, the architecture is public.
-          </p>
           <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
             {projects.map((project) => (
               <ProjectCard key={project.slug} project={project} />
@@ -255,10 +248,6 @@ export default function HomePage() {
           <h2 className="rv mt-6 font-display text-[clamp(1.6rem,3.6vw,2.4rem)] leading-tight font-semibold tracking-tight">
             Tools, tied to the systems that used them.
           </h2>
-          <p className="rv mt-3 max-w-[54ch] text-sm text-ink-secondary">
-            No skill bars, no percentages. Everything below appears in a
-            repository I can show or describe in detail.
-          </p>
           <div className="mt-9 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {skills.map((category) => (
               <div key={category.label} className="rv glass rounded-2xl p-6">

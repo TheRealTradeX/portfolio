@@ -79,7 +79,7 @@ export function EvidenceNote({ children }: { children: ReactNode }) {
   return (
     <aside className="glass mt-16 rounded-2xl border-l-2 border-l-accent p-6">
       <p className="font-mono-technical text-[10.5px] tracking-[0.16em] text-ink-muted uppercase">
-        Evidence
+        Source access
       </p>
       <div className="mt-3 space-y-2 text-sm leading-relaxed text-ink-secondary">
         {children}

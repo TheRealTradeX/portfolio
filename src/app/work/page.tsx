@@ -33,9 +33,7 @@ export default function WorkPage() {
           Case studies
         </h1>
         <p className="rv mt-4 max-w-[54ch] text-ink-secondary">
-          Each one documents the problem, what I owned, the architecture,
-          what failed, and what shipped — with every claim traced to
-          repository evidence.
+          The problem, the architecture, what failed, and what shipped.
         </p>
         <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {projects.map((project) => (

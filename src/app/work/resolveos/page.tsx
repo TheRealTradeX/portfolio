@@ -185,10 +185,8 @@ export default function ResolveOSCaseStudy() {
           <p>
             Private repository — it was built around a real collections
             operation&apos;s workflow. No debtor, merchant, or payment data
-            has ever been committed to it (verified across full git
-            history), and anything shown from this tool uses synthetic data.
-            The feature list above maps one-to-one to code I can walk
-            through.
+            has ever been part of it, and anything shown from this tool
+            uses synthetic data.
           </p>
         </EvidenceNote>
       </CaseStudyShell>
