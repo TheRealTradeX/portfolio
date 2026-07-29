@@ -224,7 +224,7 @@ export default function VelocityCaseStudy() {
           </ul>
         </CS>
 
-        <CS id="quality" title="Testing, deployment, and honest gaps">
+        <CS id="quality" title="Testing, deployment, and known gaps">
           <p>
             74 test files target the pure decision functions — payout
             eligibility, queue payload schemas, trade-row building, webhook
@@ -234,12 +234,11 @@ export default function VelocityCaseStudy() {
             worker-scheduled internal crons gated by an endpoint allowlist.
           </p>
           <p>
-            The honest gaps: there is no CI pipeline — tests run locally, and
+            The known gaps: there is no CI pipeline — tests run locally, and
             deploys are push-to-branch. There is no test framework or
             coverage measurement, and heavy UI surfaces are largely untested.
             Those are the first things I would fix with a second engineer on
-            the team, and I say so because a portfolio that hides its gaps
-            isn&apos;t one you should trust.
+            the team.
           </p>
         </CS>
 

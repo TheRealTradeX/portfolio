@@ -119,23 +119,19 @@ export default function VelocitySiteCaseStudy() {
           </p>
         </CS>
 
-        <CS id="notes" title="Why it belongs here">
+        <CS id="notes" title="A different discipline">
           <p>
-            This is the one project a recruiter can fully verify in thirty
-            seconds: open the site, view source, check the headers, feel the
-            scroll. It also demonstrates a different discipline than the
+            The marketing site exercises a different set of muscles than the
             platform — motion design, art direction, and performance
-            budgets — while sharing its engineering values: typed data,
-            documented architecture (the repo carries an architecture doc
-            that honestly scopes what the site does and doesn&apos;t do),
-            and conventional commits.
+            budgets — while sharing the same engineering values: typed
+            content, a documented architecture, and disciplined commits.
           </p>
         </CS>
 
         <EvidenceNote>
           <p>
-            The source repository is private, but the shipped result is
-            public — open the site, view the source, check the headers.
+            The source repository is private; the shipped site is publicly
+            accessible at velocityfunds.io.
           </p>
         </EvidenceNote>
       </CaseStudyShell>

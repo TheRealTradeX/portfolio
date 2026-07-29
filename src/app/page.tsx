@@ -339,8 +339,8 @@ export default function HomePage() {
             </h2>
             <p className="mx-auto mt-4 max-w-[48ch] text-ink-secondary">
               I&apos;m looking for product engineer, full-stack, or frontend
-              roles where owning outcomes matters. The fastest way to evaluate
-              me is the work above — the second fastest is a conversation.
+              roles where owning outcomes matters. If that sounds like your
+              team, let&apos;s talk.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
               <a

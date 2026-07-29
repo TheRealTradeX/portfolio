@@ -42,9 +42,9 @@ export const projects: Project[] = [
     name: "ResolveOS",
     eyebrow: "Collections ops",
     summary:
-      "An internal workspace that replaced the spreadsheet workflow a real collections operation ran on — CSV-first imports, an age-based follow-up engine, a drag-and-drop status board, and a settlement pipeline with weighted forecasting.",
-    status: "Internal tool",
-    timeline: "Dec 2025 — Jan 2026",
+      "A collections workspace that replaced the spreadsheet workflow my day job ran on — CSV-first imports, an age-based follow-up engine, a drag-and-drop status board, and a settlement pipeline with weighted forecasting. In production, used daily.",
+    status: "Production",
+    timeline: "Dec 2025 — present",
     role: "Sole builder (self-initiated, alongside the collections work itself)",
     stack: ["Next.js", "React", "Supabase", "Tailwind CSS"],
     highlights: [
@@ -55,7 +55,7 @@ export const projects: Project[] = [
     ],
     source: {
       kind: "private",
-      note: "Private — built around a real collections operation's workflow. All screenshots and examples on this site use synthetic data.",
+      note: "Private — a personal production tool in daily use, not a commercial product. All screenshots and examples on this site use synthetic data.",
     },
     featured: true,
   },

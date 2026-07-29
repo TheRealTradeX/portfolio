@@ -45,8 +45,8 @@ export default function ResolveOSCaseStudy() {
           title="ResolveOS"
           summary="A collections operations workspace built from inside the job it serves — replacing a workflow spread across spreadsheets, manual payment tracking, and memory with a living command center."
           facts={[
-            { label: "Status", value: project.status },
-            { label: "Timeline", value: `${project.timeline} · 33 commits in 31 days` },
+            { label: "Status", value: "In production — daily personal use" },
+            { label: "Timeline", value: "Built Dec 2025 — Jan 2026 · in use since" },
             { label: "Role", value: project.role },
             { label: "Scale", value: "~5,600 LOC · 7-table data model" },
             { label: "Stack", value: project.stack.join(" · ") },
@@ -167,26 +167,27 @@ export default function ResolveOSCaseStudy() {
           </p>
         </CS>
 
-        <CS id="gaps" title="Honest assessment">
+        <CS id="gaps" title="Retrospective">
           <p>
-            ResolveOS is a working internal tool, not a product. It has real
-            auth (Supabase, per-user data scoping on every query), a 7-table
-            data model, and audit logging — and it also has the gaps of a
-            31-day solo build: no tests, no CI, a single oversized component,
-            amounts stored as strings, and dedup enforced client-side rather
-            than by a database constraint. Rebuilding it today I would start
-            with the schema as code, TypeScript, and money as integers —
-            exactly the practices I later used on the Velocity platform,
-            which this project predates by design maturity if not by date.
+            ResolveOS is production software with exactly one user — me. It
+            runs every working day on real accounts, with real auth
+            (Supabase, per-user data scoping on every query), a 7-table data
+            model, and audit logging. It also has the gaps of a 31-day solo
+            build: no tests, no CI, a single oversized component, amounts
+            stored as strings, and dedup enforced client-side rather than by
+            a database constraint. Rebuilding it today I would start with
+            the schema as code, TypeScript, and money as integers — exactly
+            the practices I later used on the Velocity platform.
           </p>
         </CS>
 
         <EvidenceNote>
           <p>
-            Private repository — it was built around a real collections
-            operation&apos;s workflow. No debtor, merchant, or payment data
-            has ever been part of it, and anything shown from this tool
-            uses synthetic data.
+            Private repository. ResolveOS runs in production and I use it
+            every working day — it&apos;s a personal internal tool, not a
+            commercial product. No debtor, merchant, or payment data has
+            ever been part of the repository, and anything shown from the
+            tool uses synthetic data.
           </p>
         </EvidenceNote>
       </CaseStudyShell>
