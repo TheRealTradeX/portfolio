@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { SiteNav } from "@/components/SiteNav";
+import { SkipLink } from "@/components/SkipLink";
 import { SiteFooter } from "@/components/SiteFooter";
 import { CommandPalette } from "@/components/CommandPalette";
 import { RevealObserver } from "@/components/Reveal";
@@ -46,12 +47,7 @@ function personJsonLd() {
 export default function HomePage() {
   return (
     <>
-      <a
-        href="#main"
-        className="sr-only-focusable fixed top-2 left-2 z-100 rounded-md bg-accent px-4 py-2 text-sm text-white"
-      >
-        Skip to content
-      </a>
+      <SkipLink />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd()) }}

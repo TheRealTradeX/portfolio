@@ -130,17 +130,123 @@ html.rv-on .rv:not(.in) {
   transform: translateY(20px);
 }
 
-/* ── Skip link: hidden until keyboard focus ────────────────── */
-.sr-only-focusable:not(:focus):not(:focus-within) {
-  position: absolute !important;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
+/* ── Ambient background (light cyberpunk) ──────────────────────
+   Fixed layer behind all content: fine engineering grid + drifting
+   glow fields + horizon sweep. Transform-only animation. */
+.ambient {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
   overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
+  pointer-events: none;
+}
+.ambient-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(137, 166, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(137, 166, 255, 0.07) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(
+    130% 120% at 50% 0%,
+    rgba(0, 0, 0, 0.9),
+    rgba(0, 0, 0, 0.3) 60%,
+    transparent 100%
+  );
+}
+.ambient-orb {
+  position: absolute;
+  width: 60vw;
+  height: 60vw;
+  min-width: 480px;
+  min-height: 480px;
+  border-radius: 50%;
+  will-change: transform;
+}
+.ambient-orb-a {
+  top: -25%;
+  left: -12%;
+  background: radial-gradient(circle, rgba(67, 97, 242, 0.22), transparent 62%);
+  animation: ambient-drift-a 46s ease-in-out infinite alternate;
+}
+.ambient-orb-b {
+  top: 10%;
+  right: -22%;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.16), transparent 62%);
+  animation: ambient-drift-b 58s ease-in-out infinite alternate;
+}
+.ambient-orb-c {
+  bottom: -30%;
+  left: 22%;
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.12), transparent 62%);
+  animation: ambient-drift-c 52s ease-in-out infinite alternate;
+}
+@keyframes ambient-drift-a {
+  to {
+    transform: translate3d(9vw, 7vh, 0) scale(1.12);
+  }
+}
+@keyframes ambient-drift-b {
+  to {
+    transform: translate3d(-8vw, 12vh, 0) scale(0.92);
+  }
+}
+@keyframes ambient-drift-c {
+  to {
+    transform: translate3d(7vw, -9vh, 0) scale(1.08);
+  }
+}
+.ambient-horizon {
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 8%,
+    rgba(137, 166, 255, 0.35),
+    rgba(139, 92, 246, 0.3),
+    transparent 92%
+  );
+  opacity: 0;
+  animation: ambient-sweep 14s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+@keyframes ambient-sweep {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  12% {
+    opacity: 0.5;
+  }
+  55% {
+    opacity: 0.14;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ambient-horizon {
+    display: none;
+  }
+}
+
+/* ── Skip link: revealed only by keyboard focus ────────────────
+   Off-screen by default. :focus-visible (not :focus) means taps and
+   browser focus restoration on mobile never reveal it — only a real
+   keyboard Tab does. */
+.skip-link {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  z-index: 100;
+  transform: translateY(-250%);
+}
+.skip-link:focus-visible {
+  transform: none;
 }
 
 /* ── Nav shell: readable over scrolling content ────────────── */

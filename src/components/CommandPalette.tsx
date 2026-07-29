@@ -237,11 +237,12 @@ export function CommandPalette() {
     <div
       className="fixed inset-0 z-100 flex items-start justify-center px-4 pt-[14vh]"
       role="presentation"
-      onClick={(e) => {
-        if (e.target === e.currentTarget) close();
-      }}
     >
-      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" aria-hidden="true" />
+      <div
+        className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+        aria-hidden="true"
+        onClick={close}
+      />
       <div
         ref={dialogRef}
         role="dialog"
@@ -249,36 +250,46 @@ export function CommandPalette() {
         aria-label="Command menu"
         className="glass relative w-full max-w-lg overflow-hidden rounded-2xl bg-surface-raised/95"
       >
-        <input
-          ref={inputRef}
-          type="text"
-          value={query}
-          onChange={(e) => {
-            setQuery(e.target.value);
-            setActive(0);
-          }}
-          onKeyDown={(e) => {
-            if (e.key === "ArrowDown") {
-              e.preventDefault();
-              setActive((i) => Math.min(i + 1, filtered.length - 1));
-            } else if (e.key === "ArrowUp") {
-              e.preventDefault();
-              setActive((i) => Math.max(i - 1, 0));
-            } else if (e.key === "Enter" && filtered[activeIndex]) {
-              e.preventDefault();
-              runCommand(filtered[activeIndex]);
+        <div className="flex items-center border-b border-edge">
+          <input
+            ref={inputRef}
+            type="text"
+            value={query}
+            onChange={(e) => {
+              setQuery(e.target.value);
+              setActive(0);
+            }}
+            onKeyDown={(e) => {
+              if (e.key === "ArrowDown") {
+                e.preventDefault();
+                setActive((i) => Math.min(i + 1, filtered.length - 1));
+              } else if (e.key === "ArrowUp") {
+                e.preventDefault();
+                setActive((i) => Math.max(i - 1, 0));
+              } else if (e.key === "Enter" && filtered[activeIndex]) {
+                e.preventDefault();
+                runCommand(filtered[activeIndex]);
+              }
+            }}
+            placeholder="Type a command or search…"
+            aria-label="Search commands"
+            role="combobox"
+            aria-expanded="true"
+            aria-controls="palette-listbox"
+            aria-activedescendant={
+              filtered[activeIndex] ? `cmd-${filtered[activeIndex].id}` : undefined
             }
-          }}
-          placeholder="Type a command or search…"
-          aria-label="Search commands"
-          role="combobox"
-          aria-expanded="true"
-          aria-controls="palette-listbox"
-          aria-activedescendant={
-            filtered[activeIndex] ? `cmd-${filtered[activeIndex].id}` : undefined
-          }
-          className="w-full border-b border-edge bg-transparent px-5 py-4 font-mono-technical text-sm text-ink outline-none placeholder:text-ink-muted"
-        />
+            className="min-w-0 flex-1 bg-transparent px-5 py-4 font-mono-technical text-sm text-ink outline-none placeholder:text-ink-muted"
+          />
+          <button
+            type="button"
+            onClick={close}
+            aria-label="Close menu"
+            className="mr-3 rounded-md border border-edge px-2.5 py-1.5 font-mono-technical text-[11px] text-ink-muted transition-colors hover:border-edge-strong hover:text-ink"
+          >
+            ✕
+          </button>
+        </div>
         <ul
           id="palette-listbox"
           role="listbox"
