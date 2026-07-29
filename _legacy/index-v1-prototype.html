@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jefrey — Fintech Engineer</title>
+<meta name="description" content="Fintech engineer and founder. Trading infrastructure, backtesting systems, and the software that runs a prop firm.">
+<meta name="theme-color" content="#07080A">
+
+<!-- Social preview. Drop an og.png (1200x630) next to this file and links stop rendering as gray boxes. -->
+<meta property="og:title" content="Jefrey — Fintech Engineer">
+<meta property="og:description" content="Trading infrastructure, backtesting systems, and the software that runs a prop firm.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="og.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ─── tokens ─────────────────────────────────────────────── */
+:root{
+  --bg:#07080A;
+  --bg-2:#0B0D11;
+  --glass:rgba(255,255,255,.040);
+  --glass-2:rgba(255,255,255,.026);
+  --edge:rgba(255,255,255,.095);
+  --edge-hi:rgba(255,255,255,.22);
+
+  --brass:#C89A5B;      /* brand + interactive */
+  --brass-hi:#E8C08A;
+  --mint:#55E0A6;       /* live / positive only — never decorative */
+
+  --ink:#EDEBE6;
+  --ink-2:#B4B7BC;
+  --muted:#7C818A;
+
+  --display:"Bricolage Grotesque",system-ui,sans-serif;
+  --body:"Inter Tight",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,monospace;
+
+  --r:18px;
+  --gutter:clamp(20px,5vw,64px);
+  --maxw:1180px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--brass);outline-offset:3px;border-radius:6px}
+
+/* ambient field behind everything */
+.field{position:fixed;inset:0;z-index:0;pointer-events:none}
+#tape{position:absolute;inset:0;width:100%;height:100%;opacity:.5}
+.field::after{
+  content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(90ch 60ch at 12% -10%, rgba(200,154,91,.13), transparent 62%),
+    radial-gradient(70ch 50ch at 92% 8%, rgba(85,224,166,.055), transparent 60%),
+    linear-gradient(180deg, transparent 0%, var(--bg) 78%);
+}
+
+.wrap{position:relative;z-index:1;max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter)}
+
+/* ─── glass primitive ────────────────────────────────────── */
+.glass{
+  position:relative;
+  background:var(--glass);
+  border:1px solid var(--edge);
+  border-radius:var(--r);
+  backdrop-filter:blur(22px) saturate(150%);
+  -webkit-backdrop-filter:blur(22px) saturate(150%);
+  box-shadow:0 1px 0 0 var(--edge-hi) inset, 0 24px 60px -30px rgba(0,0,0,.9);
+}
+/* specular top edge — the thing that sells real glass */
+.glass::before{
+  content:"";position:absolute;left:12%;right:12%;top:-1px;height:1px;
+  background:linear-gradient(90deg,transparent,var(--edge-hi),transparent);
+  pointer-events:none;
+}
+
+/* ─── nav ────────────────────────────────────────────────── */
+.nav{position:sticky;top:16px;z-index:60;padding:0 var(--gutter);margin-top:16px}
+.nav-in{
+  max-width:var(--maxw);margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:16px;padding:11px 12px 11px 20px;border-radius:100px;
+}
+.mark{font-family:var(--mono);font-size:12.5px;letter-spacing:.14em;color:var(--ink)}
+.mark b{color:var(--brass);font-weight:500}
+.nav-links{display:flex;align-items:center;gap:4px}
+.nav-links a{
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);padding:8px 13px;border-radius:100px;transition:color .2s,background .2s;
+}
+.nav-links a:hover{color:var(--ink);background:rgba(255,255,255,.05)}
+.nav-links .pill{
+  color:var(--bg);background:var(--brass);font-weight:500;
+}
+.nav-links .pill:hover{background:var(--brass-hi);color:var(--bg)}
+@media(max-width:660px){.nav-links a:not(.pill){display:none}}
+
+/* ─── hero ───────────────────────────────────────────────── */
+.hero{padding:clamp(80px,15vh,150px) 0 clamp(56px,9vh,96px)}
+.status{
+  display:inline-flex;align-items:center;gap:9px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-2);padding:7px 15px 7px 12px;border-radius:100px;
+  background:var(--glass-2);border:1px solid var(--edge);
+}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 0 rgba(85,224,166,.55);animation:ping 2.6s ease-out infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(85,224,166,.5)}70%{box-shadow:0 0 0 9px rgba(85,224,166,0)}100%{box-shadow:0 0 0 0 rgba(85,224,166,0)}}
+
+h1{
+  font-family:var(--display);
+  font-size:clamp(2.9rem,9.2vw,6.4rem);
+  font-weight:800;line-height:.92;letter-spacing:-.045em;
+  margin:26px 0 0;
+}
+h1 .thin{font-weight:400;color:var(--ink-2);letter-spacing:-.03em}
+.lede{
+  max-width:56ch;margin-top:24px;
+  font-size:clamp(1.02rem,2.1vw,1.22rem);color:var(--ink-2);line-height:1.62;
+}
+.lede em{color:var(--ink);font-style:normal;font-weight:500}
+.cta{display:flex;flex-wrap:wrap;gap:11px;margin-top:34px}
+.btn{
+  display:inline-flex;align-items:center;gap:9px;
+  font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;
+  padding:13px 21px;border-radius:100px;border:1px solid var(--edge);
+  background:var(--glass-2);color:var(--ink);
+  transition:transform .18s,border-color .18s,background .18s;
+}
+.btn:hover{transform:translateY(-2px);border-color:var(--edge-hi);background:rgba(255,255,255,.06)}
+.btn.solid{background:var(--brass);border-color:var(--brass);color:#120C04;font-weight:500}
+.btn.solid:hover{background:var(--brass-hi);border-color:var(--brass-hi)}
+
+/* ─── ticker tape ────────────────────────────────────────── */
+.tape{
+  position:relative;margin:clamp(48px,8vh,84px) 0;
+  border-top:1px solid var(--edge);border-bottom:1px solid var(--edge);
+  padding:15px 0;overflow:hidden;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);
+          mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);
+}
+.tape-row{display:flex;width:max-content;animation:slide 44s linear infinite}
+.tape:hover .tape-row{animation-play-state:paused}
+@keyframes slide{to{transform:translateX(-50%)}}
+.tape-item{
+  display:inline-flex;align-items:baseline;gap:9px;padding:0 26px;
+  font-family:var(--mono);font-size:12.5px;letter-spacing:.05em;color:var(--muted);white-space:nowrap;
+}
+.tape-item b{color:var(--ink-2);font-weight:400}
+.tape-item i{color:var(--mint);font-style:normal;font-size:11px}
+
+/* ─── section furniture ──────────────────────────────────── */
+section{padding:clamp(56px,9vh,104px) 0}
+.eyebrow{
+  display:flex;align-items:center;gap:14px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);
+  margin-bottom:26px;
+}
+.eyebrow::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--edge),transparent)}
+h2{
+  font-family:var(--display);font-weight:600;
+  font-size:clamp(1.75rem,4.4vw,2.9rem);letter-spacing:-.035em;line-height:1.06;
+}
+.sub{color:var(--muted);margin-top:12px;max-width:52ch;font-size:.98rem}
+
+/* ─── watchlist / project tiles ──────────────────────────── */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;margin-top:38px}
+.tile{
+  padding:22px 22px 20px;overflow:hidden;
+  transition:transform .3s cubic-bezier(.2,.8,.3,1),border-color .3s;
+}
+.tile:hover{transform:translateY(-5px);border-color:var(--edge-hi)}
+/* cursor-tracked refraction */
+.tile::after{
+  content:"";position:absolute;inset:0;border-radius:var(--r);pointer-events:none;
+  background:radial-gradient(340px circle at var(--mx,50%) var(--my,0%), rgba(200,154,91,.11), transparent 68%);
+  opacity:0;transition:opacity .35s;
+}
+.tile:hover::after{opacity:1}
+
+.tile-top{display:flex;align-items:flex-start;justify-content:space-between;gap:14px}
+.sym{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--brass)}
+.chg{font-family:var(--mono);font-size:11px;color:var(--mint);letter-spacing:.04em}
+.chg.flat{color:var(--muted)}
+.tile h3{font-family:var(--display);font-size:1.42rem;font-weight:600;letter-spacing:-.025em;margin:13px 0 8px;line-height:1.15}
+.tile p{color:var(--ink-2);font-size:.925rem;line-height:1.58}
+
+.spark{display:block;width:100%;height:44px;margin:18px 0 16px;overflow:visible}
+
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px}
+.tag{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;color:var(--muted);
+  padding:4px 9px;border-radius:100px;border:1px solid var(--edge);background:var(--glass-2);
+}
+.tile-links{display:flex;gap:8px;padding-top:15px;border-top:1px solid var(--edge)}
+.tlink{
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.05em;color:var(--muted);
+  padding:6px 12px;border-radius:100px;transition:color .2s,background .2s;
+}
+.tlink:hover{color:var(--brass-hi);background:rgba(200,154,91,.09)}
+
+/* ─── stack panel ────────────────────────────────────────── */
+.panel{display:grid;grid-template-columns:1fr 1fr;gap:0;overflow:hidden;margin-top:38px}
+@media(max-width:760px){.panel{grid-template-columns:1fr}}
+.panel > div{padding:clamp(24px,3.6vw,38px)}
+.panel > div + div{border-left:1px solid var(--edge)}
+@media(max-width:760px){.panel > div + div{border-left:0;border-top:1px solid var(--edge)}}
+.panel h4{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:400;margin-bottom:18px}
+.panel p{color:var(--ink-2);font-size:.96rem;line-height:1.68}
+.panel p + p{margin-top:14px}
+.rows{list-style:none}
+.rows li{
+  display:flex;justify-content:space-between;gap:16px;align-items:baseline;
+  padding:11px 0;border-bottom:1px dashed rgba(255,255,255,.075);
+  font-family:var(--mono);font-size:12.5px;
+}
+.rows li:last-child{border-bottom:0}
+.rows span:first-child{color:var(--muted);letter-spacing:.05em}
+.rows span:last-child{color:var(--ink-2);text-align:right}
+
+/* ─── contact ────────────────────────────────────────────── */
+.contact{text-align:center;padding:clamp(44px,7vw,70px) clamp(20px,4vw,40px);margin-top:20px}
+.contact h2{margin-bottom:14px}
+.contact .sub{margin:0 auto 30px}
+.contact .cta{justify-content:center}
+
+footer{
+  padding:32px 0 44px;margin-top:clamp(56px,9vh,90px);
+  border-top:1px solid var(--edge);
+  display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;
+  font-family:var(--mono);font-size:11.5px;color:var(--muted);letter-spacing:.05em;
+}
+footer a:hover{color:var(--brass-hi)}
+
+/* ─── reveal ─────────────────────────────────────────────── */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .75s cubic-bezier(.2,.8,.3,1),transform .75s cubic-bezier(.2,.8,.3,1)}
+.rv.in{opacity:1;transform:none}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .rv{opacity:1;transform:none}
+  #tape{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="field" aria-hidden="true"><canvas id="tape"></canvas></div>
+
+<nav class="nav">
+  <div class="nav-in glass">
+    <a href="#top" class="mark">JEFREY<b>.</b>DEV</a>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#stack">Stack</a>
+      <a href="https://github.com/YOUR-USERNAME" target="_blank" rel="noopener">GitHub</a>
+      <a href="#contact" class="pill">Get in touch</a>
+    </div>
+  </div>
+</nav>
+
+<main id="top">
+<div class="wrap">
+
+  <!-- HERO -->
+  <header class="hero">
+    <span class="status"><span class="dot"></span>Open to opportunities</span>
+    <h1>Fintech engineer.<br><span class="thin">Prop firm founder.</span></h1>
+    <p class="lede">I build the software that sits between a trader and the market — <em>backtesting engines, risk systems, payout infrastructure.</em> Currently running a prop firm and writing most of its stack myself.</p>
+    <div class="cta">
+      <a class="btn solid" href="#work">View the work <span aria-hidden="true">↓</span></a>
+      <a class="btn" href="resume.pdf">Download résumé</a>
+      <a class="btn" href="https://github.com/YOUR-USERNAME" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </header>
+
+  <!-- TICKER -->
+  <div class="tape" aria-hidden="true">
+    <div class="tape-row" id="taperow"></div>
+  </div>
+
+  <!-- WORK -->
+  <section id="work">
+    <div class="eyebrow rv">Watchlist</div>
+    <h2 class="rv">Things I've shipped.</h2>
+    <p class="sub rv">Every one of these is live or open source. Click through — the code is the résumé.</p>
+
+    <div class="grid" id="grid">
+
+      <article class="tile glass rv" data-seed="7">
+        <div class="tile-top"><span class="sym">RPLA</span><span class="chg">▲ LIVE</span></div>
+        <h3>Repla</h3>
+        <p>Backtesting and market-replay software for forex, crypto, and prop firm challenge practice. Simulates spreads, margin, and slippage against historical tick data.</p>
+        <svg class="spark" viewBox="0 0 300 44" preserveAspectRatio="none"></svg>
+        <div class="tags"><span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">Postgres</span><span class="tag">WebSockets</span></div>
+        <div class="tile-links">
+          <a class="tlink" href="https://userepla.com/" target="_blank" rel="noopener">Live ↗</a>
+          <a class="tlink" href="#" target="_blank" rel="noopener">Source ↗</a>
+        </div>
+      </article>
+
+      <article class="tile glass rv" data-seed="19">
+        <div class="tile-top"><span class="sym">RISK</span><span class="chg">▲ LIVE</span></div>
+        <h3>Risk Engine</h3>
+        <p>Real-time drawdown and exposure monitor for funded accounts. Evaluates every fill against per-account rules and auto-flags breaches before they compound.</p>
+        <svg class="spark" viewBox="0 0 300 44" preserveAspectRatio="none"></svg>
+        <div class="tags"><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">Redis</span><span class="tag">Docker</span></div>
+        <div class="tile-links">
+          <a class="tlink" href="#" target="_blank" rel="noopener">Live ↗</a>
+          <a class="tlink" href="#" target="_blank" rel="noopener">Source ↗</a>
+        </div>
+      </article>
+
+      <article class="tile glass rv" data-seed="33">
+        <div class="tile-top"><span class="sym">PAYT</span><span class="chg flat">● BUILDING</span></div>
+        <h3>Payout Ledger</h3>
+        <p>Double-entry ledger for trader payouts and profit splits. Immutable event log, reconciliation reports, and a dashboard that finance can actually read.</p>
+        <svg class="spark" viewBox="0 0 300 44" preserveAspectRatio="none"></svg>
+        <div class="tags"><span class="tag">Node</span><span class="tag">Postgres</span><span class="tag">Stripe</span></div>
+        <div class="tile-links">
+          <a class="tlink" href="#" target="_blank" rel="noopener">Source ↗</a>
+        </div>
+      </article>
+
+      <article class="tile glass rv" data-seed="51">
+        <div class="tile-top"><span class="sym">TICK</span><span class="chg">▲ OSS</span></div>
+        <h3>Tick Normalizer</h3>
+        <p>Small open-source library that pulls tick data from three broker feeds and normalizes it into one schema. Written because nothing existing handled weekend gaps correctly.</p>
+        <svg class="spark" viewBox="0 0 300 44" preserveAspectRatio="none"></svg>
+        <div class="tags"><span class="tag">Python</span><span class="tag">Polars</span><span class="tag">pytest</span></div>
+        <div class="tile-links">
+          <a class="tlink" href="#" target="_blank" rel="noopener">Source ↗</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- STACK -->
+  <section id="stack">
+    <div class="eyebrow rv">Position</div>
+    <h2 class="rv">How I got here.</h2>
+
+    <div class="panel glass rv">
+      <div>
+        <h4>Background</h4>
+        <p>I came to software from the trading side. Running a prop firm meant living inside tools that were slow, wrong, or priced like enterprise contracts — so I started replacing them.</p>
+        <p>That means I write code with the domain already loaded: I know what a breach rule needs to catch, why a fill timestamp matters, and what a trader actually looks at when they open a dashboard at 3am.</p>
+        <p>Still early in the engineering craft and honest about it. Learning fast, shipping to production, and reading a lot of other people's code.</p>
+      </div>
+      <div>
+        <h4>Stack</h4>
+        <ul class="rows">
+          <li><span>Frontend</span><span>React · Next.js · Tailwind</span></li>
+          <li><span>Backend</span><span>Node · Python · FastAPI</span></li>
+          <li><span>Data</span><span>Postgres · Redis · Polars</span></li>
+          <li><span>Infra</span><span>Vercel · Docker · GitHub Actions</span></li>
+          <li><span>Domain</span><span>Market data · Risk · Payments</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact glass rv">
+      <h2>Let's talk.</h2>
+      <p class="sub">Open to engineering roles, contract work, and conversations about trading infrastructure.</p>
+      <div class="cta">
+        <a class="btn solid" href="mailto:you@example.com">you@example.com</a>
+        <a class="btn" href="https://linkedin.com/in/YOUR-USERNAME" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="https://github.com/YOUR-USERNAME" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>© <span id="yr"></span> Jefrey</span>
+    <span>Built from scratch — <a href="https://github.com/YOUR-USERNAME" target="_blank" rel="noopener">source ↗</a></span>
+  </footer>
+
+</div>
+</main>
+
+<script>
+(function(){
+  "use strict";
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  document.getElementById("yr").textContent = new Date().getFullYear();
+
+  /* ── ticker tape content ── */
+  var items = [
+    ["TypeScript","+4.2"],["React","+2.8"],["Next.js","+3.6"],["Python","+5.1"],
+    ["Postgres","+1.9"],["FastAPI","+2.4"],["Redis","+0.8"],["Tailwind","+3.3"],
+    ["Docker","+1.4"],["Node","+2.1"],["Polars","+4.7"],["Git","+0.6"]
+  ];
+  var row = document.getElementById("taperow"), html = "";
+  for (var pass=0; pass<2; pass++){
+    for (var i=0;i<items.length;i++){
+      html += '<span class="tape-item"><b>'+items[i][0]+'</b><i>'+items[i][1]+'%</i></span>';
+    }
+  }
+  row.innerHTML = html;
+
+  /* ── sparklines: seeded so each tile has its own stable shape ── */
+  function rng(seed){ return function(){ seed = (seed*9301 + 49297) % 233280; return seed/233280; }; }
+
+  document.querySelectorAll(".tile").forEach(function(tile){
+    var svg = tile.querySelector(".spark");
+    if(!svg) return;
+    var rand = rng(parseInt(tile.dataset.seed,10) || 1);
+    var pts = [], n = 34, y = 30;
+    for (var i=0;i<n;i++){
+      y += (rand()-0.42)*7;
+      y = Math.max(7, Math.min(38, y));
+      pts.push([(i/(n-1))*300, y]);
+    }
+    var d = pts.map(function(p,i){ return (i?"L":"M")+p[0].toFixed(1)+" "+p[1].toFixed(1); }).join(" ");
+    var id = "g"+tile.dataset.seed;
+    svg.innerHTML =
+      '<defs><linearGradient id="'+id+'" x1="0" y1="0" x2="0" y2="1">'+
+      '<stop offset="0%" stop-color="#55E0A6" stop-opacity=".22"/>'+
+      '<stop offset="100%" stop-color="#55E0A6" stop-opacity="0"/></linearGradient></defs>'+
+      '<path d="'+d+' L300 44 L0 44 Z" fill="url(#'+id+')"/>'+
+      '<path d="'+d+'" fill="none" stroke="#55E0A6" stroke-width="1.4" stroke-opacity=".85" '+
+      'stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/>';
+
+    /* cursor-tracked glass refraction */
+    tile.addEventListener("pointermove", function(e){
+      var r = tile.getBoundingClientRect();
+      tile.style.setProperty("--mx", ((e.clientX-r.left)/r.width*100)+"%");
+      tile.style.setProperty("--my", ((e.clientY-r.top)/r.height*100)+"%");
+    });
+  });
+
+  /* ── scroll reveal ── */
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target); }
+    });
+  },{threshold:.12, rootMargin:"0px 0px -8% 0px"});
+  document.querySelectorAll(".rv").forEach(function(el,i){
+    el.style.transitionDelay = (Math.min(i,6)*55)+"ms";
+    io.observe(el);
+  });
+
+  /* ── ambient price line ── */
+  if(reduce) return;
+  var c = document.getElementById("tape"), ctx = c.getContext("2d"), w, h, dpr, series=[], off=0;
+
+  function build(){
+    dpr = Math.min(window.devicePixelRatio||1, 2);
+    w = c.clientWidth; h = c.clientHeight;
+    c.width = w*dpr; c.height = h*dpr;
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    series = [];
+    var v = h*0.5;
+    for(var i=0;i<420;i++){ v += (Math.random()-0.5)*(h*0.028); v = Math.max(h*0.18, Math.min(h*0.86, v)); series.push(v); }
+  }
+  build();
+  window.addEventListener("resize", build);
+
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+
+    // faint terminal grid
+    ctx.strokeStyle = "rgba(255,255,255,.022)"; ctx.lineWidth = 1;
+    for(var gy=0; gy<h; gy+=64){ ctx.beginPath(); ctx.moveTo(0,gy); ctx.lineTo(w,gy); ctx.stroke(); }
+    for(var gx=(-off%64); gx<w; gx+=64){ ctx.beginPath(); ctx.moveTo(gx,0); ctx.lineTo(gx,h); ctx.stroke(); }
+
+    // the line
+    var step = 3.4;
+    ctx.beginPath();
+    for(var i=0;i<series.length;i++){
+      var x = i*step - (off % step) - (Math.floor(off/step)*step) + off;
+      x = i*step - off;
+      if(x < -step || x > w+step) continue;
+      i===0 ? ctx.moveTo(x, series[i]) : ctx.lineTo(x, series[i]);
+    }
+    ctx.strokeStyle = "rgba(200,154,91,.30)";
+    ctx.lineWidth = 1.2;
+    ctx.stroke();
+
+    off += 0.22;
+    if(off > series.length*step - w){ off = 0; }
+    requestAnimationFrame(draw);
+  }
+  requestAnimationFrame(draw);
+})();
+</script>
+</body>
+</html>
