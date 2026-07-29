@@ -29,8 +29,10 @@ reads engineering-first; brass read trading-funnel.
 
 Self-hosted via `next/font` (zero external requests):
 
-- **Display — Bricolage Grotesque** (400/600/800): headlines only. The one
-  idea kept from the old prototype.
+- **Display — Space Grotesk** (400/500/600/700): headlines only. Geometric
+  and technical — the same face Jefrey chose for ResolveOS. (Replaced the
+  prototype's Bricolage Grotesque, which read too editorial for the
+  fintech-engineering identity.)
 - **Body — Inter** (400/500/600): everything readable.
 - **Mono — JetBrains Mono** (400/500): metadata, eyebrows, evidence, kbd.
   Deliberately rationed — labels and technical facts only, never body copy.

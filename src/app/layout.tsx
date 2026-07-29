@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, Inter, JetBrains_Mono } from "next/font/google";
+import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/data/site";
 
-const bricolage = Bricolage_Grotesque({
-  variable: "--font-bricolage",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
   subsets: ["latin"],
-  weight: ["400", "600", "800"],
+  weight: ["400", "500", "600", "700"],
 });
 
 const inter = Inter({
@@ -52,7 +52,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${bricolage.variable} ${inter.variable} ${jetbrains.variable}`}
+      className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrains.variable}`}
     >
       <body>{children}</body>
     </html>
