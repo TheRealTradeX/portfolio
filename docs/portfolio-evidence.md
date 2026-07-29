@@ -70,7 +70,7 @@ stated in Jefrey's own docs and consistent with code · Low = unverifiable.
 
 | Candidate claim | Reason withheld |
 |---|---|
-| "$50K → $500K MRR growth" (Leverage-era CRM outcome) | Not found in any repository, document, or the current resume draft. Unsourced → omitted entirely. |
+| ~~"$50K → $500K MRR growth" (Leverage-era CRM outcome)~~ | Originally withheld as unsourced. Now published: it appears in Jefrey's official resume (Jefrey_Peralta_Resume.pdf, 2026-07-28), so the site quotes it with the same "approximately" framing, attributed to the Leverage Companies role. |
 | Stripe integration | Dead code/legacy tables only; no dependency. Never claim. |
 | Rise / payout-provider integration | No integration in code — payouts are a manual disbursement workflow with ops batch exports. Described as such. |
 | NMI / PaymentCloud | PaymentCloud is a merchant-account relationship (commercially sensitive); processing code is Authorize.Net. Only Authorize.Net claimed. |

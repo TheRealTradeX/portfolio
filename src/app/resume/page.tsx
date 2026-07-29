@@ -13,16 +13,20 @@ export const metadata: Metadata = {
 export default function ResumePage() {
   return (
     <main className="wrap max-w-3xl py-16">
-      <div className="no-print mb-10 flex items-center justify-between gap-4">
+      <div className="no-print mb-10 flex flex-wrap items-center justify-between gap-4">
         <Link
           href="/"
           className="font-mono-technical text-xs tracking-widest text-ink-muted uppercase hover:text-ink"
         >
           ← Back to site
         </Link>
-        <p className="font-mono-technical text-xs text-ink-muted">
-          Use your browser&apos;s print dialog to save as PDF
-        </p>
+        <a
+          href={siteConfig.links.resume}
+          download="Jefrey_Peralta_Resume.pdf"
+          className="rounded-full bg-accent px-5 py-2.5 font-mono-technical text-[12px] font-medium text-white transition-colors hover:bg-accent-bright hover:text-background"
+        >
+          Download PDF ↓
+        </a>
       </div>
 
       <header className="border-b border-edge pb-8">
@@ -101,7 +105,7 @@ export default function ResumePage() {
 
       <section className="py-8">
         <h2 className="font-mono-technical text-xs tracking-[0.2em] text-ink-muted uppercase">
-          Education
+          Education & Certification
         </h2>
         <ul className="mt-4 space-y-3 text-sm text-ink-secondary">
           <li>
@@ -112,8 +116,17 @@ export default function ResumePage() {
             program begins September 2026.
           </li>
           <li>
+            <span className="font-medium text-ink">Berkeley College</span> —
+            Bachelor of Business Administration.
+          </li>
+          <li>
             <span className="font-medium text-ink">
-              App Brewery Full-Stack Web Development Bootcamp
+              Salesforce Certified Administrator
+            </span>
+          </li>
+          <li>
+            <span className="font-medium text-ink">
+              The App Brewery — Complete Full-Stack Web Development Bootcamp
             </span>
           </li>
         </ul>

@@ -17,7 +17,7 @@ export const siteConfig = {
   links: {
     github: "https://github.com/TheRealTradeX",
     linkedin: "https://www.linkedin.com/in/jefrey-peralta-203719139/",
-    resume: "/resume",
+    resume: "/resume.pdf",
   },
 } as const;
 

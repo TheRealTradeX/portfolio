@@ -1,13 +1,13 @@
 import type { ExperienceEntry } from "@/types/content";
 
 /**
- * Sourced from Jefrey_Peralta_Resume_v4_Draft.docx and verified repository
+ * Sourced from Jefrey_Peralta_Resume.pdf (official) and verified repository
  * history. Formal business titles are preserved in `formalTitle`; the
  * engineering-facing framing is in `title`.
  */
 export const experience: ExperienceEntry[] = [
   {
-    company: "Velocity Funds / Velocity Labs",
+    company: "Velocity Funds / Velocity Co.",
     title: "Founding Product Engineer",
     formalTitle: "Founder & CEO",
     period: "2025 — Present",
@@ -23,10 +23,10 @@ export const experience: ExperienceEntry[] = [
   },
   {
     company: "Advanced Recovery Group",
-    title: "Collections Operations — builder of ResolveOS",
-    period: "2025 — 2026",
+    title: "Account Manager · builder of ResolveOS",
+    period: "2024 — Present",
     summary:
-      "Worked inside a debt-collections operation and independently built ResolveOS, an internal workspace that replaced the spreadsheet workflow the job actually ran on. The software was self-initiated, not an assigned engineering role.",
+      "Manage commercial finance accounts, settlements, payment reconciliation, and legal coordination — and independently built ResolveOS, an internal workspace that replaced the spreadsheet workflow the job actually ran on.",
     points: [
       "Translated a live collections workflow — account cadence, settlement stages, payment plans — into working software while doing the work it supported.",
       "Built CSV-first onboarding tolerant of messy real spreadsheets: fuzzy header mapping, deduplication keys, and multi-format date normalization.",
@@ -34,26 +34,27 @@ export const experience: ExperienceEntry[] = [
     ],
   },
   {
-    company: "Nova Resolutions Group / Utopian Estate",
-    title: "Founder · Technical Systems Architect",
-    period: "Prior experience",
+    company: "Utopian Estate / Nova Resolutions Group",
+    title: "Founder & Managing Partner",
+    period: "2021 — 2024",
     summary:
       "Founded and ran service businesses where the operational tooling was the differentiator — CRM systems, automations, and reporting built to run sales and operations.",
     points: [
-      "Designed CRM systems and operational workflows supporting sales and business operations.",
-      "Built automations, reporting dashboards, and process improvements that reduced manual work and improved visibility.",
+      "Built CRM-driven business systems supporting acquisitions, reporting, finance, and operations.",
+      "Designed scalable operational workflows and internal business tooling.",
     ],
   },
   {
-    company: "Leverage Companies",
-    title: "CRM Systems Engineer",
+    company: "Leverage Companies (Private Equity)",
+    title: "Lead Acquisition Manager & CRM Systems Developer",
     period: "2019 — 2021",
     location: "Newark, NJ",
     summary:
-      "Owned the Salesforce-based acquisition pipeline for a real-estate investment firm.",
+      "Designed, developed, and administered the company's Salesforce CRM while owning the acquisition pipeline.",
     points: [
-      "Configured and extended Salesforce CRM with automations, reporting, and operational tooling.",
-      "Built executive dashboards across CRM and Google Suite for transparent pipeline KPIs.",
+      "Built workflow automations, dashboards, reporting systems, and lead management processes.",
+      "Supported company growth from approximately $50K to $500K in monthly recurring revenue through scalable CRM and operational systems.",
+      "Partnered directly with leadership to translate business requirements into software solutions.",
     ],
   },
 ];

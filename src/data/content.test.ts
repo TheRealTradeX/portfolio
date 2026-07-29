@@ -13,8 +13,14 @@ describe("site config", () => {
     expect(siteConfig.url).toMatch(/^https:\/\//);
   });
 
-  it("resume link is an internal route, not a missing asset", () => {
-    expect(siteConfig.links.resume).toBe("/resume");
+  it("resume link points at the official PDF", () => {
+    expect(siteConfig.links.resume).toBe("/resume.pdf");
+  });
+
+  it("the resume PDF asset actually exists", async () => {
+    const { existsSync } = await import("node:fs");
+    const { join } = await import("node:path");
+    expect(existsSync(join(process.cwd(), "public", "resume.pdf"))).toBe(true);
   });
 
   it("contains no placeholder values", () => {

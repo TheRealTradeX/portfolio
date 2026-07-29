@@ -307,8 +307,14 @@ export default function HomePage() {
                   enrolled, begins September 2026.
                 </li>
                 <li>
+                  <span className="font-medium text-ink">Berkeley College</span>
+                  <br />
+                  Bachelor of Business Administration.
+                </li>
+                <li>
                   <span className="font-medium text-ink">
-                    App Brewery Full-Stack Web Development Bootcamp
+                    App Brewery Full-Stack Bootcamp · Salesforce Certified
+                    Administrator
                   </span>
                 </li>
                 <li>
