@@ -14,11 +14,11 @@ import { experience } from "@/data/experience";
 import { skills } from "@/data/skills";
 import { siteConfig } from "@/data/site";
 
-const proofPoints = [
-  { value: "237", label: "API route handlers in production" },
-  { value: "83", label: "Postgres tables · 120 RLS policies" },
-  { value: "878", label: "commits · sole engineer" },
-  { value: "2026-05-04", label: "production launch date" },
+const credibility = [
+  "Production fintech platform, launched and operated live",
+  "Payments, payouts, and reconciliation shipped",
+  "Internal operations software in daily use",
+  "Product, architecture, and deployment owned",
 ];
 
 function personJsonLd() {
@@ -81,21 +81,22 @@ export default function HomePage() {
             {siteConfig.availability} · {siteConfig.location}
           </p>
 
-          <h1 className="mt-8 font-display text-[clamp(2.9rem,8.5vw,6rem)] leading-[0.95] font-bold tracking-[-0.04em] text-balance">
-            Jefrey Peralta
-            <span className="block font-normal tracking-[-0.03em] text-ink-secondary">
-              Full-stack product engineer.
-            </span>
+          <p className="mt-8 font-mono-technical text-[12px] tracking-[0.16em] text-ink-secondary uppercase">
+            Jefrey Peralta · Full-Stack Product Engineer
+          </p>
+
+          <h1 className="mt-4 max-w-[24ch] font-display text-[clamp(2.35rem,6.8vw,4.6rem)] leading-[1.03] font-bold tracking-[-0.035em] text-balance">
+            I turn messy business operations into production software.
           </h1>
 
-          <p className="mt-7 max-w-[56ch] text-[clamp(1.05rem,2vw,1.25rem)] leading-relaxed text-ink-secondary">
-            I build the systems businesses actually run on —{" "}
+          <p className="mt-7 max-w-[58ch] text-[clamp(1.05rem,2vw,1.2rem)] leading-relaxed text-ink-secondary">
+            I spent years operating businesses that ran on spreadsheets, CRMs,
+            and duct tape. Now I build the software those operations deserve:{" "}
             <em className="font-medium text-ink not-italic">
-              payments, trading operations, internal CRMs, automation, and
-              AI-assisted analytics.
-            </em>{" "}
-            Technical founder turned engineer, with production systems to show
-            for it.
+              payment infrastructure, internal tools, automation, and
+              AI-assisted workflows
+            </em>
+            , shipped to production and debugged there too.
           </p>
 
           <div className="mt-9 flex flex-wrap gap-3">
@@ -103,7 +104,7 @@ export default function HomePage() {
               href="/#work"
               className="rounded-full bg-accent px-6 py-3.5 font-mono-technical text-[12.5px] font-medium text-white transition-colors hover:bg-accent-bright hover:text-background"
             >
-              View the work ↓
+              View selected work ↓
             </Link>
             <a
               href={siteConfig.links.resume}
@@ -111,27 +112,20 @@ export default function HomePage() {
             >
               Resume
             </a>
-            <a
-              href={siteConfig.links.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="glass rounded-full px-6 py-3.5 font-mono-technical text-[12.5px] text-ink transition-all hover:-translate-y-0.5 hover:border-edge-strong"
-            >
-              GitHub ↗
-            </a>
           </div>
         </header>
 
-        {/* ── Proof strip ── */}
-        <section aria-label="Production evidence" className="wrap">
-          <div className="rv grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-edge bg-edge lg:grid-cols-4">
-            {proofPoints.map((point) => (
-              <div key={point.label} className="bg-surface px-6 py-5">
-                <p className="font-display text-[clamp(1.45rem,6vw,1.875rem)] font-semibold tracking-tight whitespace-nowrap text-ink">
-                  {point.value}
-                </p>
-                <p className="mt-1 font-mono-technical text-[11px] leading-snug tracking-wide text-ink-muted">
-                  {point.label}
+        {/* ── Credibility strip ── */}
+        <section aria-label="Shipped scope" className="wrap">
+          <div className="rv grid gap-px overflow-hidden rounded-2xl border border-edge bg-edge sm:grid-cols-2 lg:grid-cols-4">
+            {credibility.map((item) => (
+              <div key={item} className="flex items-start gap-3 bg-surface px-6 py-5">
+                <span
+                  aria-hidden="true"
+                  className="mt-[7px] size-1.5 shrink-0 rounded-full bg-accent-bright"
+                />
+                <p className="text-[14px] leading-snug font-medium text-ink">
+                  {item}
                 </p>
               </div>
             ))}
@@ -280,7 +274,7 @@ export default function HomePage() {
                   everything: idempotent webhooks, cent-precision money math
                   frozen at write time, pure decision functions that can be
                   unit-tested without mocking the world, and migrations that
-                  are written down — not clicked together.
+                  are written down, not clicked together.
                 </p>
                 <p>
                   I use modern AI development tools as force multipliers, but
@@ -299,8 +293,8 @@ export default function HomePage() {
                     Western Governors University
                   </span>
                   <br />
-                  B.S. Computer Science, accelerated B.S./M.S. pathway —
-                  enrolled, begins September 2026.
+                  B.S. and M.S. Computer Science pathway, enrolled, beginning
+                  September 2026.
                 </li>
                 <li>
                   <span className="font-medium text-ink">Berkeley College</span>
@@ -318,7 +312,7 @@ export default function HomePage() {
                     Production, daily
                   </span>
                   <br />
-                  The fastest teacher has been operating live systems — launch
+                  The fastest teacher has been operating live systems: launch
                   days, incident write-ups, and the runbooks that came out of
                   them.
                 </li>

@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { siteConfig } from "@/data/site";
 
-export const alt = `${siteConfig.name} — ${siteConfig.role}`;
+export const alt = `${siteConfig.name} · ${siteConfig.role}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -32,13 +32,13 @@ export default function OgImage() {
           JEFREY.PERALTA
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
-          <div style={{ display: "flex", fontSize: 84, fontWeight: 700 }}>
+          <div style={{ display: "flex", fontSize: 76, fontWeight: 700 }}>
             {siteConfig.name}
           </div>
           <div
             style={{
               display: "flex",
-              fontSize: 42,
+              fontSize: 40,
               color: "#89a6ff",
               marginTop: 8,
             }}
@@ -48,27 +48,28 @@ export default function OgImage() {
           <div
             style={{
               display: "flex",
-              fontSize: 28,
+              fontSize: 30,
               color: "#a5afbd",
-              marginTop: 28,
-              maxWidth: 900,
+              marginTop: 30,
+              maxWidth: 940,
+              lineHeight: 1.35,
             }}
           >
-            I build the systems businesses actually run on — payments, trading
-            operations, internal CRMs, and AI-assisted analytics.
+            I turn messy business operations into production software.
           </div>
         </div>
         <div
           style={{
             display: "flex",
-            gap: 40,
+            gap: 32,
             fontSize: 22,
             color: "#79859a",
           }}
         >
-          <span>237 API routes in production</span>
-          <span>83-table Postgres schema</span>
-          <span>Sole engineer</span>
+          <span>Payments</span>
+          <span>Internal tools</span>
+          <span>Automation</span>
+          <span>AI-assisted workflows</span>
         </div>
       </div>
     ),
