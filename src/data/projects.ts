@@ -18,6 +18,15 @@ export const projects: Project[] = [
     status: "Operated in production, May to July 2026",
     timeline: "Dec 2025 – Jul 2026 · launched May 4, 2026",
     role: "Full-stack product engineer and founder",
+    visuals: [
+      {
+        src: "/work/velocity/command-center.webp",
+        alt: "Velocity admin Command Center showing revenue, trader accounts, pending payouts, risk flags, platform health, and daily operating priorities, populated with synthetic data",
+        width: 1600,
+        height: 775,
+        caption: "The admin Command Center, one operating view of the whole business. Synthetic data.",
+      },
+    ],
     visualAreas: [
       "Trader experience",
       "Payments and payouts",
@@ -60,6 +69,15 @@ export const projects: Project[] = [
     status: "Used daily in a live collections workflow",
     timeline: "Dec 2025 – present",
     role: "Product engineer, operator, and primary user",
+    visuals: [
+      {
+        src: "/work/resolveos/opportunity-pipeline.webp",
+        alt: "ResolveOS opportunity pipeline organizing settlement candidates by stage with amounts, funders, confidence weights, and next actions, populated with synthetic data",
+        width: 1600,
+        height: 792,
+        caption: "The settlement pipeline: offers tracked by stage before they become payment plans. Synthetic data.",
+      },
+    ],
     visualAreas: [
       "Account prioritization",
       "Settlement pipeline",
@@ -92,6 +110,15 @@ export const projects: Project[] = [
     status: "Live public website",
     timeline: "Mar 2026 – Jul 2026",
     role: "Product design and full-stack implementation",
+    visuals: [
+      {
+        src: "/work/velocityfunds-site/homepage-overview.webp",
+        alt: "velocityfunds.io homepage hero with the launch headline, evaluation call to action, and the first-party cookie consent prompt",
+        width: 1600,
+        height: 1000,
+        caption: "The live homepage hero, consent prompt included by design.",
+      },
+    ],
     visualAreas: [
       "Product storytelling",
       "Lead capture",

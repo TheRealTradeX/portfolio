@@ -9,6 +9,7 @@ import {
   CaseStudyHeader,
   CaseStudyAtAGlance,
   CaseStudyFigure,
+  CaseStudyFigureRow,
   CaseStudyDecision,
   CaseStudyDecisionList,
   CaseStudyExpandable,
@@ -183,6 +184,56 @@ export default function ResolveOSCaseStudy() {
             Each view exists to make a decision: what to work next, what to
             offer, what to chase, and what actually cleared.
           </p>
+          <CaseStudyFigure
+            kind="image"
+            image={{
+              src: "/work/resolveos/dashboard-overview.webp",
+              alt: "ResolveOS dashboard with expected cash-in, at-risk value, pipeline forecast, collected total, monthly goal, revenue drivers, workload and risk counts, stage totals, and projection versus collected, populated with synthetic data",
+              width: 1600,
+              height: 798,
+            }}
+            label="Dashboard overview"
+            caption="Portfolio health and expected cash for the month, answered before the first call."
+            dataDisclosure="Synthetic data"
+          />
+          <CaseStudyFigure
+            kind="image"
+            image={{
+              src: "/work/resolveos/accounts-overview.webp",
+              alt: "ResolveOS accounts list with merchants, funders, collection day, start date, amount, frequency, age, priority bucket, last-worked and follow-up status, and next payment dates, populated with synthetic data",
+              width: 1600,
+              height: 770,
+            }}
+            label="Accounts overview"
+            caption="The working queue: every account with its priority, cadence state, and next payment."
+            dataDisclosure="Synthetic data"
+          />
+          <CaseStudyFigureRow>
+            <CaseStudyFigure
+              kind="image"
+              image={{
+                src: "/work/resolveos/opportunity-pipeline.webp",
+                alt: "ResolveOS opportunity pipeline board with settlement opportunities in stages from lead through payment plan made, each with amounts, funders, and confidence weights, populated with synthetic data",
+                width: 1600,
+                height: 792,
+              }}
+              label="Opportunity pipeline"
+              caption="Settlements tracked by stage, with weighted forecasting."
+              dataDisclosure="Synthetic data"
+            />
+            <CaseStudyFigure
+              kind="image"
+              image={{
+                src: "/work/resolveos/payments-overview.webp",
+                alt: "ResolveOS payments board organizing accounts by collection day and status with amounts, frequencies, follow-up dates, next payments, and month totals, populated with synthetic data",
+                width: 1600,
+                height: 792,
+              }}
+              label="Payments overview"
+              caption="Payment plans by collection day, so a missed payment is visible immediately."
+              dataDisclosure="Synthetic data"
+            />
+          </CaseStudyFigureRow>
           <CaseStudyFigure
             kind="custom"
             accessibleLabel="Daily operating loop: import exports, normalize, compute priority, work follow-ups and settlements, log actions and payments, reconcile"

@@ -9,6 +9,7 @@ import {
   CaseStudyHeader,
   CaseStudyAtAGlance,
   CaseStudyFigure,
+  CaseStudyFigureRow,
   CaseStudyDecision,
   CaseStudyDecisionList,
   CaseStudyExpandable,
@@ -256,6 +257,44 @@ export default function VelocityCaseStudy() {
             administration, email and retention workflows, affiliate
             management, and the audit trail behind privileged actions.
           </p>
+          <CaseStudyFigure
+            kind="image"
+            image={{
+              src: "/work/velocity/command-center.webp",
+              alt: "Velocity admin Command Center showing revenue, trader accounts, pending review and payouts, risk flags, platform health, revenue trend, account outcomes, a daily operations brief, and recent accounts, populated with synthetic data",
+              width: 1600,
+              height: 775,
+            }}
+            label="Admin command center"
+            caption="One operating view for revenue, accounts, risk, payouts, and the day's priorities."
+            dataDisclosure="Synthetic data"
+          />
+          <CaseStudyFigureRow>
+            <CaseStudyFigure
+              kind="image"
+              image={{
+                src: "/work/velocity/trader-dashboard.webp",
+                alt: "Velocity trader dashboard with total balance, net profit and loss, portfolio performance chart, active account summary, live trades, and recent risk activity",
+                width: 1600,
+                height: 797,
+              }}
+              label="Trader dashboard"
+              caption="The trader's daily view: balance, performance, live trades, and rule activity."
+              dataDisclosure="Anonymized data"
+            />
+            <CaseStudyFigure
+              kind="image"
+              image={{
+                src: "/work/velocity/account-detail.webp",
+                alt: "Velocity trader account detail showing net profit and loss, trading objectives with drawdown and profit target progress, account balance with floor tracking, performance score, and a monthly performance calendar",
+                width: 1600,
+                height: 795,
+              }}
+              label="Account detail and objectives"
+              caption="Objectives, drawdown floors, and qualification progress on one screen."
+              dataDisclosure="Anonymized data"
+            />
+          </CaseStudyFigureRow>
         </CS>
 
         <CS id="owned" title="What I owned">
@@ -330,6 +369,44 @@ export default function VelocityCaseStudy() {
               </p>
             </div>
           </div>
+          <CaseStudyFigureRow>
+            <CaseStudyFigure
+              kind="image"
+              image={{
+                src: "/work/velocity/retention-intelligence.webp",
+                alt: "Velocity Retention Intelligence screen with trader health scores, behavioral signals, at-risk rankings, and a signal breakdown, populated with synthetic data",
+                width: 1600,
+                height: 790,
+              }}
+              label="Retention intelligence"
+              caption="Behavioral telemetry turned into a ranked retention worklist for operators."
+              dataDisclosure="Synthetic data"
+            />
+            <CaseStudyFigure
+              kind="image"
+              image={{
+                src: "/work/velocity/email-hub.webp",
+                alt: "Velocity Email Hub dashboard with totals for sent, failed, transactional, and campaign email, delivery rate, and a recent activity feed of campaign and automated sends",
+                width: 1600,
+                height: 801,
+              }}
+              label="Email hub"
+              caption="Transactional and campaign email with delivery health and per-message history."
+              dataDisclosure="Synthetic data"
+            />
+          </CaseStudyFigureRow>
+          <CaseStudyFigure
+            kind="image"
+            image={{
+              src: "/work/velocity/trading-rules.webp",
+              alt: "Velocity trading rules administration screen showing a funded-account rule with drawdown mode, trading hours, user risk management settings, and the raw rule configuration",
+              width: 1600,
+              height: 787,
+            }}
+            label="Trading rules administration"
+            caption="Risk parameters and trading controls managed as first-class configuration."
+            dataDisclosure="Anonymized data"
+          />
         </CS>
 
         <CS id="decisions" title="Engineering decisions that mattered">
@@ -563,6 +640,30 @@ export default function VelocityCaseStudy() {
               engineer on the team.
             </p>
           </CaseStudyExpandable>
+          <CaseStudyFigureRow>
+            <CaseStudyFigure
+              kind="image"
+              image={{
+                src: "/work/velocity/velocity-intelligence.webp",
+                alt: "Velocity Intelligence analysis view with pattern analysis of the author's own trading, market outlook panels, and live insight cards",
+                width: 1600,
+                height: 792,
+              }}
+              label="Velocity Intelligence"
+              caption="AI-assisted trade analysis over real account data, here reviewing my own trading."
+            />
+            <CaseStudyFigure
+              kind="image"
+              image={{
+                src: "/work/velocity/vi-pulse.webp",
+                alt: "VI Pulse performance scoring screen with a pulse score, psychology, plan adherence, risk management, execution, and consistency sub-scores, and AI commentary",
+                width: 1600,
+                height: 787,
+              }}
+              label="VI Pulse"
+              caption="Versioned-prompt scoring across psychology, adherence, risk, and consistency."
+            />
+          </CaseStudyFigureRow>
         </CS>
 
         <EvidenceNote>

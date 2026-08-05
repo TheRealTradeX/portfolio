@@ -110,6 +110,30 @@ export default function VelocitySiteCaseStudy() {
             the reader between acts, and heavy visuals load lazily, only on
             clients that can afford them.
           </p>
+          <CaseStudyFigure
+            kind="image"
+            image={{
+              src: "/work/velocityfunds-site/homepage-overview.webp",
+              alt: "velocityfunds.io homepage hero with the Velocity Funds wordmark, launch headline, evaluation call to action, and the first-party cookie consent prompt in the corner",
+              width: 1600,
+              height: 1000,
+            }}
+            label="The live homepage"
+            caption="The public launch experience built for the 2026 evaluation offering. The consent prompt in the corner is the first-party framework doing its job."
+          />
+          <div className="mx-auto max-w-[320px]">
+            <CaseStudyFigure
+              kind="image"
+              image={{
+                src: "/work/velocityfunds-site/mobile-experience.webp",
+                alt: "velocityfunds.io mobile homepage with the launch headline, evaluation call to action, and account terms rendered for a phone-sized screen",
+                width: 780,
+                height: 1650,
+              }}
+              label="Mobile"
+              caption="The same story at phone width."
+            />
+          </div>
         </CS>
 
         <CS id="decisions" title="Design and engineering decisions">
@@ -142,6 +166,16 @@ export default function VelocitySiteCaseStudy() {
                 scroll jank, and the product demo video was cut from 76 MB
                 to 4 MB.
               </p>
+              <CaseStudyFigure
+                kind="image"
+                image={{
+                  src: "/work/velocityfunds-site/product-story.webp",
+                  alt: "A mid-scroll act of velocityfunds.io showing the VI Debrief product panel beside a pinned heads-up display with pricing, rules, and account tiers, with act navigation on the left",
+                  width: 1600,
+                  height: 1000,
+                }}
+                caption="Mid-story: a product act pinned beside the live pricing and rules HUD, with the act navigation tracking scroll position."
+              />
             </CaseStudyDecision>
             <CaseStudyDecision
               number={3}
