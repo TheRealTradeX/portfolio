@@ -7,21 +7,172 @@ import { RevealObserver } from "@/components/Reveal";
 import {
   CaseStudyShell,
   CaseStudyHeader,
+  CaseStudyAtAGlance,
+  CaseStudyFigure,
+  CaseStudyDecision,
+  CaseStudyDecisionList,
+  CaseStudyExpandable,
   CS,
   EvidenceNote,
 } from "@/components/case-study";
-import { ArchitectureField } from "@/components/ArchitectureField";
-import { velocityNodes, velocityEdges } from "@/data/architecture";
-import { getProject } from "@/data/projects";
 
 export const metadata: Metadata = {
-  title: "Velocity Platform — Case Study",
+  title: "Velocity Platform · Financial operations case study",
   description:
-    "Engineering case study: an end-to-end futures trading evaluation platform — 237 API routes, 83-table Postgres schema, payments, payouts, realtime market data, and an admin command center, built and operated by a sole engineer.",
+    "How I designed, built, launched, and operated a production platform connecting payments, trader accounts, realtime market data, risk controls, payouts, and internal operations.",
   alternates: { canonical: "/work/velocity" },
 };
 
-const project = getProject("velocity")!;
+const productFlow = [
+  "Signup",
+  "Checkout",
+  "Provisioning",
+  "Live trading",
+  "Rule evaluation",
+  "Payout review",
+];
+
+const architectureZones = [
+  {
+    name: "Experiences",
+    items: ["Trader dashboard", "Admin console"],
+  },
+  {
+    name: "Application",
+    items: ["Next.js web application", "API route handlers"],
+  },
+  {
+    name: "Async processing",
+    items: [
+      "Worker service (BullMQ jobs)",
+      "Realtime market-data consumer",
+      "Scheduled jobs",
+    ],
+  },
+  {
+    name: "Data & state",
+    items: ["PostgreSQL with row-level security (Supabase)", "Redis (queues, rate limits)"],
+  },
+  {
+    name: "External services",
+    items: [
+      "Authorize.Net (payments)",
+      "Trading data vendor (protobuf over WSS)",
+      "Resend (email)",
+      "OpenAI (VI suite)",
+      "Sentry (monitoring)",
+    ],
+  },
+];
+
+const eventFlow = [
+  {
+    step: "Provider event arrives",
+    detail: "payment or platform webhook, raw payload",
+  },
+  {
+    step: "Durable receipt",
+    detail: "keyed by content hash; redelivery is a no-op",
+  },
+  {
+    step: "Queued processing",
+    detail: "off the request path; inline fallback if the queue is down",
+  },
+  {
+    step: "State transition",
+    detail: "account, subscription, and entitlement updates in a transaction",
+  },
+  {
+    step: "Audit and reconciliation",
+    detail: "replay and health sweeps catch anything missed",
+  },
+];
+
+function ProductFlowDiagram() {
+  return (
+    <ol className="flex flex-wrap items-center gap-x-2 gap-y-2.5 p-5 sm:p-6">
+      {productFlow.map((step, i) => (
+        <li key={step} className="flex items-center gap-2">
+          <span className="rounded-lg border border-edge bg-white/[0.02] px-3 py-1.5 text-[12.5px] leading-snug text-ink-secondary">
+            {step}
+          </span>
+          {i < productFlow.length - 1 && (
+            <span aria-hidden="true" className="text-[12px] text-ink-muted">
+              →
+            </span>
+          )}
+        </li>
+      ))}
+    </ol>
+  );
+}
+
+function ArchitectureDiagram() {
+  return (
+    <div className="space-y-0 p-5 sm:p-6">
+      <p className="pb-4 font-mono-technical text-[11px] tracking-[0.14em] text-ink uppercase">
+        Velocity platform architecture
+      </p>
+      {architectureZones.map((zone, i) => (
+        <div key={zone.name}>
+          {i > 0 && (
+            <p
+              aria-hidden="true"
+              className="py-1.5 pl-28 font-mono-technical text-[11px] text-ink-muted"
+            >
+              ↓
+            </p>
+          )}
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:gap-4">
+            <p className="w-28 shrink-0 font-mono-technical text-[10px] tracking-[0.14em] text-ink-muted uppercase">
+              {zone.name}
+            </p>
+            <ul className="flex flex-wrap gap-1.5">
+              {zone.items.map((item) => (
+                <li
+                  key={item}
+                  className="rounded-lg border border-edge bg-white/[0.02] px-2.5 py-1.5 text-[12px] leading-snug text-ink-secondary"
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function EventFlowDiagram() {
+  return (
+    <ol className="space-y-0 p-5 sm:p-6">
+      {eventFlow.map((item, i) => (
+        <li key={item.step} className="flex gap-4">
+          <div className="flex flex-col items-center">
+            <span className="font-mono-technical text-[11px] text-accent-bright">
+              {String(i + 1).padStart(2, "0")}
+            </span>
+            {i < eventFlow.length - 1 && (
+              <span
+                aria-hidden="true"
+                className="my-1 w-px flex-1 bg-edge"
+              />
+            )}
+          </div>
+          <div className={i < eventFlow.length - 1 ? "pb-4" : undefined}>
+            <p className="text-[13.5px] leading-snug font-medium text-ink">
+              {item.step}
+            </p>
+            <p className="mt-0.5 text-[12.5px] leading-relaxed text-ink-muted">
+              {item.detail}
+            </p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  );
+}
 
 export default function VelocityCaseStudy() {
   return (
@@ -32,242 +183,394 @@ export default function VelocityCaseStudy() {
       <RevealObserver />
       <CaseStudyShell>
         <CaseStudyHeader
-          eyebrow="Case study · Flagship"
+          eyebrow="Case study · Financial operations platform"
           title="Velocity Platform"
-          summary="An end-to-end futures trading evaluation platform — the trader product, the financial infrastructure, and the admin command center — designed, built, launched, and operated by one engineer."
+          summary="A production platform that connected customer signup, checkout, trader accounts, realtime market data, risk enforcement, payouts, and the internal back office required to operate a futures evaluation business."
+        />
+
+        <CaseStudyAtAGlance
           facts={[
-            { label: "Status", value: project.status },
-            { label: "Timeline", value: project.timeline },
-            { label: "Role", value: project.role },
-            { label: "Scale", value: "237 API routes · 83 tables · ~190k LOC TS" },
-            { label: "Team", value: "Solo — 878 commits, zero co-authors" },
+            { label: "Product type", value: "Financial operations platform" },
+            { label: "Status", value: "Operated in production, May to July 2026" },
+            { label: "Role", value: "Full-stack product engineer and founder" },
+            { label: "Timeline", value: "Designed, launched, and operated during 2026" },
             {
-              label: "Source",
-              value: (
-                <a
-                  className="underline underline-offset-4 hover:text-accent-bright"
-                  href="https://github.com/TheRealTradeX/velocity-funds-platform"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Public architecture overview ↗
-                </a>
-              ),
+              label: "Operating context",
+              value: "Customer-facing product and internal operating system",
+            },
+            {
+              label: "Users",
+              value: "Traders, administrators, affiliates, and internal operators",
+            },
+            {
+              label: "Major systems",
+              value:
+                "Payments, trading data, risk, payouts, lifecycle automation, CRM, and communications",
             },
           ]}
         />
 
-        <div className="glass mt-10 rounded-2xl p-5 sm:p-8">
-          <ArchitectureField
-            nodes={velocityNodes}
-            edges={velocityEdges}
-            title="Velocity platform system topology"
-            className="w-full"
-          />
-          <p className="mt-3 text-center font-mono-technical text-[10.5px] text-ink-muted">
-            System topology — every node is a deployed service or integration.
-            Animated packets are illustrative, not live data.
+        <CS id="problem" title="The operating problem">
+          <p>
+            A futures evaluation business sells a simple promise: pay for an
+            evaluation, trade within the rules on live market data, get paid
+            if you succeed. Operating that promise is not simple. Checkout,
+            provisioning, live trading, risk enforcement, payouts, affiliate
+            tracking, communications, and internal administration all have to
+            agree about what is true at any moment.
           </p>
-        </div>
+          <p>
+            Run that on disconnected vendor portals and spreadsheets, and
+            every gap becomes operational risk: a paid customer without an
+            account, a breached account still trading, a payout reviewed
+            against stale numbers. The hard part was not any single screen.
+            It was keeping one reliable operational state across money,
+            accounts, and live decisions.
+          </p>
+        </CS>
 
-        <CS id="problem" title="The problem">
+        <CS id="product" title="The product">
+          <CaseStudyFigure
+            kind="custom"
+            accessibleLabel="Product workflow: signup, checkout, provisioning, live trading, rule evaluation, payout review"
+            label="Product workflow"
+            caption="The lifecycle one platform kept consistent. A workflow view, not an interface."
+          >
+            <ProductFlowDiagram />
+          </CaseStudyFigure>
+          <h3 className="pt-2 font-display text-lg font-semibold tracking-tight text-ink">
+            For traders
+          </h3>
           <p>
-            A futures prop firm sells evaluations: traders pay to prove they
-            can trade within risk rules, and funded traders earn payouts. Off
-            the shelf, that business runs on a duct-taped stack of a payment
-            processor, a trading platform vendor portal, spreadsheets, and
-            support tickets. Every state transition — purchase, provisioning,
-            breach, pass, payout — crosses a system boundary by hand, and
-            every manual hop is a place where money and trust leak.
+            A dashboard built around the evaluation: live balance and
+            performance, the objectives governing the account, progress
+            toward qualification, and clear signals when a rule was at risk,
+            with purchases and email in the same place.
           </p>
+          <h3 className="pt-2 font-display text-lg font-semibold tracking-tight text-ink">
+            For operators
+          </h3>
           <p>
-            I founded Velocity Funds and made a bet: the firm would be
-            software. One platform owning the trader&apos;s entire lifecycle,
-            from checkout to payout, with the operational back office built in
-            rather than bolted on.
+            An internal console over the same data: account operations,
+            payment status, lifecycle controls, payout review, risk and rule
+            administration, email and retention workflows, affiliate
+            management, and the audit trail behind privileged actions.
           </p>
         </CS>
 
         <CS id="owned" title="What I owned">
           <p>
-            Everything technical. Product architecture, the data model, every
-            integration, the frontend, deployment, and production operations —
-            878 commits with no other authors. Concretely, the platform is a
-            four-workspace Turborepo monorepo:
+            I designed, built, deployed, and operated the platform supporting
+            the business: product definition, interface design, application
+            architecture, the data model, backend services, the payment and
+            trading-data integrations, risk and lifecycle logic, internal
+            tooling, deployment, and incident response. It was not handed off
+            after launch; I was responsible for how it behaved when
+            customers, money, and live decisions moved through it.
           </p>
-          <ul className="list-disc space-y-2 pl-5">
-            <li>
-              <strong>Web app</strong> — Next.js App Router: 21 trader pages,
-              39 admin pages, 237 API route handlers, 300+ components.
-            </li>
-            <li>
-              <strong>Worker service</strong> — a BullMQ job processor on
-              Railway for everything that must not run inside a request:
-              webhook processing, notifications, certificate generation,
-              account syncs, resumable email campaign sends.
-            </li>
-            <li>
-              <strong>Realtime service</strong> — a protobuf-over-WebSocket
-              consumer of the trading vendor&apos;s feed, projecting balances,
-              trades, and positions into Postgres and driving risk monitoring.
-            </li>
-            <li>
-              <strong>Shared package</strong> — typed queue contracts (eight
-              Zod payload schemas), the vendor API client, lifecycle state
-              logic, and time/session math shared by all three services.
-            </li>
-          </ul>
-        </CS>
-
-        <CS id="architecture" title="Architecture decisions that mattered">
-          <p>
-            <strong>Webhooks are a ledger, not an event.</strong> Payment and
-            trading-platform webhooks land in an events table keyed by a
-            content hash of the raw body — a unique index makes redelivery a
-            no-op. Processing is enqueued to BullMQ and acknowledged
-            immediately; if Redis is unreachable, an inline fallback processes
-            the event in-request and marks it so. Replay and health crons
-            sweep for anything missed. Idempotency shows up 281 times across
-            40 files because it is the design language of the platform, not a
-            patch.
-          </p>
-          <p>
-            <strong>Pure decision kernels.</strong> Payout eligibility, AI
-            access entitlements, affiliate attribution, and lifecycle state
-            are pure functions over explicit inputs, separated from the
-            routes that gather data. That single choice is why the platform
-            has 74 targeted test files without a test framework — plain{" "}
-            <code className="font-mono-technical text-[13px]">
-              node:assert
-            </code>{" "}
-            scripts against functions with no side effects.
-          </p>
-          <p>
-            <strong>Money is frozen at write time.</strong> Payouts store
-            gross, net, split, and retained amounts in integer cents at
-            creation. Changing a config later can never rewrite history.
-            Affiliate commission rates are likewise snapshotted onto each
-            referral row at conversion.
-          </p>
-          <p>
-            <strong>One lifecycle, one definition.</strong> Account state
-            (active, provisioning, passed-pending-review, breached, archived,
-            paid out…) was originally computed inline at five render sites,
-            which diverged. It became a nine-variant discriminated union in
-            the shared package with one derivation function — and a
-            documented rule about which upstream fields are allowed to be
-            inputs.
-          </p>
-          <p>
-            <strong>Postgres as the spine.</strong> 83 tables under 69 active
-            timestamped migrations, with row-level security on every
-            user-facing table (120 policies) and a three-role model enforced
-            twice: at the edge (middleware) and at every admin API route.
+          <p className="text-[13.5px] text-ink-muted">
+            AI coding agents accelerated implementation inside a constrained
+            workflow: repository context (CLAUDE.md, an extensive
+            architecture reference), scoped task plans, diff review, targeted
+            tests, and production verification. The decisions and the
+            accountability stayed human.
           </p>
         </CS>
 
-        <CS id="failed" title="What failed, and what it changed">
-          <p>
-            <strong>Launch day broke realtime.</strong> On 2026-05-04 the
-            schema baseline cutover dropped the logical-replication
-            publication membership that live dashboards depended on. It was
-            restored the same day via migration, and the incident is written
-            up in the repo&apos;s architecture doc. The durable change:
-            schema-drift logging and a launch checklist runbook.
-          </p>
-          <p>
-            <strong>A race in promo codes.</strong> Read-then-write on a
-            usage counter double-redeemed under concurrency. It was replaced
-            with atomic reserve/commit/release SQL functions. A similar
-            compare-and-set lease now guards recurring-billing retries.
-          </p>
-          <p>
-            <strong>Production forensics became a practice.</strong> The
-            repo carries 47 read-only diagnostic scripts written to answer
-            real production questions — P&amp;L semantics spot-checks, symbol
-            coverage, survivor counts — because debugging a financial system
-            by clicking around is how mistakes get made.
-          </p>
+        <CS id="systems" title="The systems inside the platform">
+          <div className="grid gap-x-10 gap-y-5 sm:grid-cols-2">
+            <div>
+              <p className="font-medium text-ink">Payments and billing</p>
+              <p className="mt-1 text-[13.5px] leading-relaxed">
+                Tokenized checkout, recurring billing, entitlements, and
+                webhooks backed by a durable event ledger.
+              </p>
+            </div>
+            <div>
+              <p className="font-medium text-ink">
+                Provisioning and lifecycle
+              </p>
+              <p className="mt-1 text-[13.5px] leading-relaxed">
+                A six-step provisioning state machine and one shared
+                definition of account state, purchase through archive.
+              </p>
+            </div>
+            <div>
+              <p className="font-medium text-ink">Trading data and risk</p>
+              <p className="mt-1 text-[13.5px] leading-relaxed">
+                A dedicated service projected the vendor&apos;s live stream
+                into Postgres and drove rule monitoring.
+              </p>
+            </div>
+            <div>
+              <p className="font-medium text-ink">Payout operations</p>
+              <p className="mt-1 text-[13.5px] leading-relaxed">
+                Qualification rules as pure functions, amounts frozen at
+                creation, and an operator review workflow.
+              </p>
+            </div>
+            <div>
+              <p className="font-medium text-ink">
+                Communications, retention, and CRM
+              </p>
+              <p className="mt-1 text-[13.5px] leading-relaxed">
+                Transactional and campaign email, automations, and a CRM view
+                over platform data. Velocity Intelligence (VI Pulse,
+                Sentinel, Debrief) added AI-assisted trader analysis; VELOBOT
+                automated community operations.
+              </p>
+            </div>
+            <div>
+              <p className="font-medium text-ink">
+                Admin controls and auditability
+              </p>
+              <p className="mt-1 text-[13.5px] leading-relaxed">
+                Role gates enforced at the edge and per route, an append-only
+                audit log, and read-only forensics scripts.
+              </p>
+            </div>
+          </div>
         </CS>
 
-        <CS id="security" title="Security & reliability">
-          <ul className="list-disc space-y-2 pl-5">
-            <li>
-              Card data never touches the server — checkout uses
-              Authorize.Net client-side tokenization; the backend sees
-              payment nonces only.
-            </li>
-            <li>
-              Tax IDs are encrypted at rest with AES-256-GCM under versioned
-              keys, in a separate table, with the reveal path rate-limited.
-            </li>
-            <li>
-              Internal service-to-service calls verify an HMAC service token
-              with constant-time comparison.
-            </li>
-            <li>
-              21 distinct rate limiters cover checkout, auth, AI, webhooks,
-              and public endpoints.
-            </li>
-            <li>
-              Strict security headers with a CSP that is report-only in dev
-              and enforced in production; Sentry across all three services
-              with request-correlation IDs.
-            </li>
-            <li>
-              An append-only admin audit log records privileged actions.
-            </li>
-          </ul>
+        <CS id="decisions" title="Engineering decisions that mattered">
+          <CaseStudyDecisionList>
+            <CaseStudyDecision
+              number={1}
+              title="Webhooks as an idempotent ledger"
+              summary="Payment events are durable state transitions, not disposable callbacks."
+              result="Redelivery, retries, and outages could not corrupt payment state."
+            >
+              <p>
+                Every webhook lands in an events table keyed by a content
+                hash of the raw body, so duplicate deliveries become no-ops
+                instead of double-charges. Processing runs off the request
+                path, with an inline fallback and replay sweeps.
+              </p>
+            </CaseStudyDecision>
+            <CaseStudyDecision
+              number={2}
+              title="Pure decision kernels"
+              summary="Eligibility and rule logic lives in pure functions, separated from the routes that gather data."
+              result="The most consequential logic is the most tested and the easiest to reason about."
+            >
+              <p>
+                Payout eligibility, entitlements, affiliate attribution, and
+                lifecycle state are deterministic functions: readable,
+                reusable, testable without mocking infrastructure.
+              </p>
+            </CaseStudyDecision>
+            <CaseStudyDecision
+              number={3}
+              title="Money frozen at write time"
+              summary="Monetary facts are captured at the moment of decision, never recalculated from changing state."
+              result="Financial history stayed stable, auditable, and defensible."
+            >
+              <p>
+                Payouts store amounts in integer cents at creation, and
+                affiliate commission rates are snapshotted at conversion.
+                Changing a configuration later cannot rewrite what was
+                decided.
+              </p>
+            </CaseStudyDecision>
+            <CaseStudyDecision
+              number={4}
+              title="One lifecycle definition"
+              summary="Account state has exactly one derivation, shared by every surface."
+              result="Dashboards, jobs, and operator screens stopped disagreeing about what an account was."
+            >
+              <p>
+                State was originally computed inline at five render sites,
+                and they drifted. It became a nine-variant discriminated
+                union with a single derivation function and a documented rule
+                about allowed inputs.
+              </p>
+            </CaseStudyDecision>
+            <CaseStudyDecision
+              number={5}
+              title="PostgreSQL as the system spine"
+              summary="Critical state, constraints, security, and financial records live in one relational database."
+              result="One shared source of operational truth."
+            >
+              <p>
+                Schema as timestamped migrations, row-level security on
+                user-facing tables, transactions around state transitions,
+                realtime publications for live dashboards. Services stay
+                stateless; Postgres holds the truth.
+              </p>
+            </CaseStudyDecision>
+          </CaseStudyDecisionList>
         </CS>
 
-        <CS id="quality" title="Testing, deployment, and known gaps">
+        <CS id="architecture" title="Architecture">
           <p>
-            74 test files target the pure decision functions — payout
-            eligibility, queue payload schemas, trade-row building, webhook
-            signature verification. Deployment is Vercel (web) and Railway
-            (worker, realtime — multi-stage Docker images, non-root), with
-            staging and production branches, 10 Vercel cron jobs, and
-            worker-scheduled internal crons gated by an endpoint allowlist.
+            One web application served both experiences; everything slow,
+            streaming, or scheduled ran outside the request path.
+          </p>
+          <CaseStudyFigure
+            kind="custom"
+            accessibleLabel="Velocity platform architecture in five zones: experiences, application, asynchronous processing, data and state, external services"
+            caption="Responsibility zones. Requests flow from experiences through the application into data; async services and external providers connect through queues, streams, and webhooks."
+          >
+            <ArchitectureDiagram />
+          </CaseStudyFigure>
+          <CaseStudyFigure
+            kind="custom"
+            accessibleLabel="Payment webhook path: provider event, durable receipt by content hash, queued processing with inline fallback, transactional state update, audit and reconciliation sweeps"
+            label="The payment event path"
+            caption="How a payment event becomes durable state. Duplicate deliveries die at step two."
+          >
+            <EventFlowDiagram />
+          </CaseStudyFigure>
+        </CS>
+
+        <CS id="failed" title="What failed in production">
+          <h3 className="font-display text-lg font-semibold tracking-tight text-ink">
+            Launch day broke realtime
+          </h3>
+          <p>
+            The launch-day schema cutover dropped the logical-replication
+            publication that live dashboards depended on: balances froze
+            while money and trading kept moving. The exact production
+            migration path had never been rehearsed against the launch
+            baseline. Diagnosed from replication state, restored the same day
+            by migration, written up. The durable change: schema-drift
+            logging and a launch checklist runbook.
+          </p>
+          <h3 className="pt-2 font-display text-lg font-semibold tracking-tight text-ink">
+            The promo-code race
+          </h3>
+          <p>
+            A read-then-write usage counter let a promotion code be redeemed
+            twice under concurrency. The fix: atomic reserve, commit, and
+            release SQL functions, with the same compare-and-set pattern now
+            guarding recurring-billing retries.
           </p>
           <p>
-            The known gaps: there is no CI pipeline — tests run locally, and
-            deploys are push-to-branch. There is no test framework or
-            coverage measurement, and heavy UI surfaces are largely untested.
-            Those are the first things I would fix with a second engineer on
-            the team.
+            The lasting habit from both: production questions get answered by
+            read-only forensics scripts, not by clicking around a live
+            financial system.
           </p>
         </CS>
 
         <CS id="outcome" title="Outcome">
           <p>
-            The platform launched publicly on 2026-05-04 at
-            app.velocityfunds.io and ran the firm&apos;s operations: real
-            purchases, real evaluations on live market data, real payouts,
-            real support — with one engineer operating it. In July 2026 I made
-            a deliberate business decision to wind down new evaluation sales
-            and pivot the product toward an AI-native trader operating
-            system (&quot;Chapter Two&quot;); the final feature shipped was
-            the transition itself.
+            Velocity launched publicly in May 2026 and ran the firm&apos;s
+            operations through July: real purchases, evaluations on live
+            market data, payout reviews, and support, all through one
+            platform, with financial and account decisions leaving durable
+            records.
           </p>
           <p>
-            What I&apos;d improve next: CI with the existing test suite as a
-            merge gate, Zod validation on the receiving side of internal
-            service calls (a gap the architecture doc flags itself), and
-            decomposing the largest admin views.
+            The evaluation business was wound down in July 2026 because of
+            liquidity and operating constraints, and the company began
+            pivoting toward software products. The software did what it was
+            built to do through the whole operating period; the wind-down
+            itself ran through the platform&apos;s own lifecycle machinery,
+            with new purchases disabled cleanly.
           </p>
+        </CS>
+
+        <CS id="improve" title="What I would improve next">
+          <p>
+            CI with the existing test suite as a merge gate, instead of local
+            runs and push-to-branch deploys. Coverage beyond the pure
+            decision kernels, especially the heavy admin surfaces. A
+            synthetic-data staging environment that rehearses exact
+            production migrations, which is what the launch-day incident
+            called for. Earlier separation of a few service boundaries that
+            grew inside the web application. Each is scoped by having
+            operated the system, not by hindsight alone.
+          </p>
+        </CS>
+
+        <CS id="detail" title="Supporting technical detail">
+          <CaseStudyExpandable
+            title="Platform shape and scale"
+            summary="Monorepo workspaces and the numbers behind this page"
+          >
+            <p>
+              The platform is a four-workspace Turborepo monorepo: the
+              Next.js web application (trader and admin surfaces plus the API
+              layer), a worker service for queued jobs, a realtime service
+              consuming the vendor&apos;s market-data stream, and a shared
+              package holding typed queue contracts, the vendor API client,
+              and lifecycle logic.
+            </p>
+            <p>
+              For scale context only: the web application exposes 237 API
+              route handlers, the schema spans 83 tables under 69 active
+              migrations with 120 row-level-security policies, and the
+              history is 878 commits on the main branch, merges included.
+              The counts matter as a proxy for the surface area designed,
+              built, and operated, not as an argument by volume.
+            </p>
+          </CaseStudyExpandable>
+          <CaseStudyExpandable
+            title="Security controls"
+            summary="How money and identity data were protected"
+          >
+            <ul className="list-disc space-y-2 pl-5">
+              <li>
+                Card data never touches the server: checkout uses client-side
+                tokenization, and the backend sees payment nonces only.
+              </li>
+              <li>
+                Tax IDs are encrypted at rest with AES-256-GCM under
+                versioned keys, in a separate table, with a rate-limited
+                reveal path.
+              </li>
+              <li>
+                Internal service-to-service calls verify an HMAC service
+                token with constant-time comparison.
+              </li>
+              <li>
+                21 distinct rate limiters cover checkout, auth, AI, webhooks,
+                and public endpoints.
+              </li>
+              <li>
+                Strict security headers with an enforced CSP in production,
+                and Sentry across all three services with request-correlation
+                IDs.
+              </li>
+              <li>An append-only admin audit log records privileged actions.</li>
+            </ul>
+          </CaseStudyExpandable>
+          <CaseStudyExpandable
+            title="Background work and scheduled jobs"
+            summary="What ran outside the request path"
+          >
+            <p>
+              Eight typed BullMQ queues with Zod payload schemas carry
+              webhook processing, notifications, certificate generation,
+              account syncs, and resumable email campaign sends. Ten Vercel
+              cron jobs plus worker-scheduled crons, gated by an endpoint
+              allowlist, handle rollups, replay sweeps, and health checks.
+            </p>
+          </CaseStudyExpandable>
+          <CaseStudyExpandable
+            title="Testing, deployment, and known gaps"
+            summary="What was solid and what was honestly missing"
+          >
+            <p>
+              74 targeted test files exercise the pure decision functions
+              (payout eligibility, queue payload schemas, webhook signature
+              verification) as plain node scripts, without a test framework.
+              Deployment is Vercel for the web application and Railway for
+              the worker and realtime services (multi-stage Docker, non-root)
+              with staging and production branches. The honest gaps: no CI
+              pipeline, no coverage measurement, and largely untested heavy
+              UI surfaces. Those would be the first fixes with a second
+              engineer on the team.
+            </p>
+          </CaseStudyExpandable>
         </CS>
 
         <EvidenceNote>
           <p>
             The production source is private because it contains proprietary
-            business logic, financial integrations, and customer
-            infrastructure. This case study documents the architecture,
-            decisions, and systems I personally owned.
-          </p>
-          <p>
-            A public architecture overview is available on GitHub, and
-            I&apos;m happy to walk through any subsystem in depth in an
-            interview.
+            business logic and sensitive operational integrations. Every
+            claim on this page traces to the repository&apos;s evidence
+            ledger; I am glad to walk through any subsystem in an interview.
           </p>
         </EvidenceNote>
       </CaseStudyShell>

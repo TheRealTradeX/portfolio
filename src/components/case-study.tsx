@@ -28,7 +28,8 @@ export function CaseStudyHeader({
   eyebrow: string;
   title: string;
   summary: string;
-  facts: { label: string; value: ReactNode }[];
+  /** Legacy inline fact panel; new case studies use CaseStudyAtAGlance instead. */
+  facts?: { label: string; value: ReactNode }[];
 }) {
   return (
     <header>
@@ -39,16 +40,20 @@ export function CaseStudyHeader({
       <p className="mt-5 max-w-[58ch] text-lg leading-relaxed text-ink-secondary">
         {summary}
       </p>
-      <dl className="glass mt-10 grid grid-cols-2 gap-x-6 gap-y-5 rounded-2xl p-6 sm:grid-cols-3">
-        {facts.map((fact) => (
-          <div key={fact.label}>
-            <dt className="font-mono-technical text-[10.5px] tracking-[0.16em] text-ink-muted uppercase">
-              {fact.label}
-            </dt>
-            <dd className="mt-1.5 text-sm leading-snug text-ink">{fact.value}</dd>
-          </div>
-        ))}
-      </dl>
+      {facts && facts.length > 0 && (
+        <dl className="glass mt-10 grid grid-cols-2 gap-x-6 gap-y-5 rounded-2xl p-6 sm:grid-cols-3">
+          {facts.map((fact) => (
+            <div key={fact.label}>
+              <dt className="font-mono-technical text-[10.5px] tracking-[0.16em] text-ink-muted uppercase">
+                {fact.label}
+              </dt>
+              <dd className="mt-1.5 text-sm leading-snug text-ink">
+                {fact.value}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      )}
     </header>
   );
 }
