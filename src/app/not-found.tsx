@@ -4,7 +4,7 @@ export default function NotFound() {
   return (
     <main className="wrap flex min-h-[70vh] flex-col items-start justify-center">
       <p className="font-mono-technical text-xs tracking-[0.2em] text-ink-muted uppercase">
-        404 — not found
+        404 · Page not found
       </p>
       <h1 className="mt-4 font-display text-4xl font-bold tracking-tight">
         This route doesn&apos;t exist.

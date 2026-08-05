@@ -22,10 +22,10 @@ export function SiteNav() {
               {link.label}
             </Link>
           ))}
-          <CommandPaletteTrigger className="rounded-full border border-edge px-3 py-1.5 font-mono-technical text-[11px] text-ink-muted transition-colors hover:border-edge-strong hover:text-ink" />
+          <CommandPaletteTrigger className="rounded-full border border-edge px-3.5 py-2 font-mono-technical text-[11.5px] tracking-[0.08em] text-ink-muted uppercase transition-colors hover:border-edge-strong hover:text-ink" />
           <Link
             href="/#contact"
-            className="rounded-full bg-accent px-4 py-2 font-mono-technical text-[11.5px] font-medium tracking-[0.08em] text-white uppercase transition-colors hover:bg-accent-bright hover:text-background"
+            className="hidden rounded-full bg-accent px-4 py-2 font-mono-technical text-[11.5px] font-medium tracking-[0.08em] text-white uppercase transition-colors hover:bg-accent-bright hover:text-background min-[380px]:inline-block"
           >
             Contact
           </Link>
