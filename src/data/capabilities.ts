@@ -3,56 +3,57 @@ import type { Capability } from "@/types/content";
 /**
  * Capability-first replacement for the technology directory. Each
  * statement is backed by shipped work recorded in
- * docs/portfolio-evidence.md; tools are supporting evidence, not the
- * content. Rendered by the homepage capabilities section (Phase 4).
+ * docs/portfolio-evidence.md or by confirmed daily workflow; tools are
+ * supporting evidence, not the content. Rendered by the homepage
+ * capabilities section.
  */
 export const capabilities: Capability[] = [
   {
-    title: "Product interfaces",
+    title: "Product interfaces and design systems",
     description:
       "Dashboards, admin surfaces, and design systems that people work in all day.",
     tools: ["React", "Next.js", "Tailwind CSS"],
   },
   {
-    title: "APIs and backend services",
+    title: "Backend services and APIs",
     description:
-      "Typed route handlers, service contracts, and the background workers behind them.",
+      "Typed APIs, service contracts, and the background workers behind them.",
     tools: ["Node.js", "TypeScript", "Zod"],
   },
   {
     title: "Payments and financial workflows",
     description:
-      "Checkout, webhooks, entitlements, payouts, and reconciliation built to survive retries and redelivery.",
+      "Checkout, webhooks, entitlements, payouts, and reconciliation built to survive retries.",
     tools: ["Authorize.Net", "PostgreSQL", "Redis"],
   },
   {
-    title: "Data modeling",
+    title: "Internal tools and operational automation",
     description:
-      "Schemas written as migrations, secured with row-level security, with money stored in integer cents.",
+      "Operations software shaped by doing the work it supports.",
+    tools: ["Salesforce", "Supabase", "BullMQ"],
+  },
+  {
+    title: "Data modeling and PostgreSQL systems",
+    description:
+      "Schemas written as migrations, row-level security, money in integer cents.",
     tools: ["PostgreSQL", "Supabase", "SQL"],
   },
   {
-    title: "Background processing and automation",
+    title: "AI-native product engineering",
     description:
-      "Queues, scheduled jobs, and event-driven pipelines for work that must not run inside a request.",
-    tools: ["BullMQ", "Redis", "Railway"],
+      "AI features and agent workflows shipped in real products, with architecture, data flow, and security owned.",
+    tools: ["OpenAI API", "SSE streaming", "versioned prompts", "model routing"],
   },
   {
-    title: "AI-assisted product features",
+    title: "Prompt and context engineering",
     description:
-      "LLM features with versioned prompts, model routing, usage caps, and streaming, shipped inside a real product.",
-    tools: ["OpenAI API", "SSE"],
+      "Ambiguous requirements turned into structured context, constraints, acceptance criteria, and verification loops.",
+    tools: ["Claude Code", "repository context", "structured prompting", "diff review"],
   },
   {
-    title: "CRM and internal operations tooling",
+    title: "Production delivery and reliability",
     description:
-      "Internal tools shaped by doing the work they support, from collections to trader operations.",
-    tools: ["Salesforce", "Supabase", "Next.js"],
-  },
-  {
-    title: "Production operations",
-    description:
-      "Deploys, monitoring, incident response, and the runbooks that come out of them.",
+      "Deploys, monitoring, incident response, and the runbooks that follow.",
     tools: ["Vercel", "Railway", "Docker", "Sentry"],
   },
 ];

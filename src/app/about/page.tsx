@@ -10,7 +10,7 @@ import { siteConfig } from "@/data/site";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "How Jefrey Peralta came into software engineering through operating businesses — payments, trading operations, collections, and CRM systems.",
+    "How Jefrey Peralta went from operating businesses to building the production software they run on.",
   alternates: { canonical: "/about" },
 };
 
@@ -29,42 +29,40 @@ export default function AboutPage() {
 
         <div className="rv mt-10 space-y-6 text-[16.5px] leading-relaxed text-ink-secondary">
           <p>
-            I came into software from the operating side. Before I wrote
-            production code, I ran businesses — real estate, collections,
-            trading — and every one of them ran on tooling that was manual,
-            fragmented, or priced like an enterprise contract. At first I
-            configured my way around it: Salesforce pipelines, CRM automations,
-            reporting dashboards. Eventually configuring wasn&apos;t enough, so
-            I started building the systems myself.
+            I came to engineering by operating businesses and repeatedly
+            hitting the same problem: critical workflows held together by
+            spreadsheets, disconnected tools, and people remembering what had
+            to happen next. Real estate, collections, trading. Eventually I
+            stopped waiting for better software and started building it.
           </p>
           <p>
-            That path means I write code with the domain already loaded. I know
-            what a payment webhook has to survive because I&apos;ve watched
-            revenue depend on one. I know why a collections account needs an
-            age-based follow-up cadence because I&apos;ve worked the accounts. I
-            know what a trader actually looks at on a dashboard because I built
-            a platform where they told me, daily, when I got it wrong.
+            The path ran through systems work first: Salesforce pipelines, CRM
+            automations, reporting dashboards. When configuring stopped being
+            enough, I built ResolveOS, the workspace my collections job runs
+            on every working day, and then the Velocity platform: payments,
+            payouts, live market data, and the admin operation behind a real
+            fintech launch.
           </p>
           <p>
-            The result is the work on this site: a production trading
-            evaluation platform I built and operate as the sole engineer, an
-            internal collections workspace that replaced the spreadsheets a
-            real operation ran on, and the infrastructure around them —
-            payments, payouts, email, background automation, and the
-            marketing site that feeds the funnel.
+            That operating background means I write code with the domain
+            already loaded. I know what a payment webhook has to survive
+            because I&apos;ve watched revenue depend on one, and I know which
+            numbers an operator actually reads on a dashboard because I was
+            the operator.
           </p>
           <p>
-            I use modern AI development tools as force multipliers, and
-            I&apos;m not shy about it — but I own the product decisions, the
-            architecture, the integrations, the debugging, and the production
-            outcomes. The commit history, the incident write-ups, and the
-            systems still running are mine.
+            Today I practice AI-assisted software development with the same
+            discipline I apply to everything else in engineering. I structure
+            the repository context, define constraints and acceptance criteria
+            before implementation, review every diff, and verify the result in
+            the running application. Claude Code makes me faster; the
+            architecture, the judgment, and the responsibility for production
+            stay mine.
           </p>
           <p>
-            I&apos;m formalizing the foundations too: I&apos;m enrolled at
-            Western Governors University for a B.S. in Computer Science on the
-            accelerated B.S./M.S. pathway, starting September 2026, after
-            completing the App Brewery full-stack bootcamp.
+            I&apos;m also formalizing the foundations: Western Governors
+            University, B.S. and M.S. Computer Science pathway, enrolled,
+            beginning September 2026.
           </p>
         </div>
 

@@ -14,22 +14,22 @@ export const experience: ExperienceEntry[] = [
     period: "2025 – Present",
     location: "New Jersey (remote)",
     brief:
-      "Founded Velocity Funds and built the platform it runs on: payments, trading dashboards, payouts, and the admin back office.",
+      "Designed, built, launched, and operated the platform behind a futures evaluation business: payments, trading, risk controls, payouts, internal operations.",
     summary:
       "Designed, built, and operated a futures trading evaluation platform: the customer product, the internal admin system, and the infrastructure underneath it, as its only engineer.",
     points: [
       "Designed and shipped the trader platform: onboarding, evaluation dashboards, real-time account tracking, analytics, and AI-assisted performance features.",
       "Built the financial infrastructure: checkout and payment webhooks with idempotency handling, entitlements, payout eligibility, and reconciliation against provider records.",
-      "Own the production database, PostgreSQL on Supabase with row-level security, timestamped migrations, and realtime publications, through a real launch and its post-launch incidents.",
-      "Run the supporting systems: transactional and campaign email, an internal CRM view over platform data, a Discord operations bot, and the public marketing site.",
+      "Owned the production database, PostgreSQL on Supabase with row-level security, timestamped migrations, and realtime publications, through a real launch and its post-launch incidents.",
+      "Ran the supporting systems: transactional and campaign email, an internal CRM view over platform data, a Discord operations bot, and the public marketing site.",
     ],
   },
   {
     company: "Advanced Recovery Group",
-    title: "Account Manager · builder of ResolveOS",
+    title: "Account Manager",
     period: "2024 – Present",
     brief:
-      "Work collections accounts by day and built ResolveOS, the workspace the job now runs on.",
+      "Built ResolveOS inside the collections workflow I manage, replacing spreadsheet-driven prioritization, settlements, payment schedules, and reconciliation.",
     summary:
       "Manage commercial finance accounts, settlements, payment reconciliation, and legal coordination, and independently built ResolveOS, an internal workspace that replaced the spreadsheet workflow the job actually ran on.",
     points: [
@@ -57,7 +57,7 @@ export const experience: ExperienceEntry[] = [
     period: "2019 – 2021",
     location: "Newark, NJ",
     brief:
-      "Owned the Salesforce CRM and the acquisition pipeline it supported.",
+      "Designed Salesforce workflows and business systems supporting lead acquisition, CRM operations, reporting, and revenue growth.",
     summary:
       "Designed, developed, and administered the company's Salesforce CRM while owning the acquisition pipeline.",
     points: [

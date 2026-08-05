@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { projects, systemsShipped, getProject } from "./projects";
 import { experience } from "./experience";
-import { skills } from "./skills";
+import { resumeSkills } from "./skills";
 import { capabilities } from "./capabilities";
 import { siteConfig } from "./site";
 import { navLinks } from "./navigation";
@@ -37,7 +37,7 @@ describe("copy hygiene", () => {
       projects,
       systemsShipped,
       experience,
-      skills,
+      resumeSkills,
       capabilities,
     });
     expect(json).not.toMatch(/—/);
@@ -88,7 +88,7 @@ describe("projects", () => {
     const json = JSON.stringify({
       projects,
       systemsShipped,
-      skills,
+      resumeSkills,
       capabilities,
       experience,
     });
@@ -130,8 +130,10 @@ describe("experience & skills", () => {
     }
   });
 
-  it("skills contain no proficiency percentages", () => {
-    expect(JSON.stringify(skills)).not.toMatch(/\d+\s*%/);
+  it("skills contain no proficiency percentages or invented metrics", () => {
+    expect(JSON.stringify({ resumeSkills, capabilities })).not.toMatch(
+      /\d+\s*%|\b\d+x\b/i,
+    );
   });
 });
 

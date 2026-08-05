@@ -68,9 +68,9 @@ export type ExperienceEntry = {
   points: string[];
 };
 
-export type SkillCategory = {
+export type ResumeSkillGroup = {
   label: string;
-  items: { name: string; usedIn?: string[] }[];
+  items: string[];
 };
 
 /**
