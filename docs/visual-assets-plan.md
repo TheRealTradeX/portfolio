@@ -106,8 +106,9 @@ visible in the supplied screenshots or supported by the repository.
 ## Wiring
 
 Homepage visuals are wired through the `visuals` field on entries in
-`src/data/projects.ts` (`ProjectVisual`: src, alt, width, height,
+`src/data/projects.ts` (`VisualAsset`: src, alt, width, height,
 caption). `src/data/content.test.ts` enforces that every referenced
 asset exists under `public/`, starts with `/work/`, and carries real
 alt text and dimensions. Case-study figures are placed directly in
-their pages with the case-study figure component.
+their pages with `CaseStudyFigure` (image mode takes the same
+`VisualAsset` contract).

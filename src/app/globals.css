@@ -345,6 +345,23 @@ html.rv-on .rv:not(.in) {
   opacity: 1;
 }
 
+/* ── Case-study expandable (native details) ────────────────────
+   Custom +/− indicator replaces the default disclosure triangle.
+   Closed disclosures do not render content in print; essential
+   facts must never live only inside one (authoring rule). */
+.cs-details > summary {
+  list-style: none;
+}
+.cs-details > summary::-webkit-details-marker {
+  display: none;
+}
+.cs-details .cs-details-marker::after {
+  content: "+";
+}
+.cs-details[open] .cs-details-marker::after {
+  content: "−";
+}
+
 /* ── Print (resume route) ──────────────────────────────────── */
 @media print {
   :root {

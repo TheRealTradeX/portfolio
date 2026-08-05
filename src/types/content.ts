@@ -8,12 +8,14 @@ export type SourceAvailability =
   | { kind: "private"; note: string; overviewUrl?: string };
 
 /**
- * A product visual (screenshot or diagram) stored under /public.
- * Explicit dimensions are required so rendering never causes layout
- * shift. Screenshots must be sanitized exports only — see
- * docs/visual-assets-plan.md. Raw captures never enter the repository.
+ * A visual asset (screenshot or exported diagram) stored under /public,
+ * shared by project showcases and case-study figures. Explicit
+ * dimensions are required so rendering never causes layout shift, and
+ * alt text is required at the type level. Screenshots must be sanitized
+ * exports only — see docs/visual-assets-plan.md. Raw captures never
+ * enter the repository.
  */
-export type ProjectVisual = {
+export type VisualAsset = {
   /** Public path, e.g. "/work/velocity/velocity-command-center.webp" */
   src: string;
   alt: string;
@@ -41,7 +43,7 @@ export type Project = {
   liveUrl?: string;
   featured: boolean;
   /** Ordered visuals; the first is the primary homepage artifact. */
-  visuals?: ProjectVisual[];
+  visuals?: VisualAsset[];
   /**
    * Verified system areas shown by the showcase fallback visual until
    * sanitized screenshots land. Visual summaries, never fabricated UI.
