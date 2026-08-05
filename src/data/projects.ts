@@ -10,9 +10,13 @@ export const projects: Project[] = [
     name: "Velocity Platform",
     eyebrow: "Flagship",
     summary:
-      "An end-to-end futures trading evaluation platform: trader dashboards, payments, payouts, risk rules, an internal admin command center, and the infrastructure underneath. 878 commits, sole engineer, launched to production May 2026.",
+      "A futures evaluation firm run entirely on software I built: checkout, live trading dashboards, risk rules, payouts, and the admin back office. Launched May 2026 and operated in production with real customers and real money.",
+    problem:
+      "Prop firms normally run on vendor portals, spreadsheets, and support tickets. Every manual hop between those systems is a place where money and trust leak.",
+    outcome:
+      "Launched May 4, 2026 and ran the firm's live operations: real purchases, evaluations on live market data, and real payouts.",
     status: "Private production system",
-    timeline: "Dec 2025 — Jul 2026 · launched 2026-05-04",
+    timeline: "Dec 2025 – Jul 2026 · launched May 4, 2026",
     role: "Founding Product Engineer (sole engineer)",
     stack: [
       "Next.js",
@@ -42,20 +46,24 @@ export const projects: Project[] = [
     name: "ResolveOS",
     eyebrow: "Collections ops",
     summary:
-      "A collections workspace that replaced the spreadsheet workflow my day job ran on — CSV-first imports, an age-based follow-up engine, a drag-and-drop status board, and a settlement pipeline with weighted forecasting. In production, used daily.",
+      "The collections job ran on spreadsheets and memory, so I replaced both. Messy CSV imports become prioritized queues, payment plans, and settlement forecasts. Built inside the workflow it serves and used every working day.",
+    problem:
+      "Follow-up priority lived in someone's head, payments were logged by hand, and month boundaries meant copy-pasting totals between spreadsheets.",
+    outcome:
+      "In daily production use since January 2026, running real accounts, payment plans, and settlement tracking.",
     status: "Production",
-    timeline: "Dec 2025 — present",
+    timeline: "Dec 2025 – present",
     role: "Sole builder (self-initiated, alongside the collections work itself)",
     stack: ["Next.js", "React", "Supabase", "Tailwind CSS"],
     highlights: [
-      "Hand-written CSV parser with fuzzy header mapping — 29 real-world spreadsheet header aliases",
+      "Hand-written CSV parser with fuzzy header mapping: 29 real-world spreadsheet header aliases",
       "Import deduplication via composite keys; append and replace modes",
       "Age-based follow-up prioritization ladder (P0–P3) encoding real cadence rules",
       "Month-end payment archival with denormalized history snapshots",
     ],
     source: {
       kind: "private",
-      note: "Private — a personal production tool in daily use, not a commercial product. All screenshots and examples on this site use synthetic data.",
+      note: "Private: a personal production tool in daily use, not a commercial product. All screenshots and examples on this site use synthetic data.",
     },
     featured: true,
   },
@@ -64,9 +72,13 @@ export const projects: Project[] = [
     name: "velocityfunds.io",
     eyebrow: "Marketing site",
     summary:
-      "The public face of Velocity Funds: a scroll-driven cinematic launch site with a consent-gated analytics framework, a server-side lead API integrated with the platform CRM, and real shipped performance work.",
+      "The public face of Velocity Funds: a scroll-driven launch site that is also real infrastructure, with lead capture wired into the platform CRM and consent-gated analytics. Live, and you can click it.",
+    problem:
+      "A prop firm sells trust, so the marketing site had to feel like the product while doing real jobs: capture leads, respect consent, and stay fast.",
+    outcome:
+      "Live at velocityfunds.io with an enforcing CSP, consent-gated pixels, and a product demo cut from 76 MB to 4 MB.",
     status: "Live",
-    timeline: "Mar 2026 — Jul 2026",
+    timeline: "Mar 2026 – Jul 2026",
     role: "Sole engineer & designer",
     stack: ["Next.js", "TypeScript", "Tailwind CSS", "GSAP", "three.js", "Vercel"],
     highlights: [
@@ -95,14 +107,14 @@ export const systemsShipped: SystemShipped[] = [
   {
     name: "Payout eligibility engine",
     description:
-      "Qualification rules — qualifying days, caps, cooldowns, floors — computed as pure, unit-tested decision functions, with cent-precision amounts frozen at creation so history can never be silently rewritten.",
+      "Qualification rules for qualifying days, caps, cooldowns, and floors, computed as pure, unit-tested decision functions, with cent-precision amounts frozen at creation so history can never be silently rewritten.",
     project: "Velocity Platform",
     stack: ["TypeScript", "Supabase"],
   },
   {
     name: "Background job & queue layer",
     description:
-      "A dedicated worker service on Redis-backed queues for jobs that must not run inside a request — email sends, data rollups, scheduled work.",
+      "A dedicated worker service on Redis-backed queues for jobs that must not run inside a request: email sends, data rollups, scheduled work.",
     project: "Velocity Platform",
     stack: ["BullMQ", "Redis", "Railway"],
   },
@@ -116,14 +128,14 @@ export const systemsShipped: SystemShipped[] = [
   {
     name: "AI trader analytics (VI suite)",
     description:
-      "VI Pulse, Sentinel, and Debrief: performance scoring, configurable risk rules, and post-session analysis over real account data — 13 versioned prompt files, a model router, per-user usage caps, and SSE streaming.",
+      "VI Pulse, Sentinel, and Debrief: performance scoring, configurable risk rules, and post-session analysis over real account data, with 13 versioned prompt files, a model router, per-user usage caps, and SSE streaming.",
     project: "Velocity Platform",
     stack: ["OpenAI API", "TypeScript", "SSE"],
   },
   {
     name: "Discord operations bot",
     description:
-      "Community ops automation running the Discord gateway and a FastAPI webhook receiver on one asyncio event loop — engagement telemetry, scheduled weekly reports, ticketing, role gates.",
+      "Community ops automation running the Discord gateway and a FastAPI webhook receiver on one asyncio event loop: engagement telemetry, scheduled weekly reports, ticketing, role gates.",
     project: "VELOBOT",
     stack: ["Python", "discord.py", "FastAPI", "Railway"],
   },

@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { projects, systemsShipped, getProject } from "./projects";
 import { experience } from "./experience";
 import { skills } from "./skills";
+import { capabilities } from "./capabilities";
 import { siteConfig } from "./site";
 import { navLinks } from "./navigation";
 
@@ -26,6 +27,28 @@ describe("site config", () => {
   it("contains no placeholder values", () => {
     const json = JSON.stringify(siteConfig);
     expect(json).not.toMatch(/YOUR-USERNAME|example\.com|placeholder/i);
+  });
+});
+
+describe("copy hygiene", () => {
+  it("published copy contains no em dashes", () => {
+    const json = JSON.stringify({
+      siteConfig,
+      projects,
+      systemsShipped,
+      experience,
+      skills,
+      capabilities,
+    });
+    expect(json).not.toMatch(/—/);
+  });
+
+  it("project summaries stay card-sized and problem/outcome are stated", () => {
+    for (const p of projects) {
+      expect(p.summary.length).toBeLessThan(360);
+      expect(p.problem.length).toBeGreaterThan(40);
+      expect(p.outcome.length).toBeGreaterThan(40);
+    }
   });
 });
 
@@ -62,8 +85,31 @@ describe("projects", () => {
 
   it("never claims technologies ruled out by the audit", () => {
     const banned = /stripe|anthropic|metatrader|dxtrade|tradelocker|\brise\b/i;
-    const json = JSON.stringify({ projects, systemsShipped, skills });
+    const json = JSON.stringify({
+      projects,
+      systemsShipped,
+      skills,
+      capabilities,
+      experience,
+    });
     expect(json).not.toMatch(banned);
+  });
+
+  it("visuals, when set, exist under public/ with real alt text", async () => {
+    const { existsSync } = await import("node:fs");
+    const { join } = await import("node:path");
+    for (const p of projects) {
+      for (const visual of p.visuals ?? []) {
+        expect(visual.src.startsWith("/work/")).toBe(true);
+        expect(
+          existsSync(join(process.cwd(), "public", visual.src)),
+          `missing asset: ${visual.src}`,
+        ).toBe(true);
+        expect(visual.alt.length).toBeGreaterThan(10);
+        expect(visual.width).toBeGreaterThan(0);
+        expect(visual.height).toBeGreaterThan(0);
+      }
+    }
   });
 
   it("getProject resolves every case-study route", () => {
@@ -79,11 +125,25 @@ describe("experience & skills", () => {
     for (const entry of experience) {
       expect(entry.points.length).toBeGreaterThan(0);
       expect(entry.summary.length).toBeGreaterThan(20);
+      expect(entry.brief.length).toBeGreaterThan(20);
+      expect(entry.brief.length).toBeLessThan(160);
     }
   });
 
   it("skills contain no proficiency percentages", () => {
     expect(JSON.stringify(skills)).not.toMatch(/\d+\s*%/);
+  });
+});
+
+describe("capabilities", () => {
+  it("each capability is a short statement with supporting tools", () => {
+    expect(capabilities.length).toBeGreaterThanOrEqual(6);
+    for (const c of capabilities) {
+      expect(c.title.length).toBeGreaterThan(0);
+      expect(c.description.length).toBeGreaterThan(20);
+      expect(c.description.length).toBeLessThan(160);
+      expect(c.tools.length).toBeGreaterThan(0);
+    }
   });
 });
 
