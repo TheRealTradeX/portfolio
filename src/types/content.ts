@@ -1,10 +1,7 @@
 export type ProjectStatus =
-  | "Production"
-  | "Private production system"
-  | "Live"
-  | "Internal tool"
-  | "Active development"
-  | "Archived case study";
+  | "Operated in production, May to July 2026"
+  | "Used daily in a live collections workflow"
+  | "Live public website";
 
 export type SourceAvailability =
   | { kind: "public"; url: string }
@@ -45,6 +42,11 @@ export type Project = {
   featured: boolean;
   /** Ordered visuals; the first is the primary homepage artifact. */
   visuals?: ProjectVisual[];
+  /**
+   * Verified system areas shown by the showcase fallback visual until
+   * sanitized screenshots land. Visual summaries, never fabricated UI.
+   */
+  visualAreas?: string[];
 };
 
 export type SystemShipped = {

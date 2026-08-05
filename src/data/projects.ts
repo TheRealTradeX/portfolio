@@ -8,16 +8,22 @@ export const projects: Project[] = [
   {
     slug: "velocity",
     name: "Velocity Platform",
-    eyebrow: "Flagship",
+    eyebrow: "Financial operations platform",
     summary:
       "A futures evaluation firm run entirely on software I built: checkout, live trading dashboards, risk rules, payouts, and the admin back office. Launched May 2026 and operated in production with real customers and real money.",
     problem:
-      "Prop firms normally run on vendor portals, spreadsheets, and support tickets. Every manual hop between those systems is a place where money and trust leak.",
+      "Running the evaluation business required checkout, trader accounts, market data, risk enforcement, payments, payouts, and internal operations to work as one system.",
     outcome:
-      "Launched May 4, 2026 and ran the firm's live operations: real purchases, evaluations on live market data, and real payouts.",
-    status: "Private production system",
+      "One production platform handled the customer and operational lifecycle from signup through trading and payout review.",
+    status: "Operated in production, May to July 2026",
     timeline: "Dec 2025 – Jul 2026 · launched May 4, 2026",
-    role: "Founding Product Engineer (sole engineer)",
+    role: "Full-stack product engineer and founder",
+    visualAreas: [
+      "Trader experience",
+      "Payments and payouts",
+      "Risk and account lifecycle",
+      "Admin operations",
+    ],
     stack: [
       "Next.js",
       "TypeScript",
@@ -44,16 +50,22 @@ export const projects: Project[] = [
   {
     slug: "resolveos",
     name: "ResolveOS",
-    eyebrow: "Collections ops",
+    eyebrow: "Internal operations software",
     summary:
       "The collections job ran on spreadsheets and memory, so I replaced both. Messy CSV imports become prioritized queues, payment plans, and settlement forecasts. Built inside the workflow it serves and used every working day.",
     problem:
-      "Follow-up priority lived in someone's head, payments were logged by hand, and month boundaries meant copy-pasting totals between spreadsheets.",
+      "Collections work depended on spreadsheets, memory, fragmented follow-ups, and manual payment tracking.",
     outcome:
-      "In daily production use since January 2026, running real accounts, payment plans, and settlement tracking.",
-    status: "Production",
+      "ResolveOS turned that workflow into a daily operating system for priorities, settlements, payment schedules, forecasting, and reconciliation.",
+    status: "Used daily in a live collections workflow",
     timeline: "Dec 2025 – present",
-    role: "Sole builder (self-initiated, alongside the collections work itself)",
+    role: "Product engineer, operator, and primary user",
+    visualAreas: [
+      "Account prioritization",
+      "Settlement pipeline",
+      "Payment schedules",
+      "Reconciliation",
+    ],
     stack: ["Next.js", "React", "Supabase", "Tailwind CSS"],
     highlights: [
       "Hand-written CSV parser with fuzzy header mapping: 29 real-world spreadsheet header aliases",
@@ -70,16 +82,22 @@ export const projects: Project[] = [
   {
     slug: "velocityfunds-site",
     name: "velocityfunds.io",
-    eyebrow: "Marketing site",
+    eyebrow: "Marketing and acquisition experience",
     summary:
       "The public face of Velocity Funds: a scroll-driven launch site that is also real infrastructure, with lead capture wired into the platform CRM and consent-gated analytics. Live, and you can click it.",
     problem:
-      "A prop firm sells trust, so the marketing site had to feel like the product while doing real jobs: capture leads, respect consent, and stay fast.",
+      "The company needed a launch experience that could explain the product, capture leads, and connect acquisition activity to the operating platform.",
     outcome:
-      "Live at velocityfunds.io with an enforcing CSP, consent-gated pixels, and a product demo cut from 76 MB to 4 MB.",
-    status: "Live",
+      "A responsive public product experience with CRM-connected lead capture and consent-aware analytics.",
+    status: "Live public website",
     timeline: "Mar 2026 – Jul 2026",
-    role: "Sole engineer & designer",
+    role: "Product design and full-stack implementation",
+    visualAreas: [
+      "Product storytelling",
+      "Lead capture",
+      "CRM integration",
+      "Consent-aware analytics",
+    ],
     stack: ["Next.js", "TypeScript", "Tailwind CSS", "GSAP", "three.js", "Vercel"],
     highlights: [
       "Five-act scroll-cinematic homepage with GSAP ScrollTrigger and lazy-loaded three.js",

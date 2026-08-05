@@ -4,12 +4,11 @@ import { SkipLink } from "@/components/SkipLink";
 import { SiteFooter } from "@/components/SiteFooter";
 import { CommandPalette } from "@/components/CommandPalette";
 import { RevealObserver } from "@/components/Reveal";
-import { TilePointerEffect } from "@/components/TilePointer";
-import { ProjectCard } from "@/components/ProjectCard";
+import { ProjectShowcase } from "@/components/ProjectShowcase";
 import { ArchitectureField } from "@/components/ArchitectureField";
 import { CopyEmailButton } from "@/components/CopyEmail";
 import { velocityNodes, velocityEdges } from "@/data/architecture";
-import { projects, systemsShipped } from "@/data/projects";
+import { projects } from "@/data/projects";
 import { experience } from "@/data/experience";
 import { skills } from "@/data/skills";
 import { siteConfig } from "@/data/site";
@@ -55,7 +54,6 @@ export default function HomePage() {
       <SiteNav />
       <CommandPalette />
       <RevealObserver />
-      <TilePointerEffect />
 
       <main id="main">
         {/* ── Hero ── */}
@@ -132,43 +130,19 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ── Featured work ── */}
+        {/* ── Selected work ── */}
         <section id="work" className="wrap py-[clamp(56px,9vh,104px)]">
-          <p className="eyebrow rv">Featured work</p>
+          <p className="eyebrow rv">Selected work</p>
           <h2 className="rv mt-6 font-display text-[clamp(1.75rem,4.4vw,2.9rem)] leading-tight font-semibold tracking-tight">
-            Systems I&apos;ve built and operated.
+            Three products built to run real operations.
           </h2>
-          <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-            {projects.map((project) => (
-              <ProjectCard key={project.slug} project={project} />
-            ))}
-          </div>
-        </section>
-
-        {/* ── Systems shipped ── */}
-        <section id="systems" className="wrap pb-[clamp(56px,9vh,104px)]">
-          <p className="eyebrow rv">Systems shipped</p>
-          <h2 className="rv mt-6 font-display text-[clamp(1.6rem,3.6vw,2.4rem)] leading-tight font-semibold tracking-tight">
-            The modules underneath the products.
-          </h2>
-          <div className="mt-9 grid gap-px overflow-hidden rounded-2xl border border-edge bg-edge sm:grid-cols-2">
-            {systemsShipped.map((system) => (
-              <div key={system.name} className="rv bg-surface p-6">
-                <div className="flex items-baseline justify-between gap-3">
-                  <h3 className="font-display text-[1.05rem] font-semibold tracking-tight">
-                    {system.name}
-                  </h3>
-                  <span className="shrink-0 font-mono-technical text-[10px] tracking-wide text-ink-muted">
-                    {system.project}
-                  </span>
-                </div>
-                <p className="mt-2.5 text-[13.5px] leading-relaxed text-ink-secondary">
-                  {system.description}
-                </p>
-                <p className="mt-3.5 font-mono-technical text-[10.5px] text-accent-soft/70">
-                  {system.stack.join(" · ")}
-                </p>
-              </div>
+          <div className="mt-12 space-y-[clamp(64px,10vh,112px)]">
+            {projects.map((project, i) => (
+              <ProjectShowcase
+                key={project.slug}
+                project={project}
+                reversed={i % 2 === 1}
+              />
             ))}
           </div>
         </section>
