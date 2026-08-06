@@ -26,7 +26,7 @@ All copy, links, and claims are data — components never hardcode them:
 | `src/data/projects.ts` | Featured projects (summary, problem, outcome, visuals) + "Systems shipped" modules |
 | `src/data/experience.ts` | Experience entries (drives homepage + `/resume`) |
 | `src/data/capabilities.ts` | Capability statements with supporting tools |
-| `src/data/skills.ts` | Toolkit categories, each tool tied to the project that used it |
+| `src/data/skills.ts` | Skill groups for the HTML resume route (`/resume`) |
 | `src/data/architecture.ts` | Nodes/edges for the animated system diagram |
 | `src/data/navigation.ts` | Nav + footer links |
 
@@ -44,6 +44,7 @@ dashes in copy, no missing visual assets).
 - [`docs/design-system.md`](docs/design-system.md) — tokens, type, motion principles
 - [`docs/implementation-report.md`](docs/implementation-report.md) — what was audited, built, and deliberately withheld
 - [`docs/visual-assets-plan.md`](docs/visual-assets-plan.md) — approved screenshot usage and sanitization rules
+- [`docs/visual-assets-manifest.md`](docs/visual-assets-manifest.md) — per-asset provenance and sanitization record
 
 ## Deploying
 

@@ -5,7 +5,7 @@ export type ProjectStatus =
 
 export type SourceAvailability =
   | { kind: "public"; url: string }
-  | { kind: "private"; note: string; overviewUrl?: string };
+  | { kind: "private"; note: string };
 
 /**
  * A visual asset (screenshot or exported diagram) stored under /public,

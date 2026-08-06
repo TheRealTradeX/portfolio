@@ -4,6 +4,20 @@ Date: 2026-07-28/29. Full rebuild of the portfolio from a single-file HTML
 prototype into a production Next.js site, preceded by a forensic audit of
 every repository owned by `TheRealTradeX`.
 
+> **Status update, 2026-08-05 (overhaul, phases 1–10).** This report is a
+> historical record of the original rebuild; the ten-phase overhaul since
+> then supersedes several details below. Resolved follow-ups: the official
+> `resume.pdf` is committed under `public/`; the canonical URL is
+> `https://jefrey-peralta.vercel.app` (the `jefreyperalta.dev` placeholder
+> was never registered); sanitized product screenshots now ship across the
+> homepage and all three case studies (see
+> `docs/visual-assets-manifest.md`). Superseded details: single-key
+> shortcuts (`W`) were removed from the command palette, which is now a
+> grouped site menu; ResolveOS measures 34 commits (the 33 below was the
+> original build; a 2026 refactor added one); the ResolveOS header-alias
+> count is 28. GitHub profile hygiene items remain open — see the evidence
+> ledger and the Phase 10 report.
+
 ## What was audited
 
 - All 16 GitHub repositories (11 private, 5 public) via authenticated `gh`

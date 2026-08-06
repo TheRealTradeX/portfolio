@@ -22,6 +22,27 @@ export const metadata: Metadata = {
   description:
     "How I turned a spreadsheet and memory-driven collections workflow into a daily operating system for priorities, settlements, payment schedules, forecasting, and reconciliation.",
   alternates: { canonical: "/work/resolveos" },
+  openGraph: {
+    title: "ResolveOS case study · Jefrey Peralta",
+    description:
+      "How I turned a spreadsheet and memory-driven collections workflow into a daily operating system for priorities, settlements, payment schedules, forecasting, and reconciliation.",
+    url: "/work/resolveos",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Jefrey Peralta · Full-Stack Product Engineer",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/opengraph-image"],
+    title: "ResolveOS case study · Jefrey Peralta",
+    description:
+      "How I turned a spreadsheet and memory-driven collections workflow into a daily operating system for priorities, settlements, payment schedules, forecasting, and reconciliation.",
+  },
 };
 
 const dailyLoop = [

@@ -22,6 +22,27 @@ export const metadata: Metadata = {
   description:
     "How I designed, built, launched, and operated a production platform connecting payments, trader accounts, realtime market data, risk controls, payouts, and internal operations.",
   alternates: { canonical: "/work/velocity" },
+  openGraph: {
+    title: "Velocity Platform case study · Jefrey Peralta",
+    description:
+      "How I designed, built, launched, and operated a production platform connecting payments, trader accounts, realtime market data, risk controls, payouts, and internal operations.",
+    url: "/work/velocity",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Jefrey Peralta · Full-Stack Product Engineer",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/opengraph-image"],
+    title: "Velocity Platform case study · Jefrey Peralta",
+    description:
+      "How I designed, built, launched, and operated a production platform connecting payments, trader accounts, realtime market data, risk controls, payouts, and internal operations.",
+  },
 };
 
 const productFlow = [
@@ -200,8 +221,8 @@ export default function VelocityCaseStudy() {
               value: "Customer-facing product and internal operating system",
             },
             {
-              label: "Users",
-              value: "Traders, administrators, affiliates, and internal operators",
+              label: "Registered users",
+              value: "86 during the operating period",
             },
             {
               label: "Major systems",
@@ -532,10 +553,10 @@ export default function VelocityCaseStudy() {
         <CS id="outcome" title="Outcome">
           <p>
             Velocity launched publicly in May 2026 and ran the firm&apos;s
-            operations through July: real purchases, evaluations on live
-            market data, payout reviews, and support, all through one
-            platform, with financial and account decisions leaving durable
-            records.
+            operations through July: 86 registered platform users, real
+            purchases, evaluations on live market data, payout reviews, and
+            support, all through one platform, with financial and account
+            decisions leaving durable records.
           </p>
           <p>
             The evaluation business was wound down in July 2026 because of

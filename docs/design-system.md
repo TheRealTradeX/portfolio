@@ -1,4 +1,4 @@
-# Design System — jefreyperalta.dev
+# Design System — Jefrey Peralta portfolio (jefrey-peralta.vercel.app)
 
 A personal system: high-end engineering product with financial-system DNA.
 Not a crypto site, not a sales funnel, not terminal cosplay.

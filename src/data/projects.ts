@@ -52,7 +52,6 @@ export const projects: Project[] = [
     source: {
       kind: "private",
       note: "The production source is private because it contains proprietary business logic, financial integrations, and customer infrastructure. This case study documents the architecture, decisions, and systems I personally owned.",
-      overviewUrl: "https://github.com/TheRealTradeX/velocity-funds-platform",
     },
     featured: true,
   },
@@ -86,7 +85,7 @@ export const projects: Project[] = [
     ],
     stack: ["Next.js", "React", "Supabase", "Tailwind CSS"],
     highlights: [
-      "Hand-written CSV parser with fuzzy header mapping: 29 real-world spreadsheet header aliases",
+      "Hand-written CSV parser with fuzzy header mapping: 28 real-world spreadsheet header aliases",
       "Import deduplication via composite keys; append and replace modes",
       "Age-based follow-up prioritization ladder (P0–P3) encoding real cadence rules",
       "Month-end payment archival with denormalized history snapshots",

@@ -22,6 +22,27 @@ export const metadata: Metadata = {
   description:
     "How I designed and built a responsive public product experience with CRM-connected lead capture, consent-aware analytics, and a clear acquisition journey.",
   alternates: { canonical: "/work/velocityfunds-site" },
+  openGraph: {
+    title: "velocityfunds.io case study · Jefrey Peralta",
+    description:
+      "How I designed and built a responsive public product experience with CRM-connected lead capture, consent-aware analytics, and a clear acquisition journey.",
+    url: "/work/velocityfunds-site",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Jefrey Peralta · Full-Stack Product Engineer",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/opengraph-image"],
+    title: "velocityfunds.io case study · Jefrey Peralta",
+    description:
+      "How I designed and built a responsive public product experience with CRM-connected lead capture, consent-aware analytics, and a clear acquisition journey.",
+  },
 };
 
 const project = getProject("velocityfunds-site")!;

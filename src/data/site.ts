@@ -2,8 +2,8 @@
  * Central site configuration. Every external link, contact detail, and
  * metadata string lives here — never hardcode these in components.
  *
- * NEXT_PUBLIC_SITE_URL should be set at deploy time (e.g. on Vercel).
- * The fallback is a placeholder until the production domain is chosen.
+ * NEXT_PUBLIC_SITE_URL may override the URL at deploy time (e.g. on
+ * Vercel); the fallback is the canonical production deployment.
  */
 export const siteConfig = {
   name: "Jefrey Peralta",

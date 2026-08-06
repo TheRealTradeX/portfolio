@@ -12,6 +12,27 @@ export const metadata: Metadata = {
   description:
     "How Jefrey Peralta went from operating businesses to building the production software they run on.",
   alternates: { canonical: "/about" },
+  openGraph: {
+    title: "About · Jefrey Peralta",
+    description:
+      "How Jefrey Peralta went from operating businesses to building the production software they run on.",
+    url: "/about",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Jefrey Peralta · Full-Stack Product Engineer",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/opengraph-image"],
+    title: "About · Jefrey Peralta",
+    description:
+      "How Jefrey Peralta went from operating businesses to building the production software they run on.",
+  },
 };
 
 export default function AboutPage() {

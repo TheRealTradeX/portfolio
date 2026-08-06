@@ -8,6 +8,25 @@ export const metadata: Metadata = {
   title: "Resume",
   description: "Resume of Jefrey Peralta, full-stack product engineer.",
   alternates: { canonical: "/resume" },
+  openGraph: {
+    title: "Resume · Jefrey Peralta",
+    description: "Resume of Jefrey Peralta, full-stack product engineer.",
+    url: "/resume",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Jefrey Peralta · Full-Stack Product Engineer",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/opengraph-image"],
+    title: "Resume · Jefrey Peralta",
+    description: "Resume of Jefrey Peralta, full-stack product engineer.",
+  },
 };
 
 export default function ResumePage() {
