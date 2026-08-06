@@ -7,19 +7,72 @@ import { RevealObserver } from "@/components/Reveal";
 import {
   CaseStudyShell,
   CaseStudyHeader,
+  CaseStudyAtAGlance,
+  CaseStudyFigure,
+  CaseStudyDecision,
+  CaseStudyDecisionList,
+  CaseStudyExpandable,
   CS,
   EvidenceNote,
 } from "@/components/case-study";
 import { getProject } from "@/data/projects";
 
 export const metadata: Metadata = {
-  title: "velocityfunds.io — Case Study",
+  title: "velocityfunds.io · Product and acquisition case study",
   description:
-    "Engineering case study: the live cinematic marketing site for Velocity Funds — GSAP scroll choreography, consent-gated analytics, a server-side lead API into the platform CRM, and shipped performance work.",
+    "How I designed and built a responsive public product experience with CRM-connected lead capture, consent-aware analytics, and a clear acquisition journey.",
   alternates: { canonical: "/work/velocityfunds-site" },
+  openGraph: {
+    title: "velocityfunds.io case study · Jefrey Peralta",
+    description:
+      "How I designed and built a responsive public product experience with CRM-connected lead capture, consent-aware analytics, and a clear acquisition journey.",
+    url: "/work/velocityfunds-site",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Jefrey Peralta · Full-Stack Product Engineer",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/opengraph-image"],
+    title: "velocityfunds.io case study · Jefrey Peralta",
+    description:
+      "How I designed and built a responsive public product experience with CRM-connected lead capture, consent-aware analytics, and a clear acquisition journey.",
+  },
 };
 
 const project = getProject("velocityfunds-site")!;
+
+const acquisitionFlow = [
+  "Visitor",
+  "Consent choice",
+  "Product story and pricing",
+  "Lead capture",
+  "CRM record in the platform",
+];
+
+function AcquisitionFlowDiagram() {
+  return (
+    <ol className="flex flex-wrap items-center gap-x-2 gap-y-2.5 p-5 sm:p-6">
+      {acquisitionFlow.map((step, i) => (
+        <li key={step} className="flex items-center gap-2">
+          <span className="rounded-lg border border-edge bg-white/[0.02] px-3 py-1.5 text-[12.5px] leading-snug text-ink-secondary">
+            {step}
+          </span>
+          {i < acquisitionFlow.length - 1 && (
+            <span aria-hidden="true" className="text-[12px] text-ink-muted">
+              →
+            </span>
+          )}
+        </li>
+      ))}
+    </ol>
+  );
+}
 
 export default function VelocitySiteCaseStudy() {
   return (
@@ -30,104 +83,236 @@ export default function VelocitySiteCaseStudy() {
       <RevealObserver />
       <CaseStudyShell>
         <CaseStudyHeader
-          eyebrow="Case study · Live"
+          eyebrow="Case study · Marketing and acquisition experience"
           title="velocityfunds.io"
-          summary="The public face of the Velocity platform: a scroll-driven cinematic launch site that is also real infrastructure — lead capture into the platform CRM, a consent framework, and a content pipeline. This one you can click."
+          summary="A responsive public product experience designed to explain the offer, guide prospects through the launch story, capture leads, and connect acquisition activity to the operating platform."
+        />
+
+        <CaseStudyAtAGlance
           facts={[
-            { label: "Status", value: project.status },
-            { label: "Timeline", value: project.timeline },
-            { label: "Role", value: project.role },
-            { label: "Scale", value: "85 files · ~10,800 LOC · 60 commits, all mine" },
-            { label: "Stack", value: project.stack.join(" · ") },
+            { label: "Product type", value: "Public product and acquisition website" },
+            { label: "Status", value: "Live public website" },
+            { label: "Role", value: "Product design and full-stack implementation" },
+            { label: "Audience", value: "Prospective traders and affiliates" },
             {
-              label: "Live",
-              value: (
-                <a
-                  className="underline underline-offset-4 hover:text-accent-bright"
-                  href="https://www.velocityfunds.io"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  www.velocityfunds.io ↗
-                </a>
-              ),
+              label: "Primary goals",
+              value: "Product storytelling, trust, lead capture, and conversion",
+            },
+            {
+              label: "Connected systems",
+              value: "CRM lead capture and consent-aware analytics",
             },
           ]}
         />
 
-        <CS id="brief" title="The brief I gave myself">
+        <CS id="problem" title="The communication problem">
           <p>
-            A prop firm sells trust. The marketing site had to feel like the
-            product — precise, fast, a little cinematic — while doing real
-            jobs: capture leads into the platform CRM, respect consent before
-            firing a single pixel, and hold up under Lighthouse. It replaced
-            an earlier hand-written static HTML site (11 pages, ~6,000 lines)
-            that I&apos;d outgrown.
+            A funded-trader evaluation is a complicated financial product:
+            rules, tiers, payouts, and risk parameters that can bury a
+            visitor in detail. The site had to make the offer understandable
+            in one pass, earn enough trust for a financial commitment, keep
+            the dense material available without leading with it, and feed
+            acquisition activity into the platform the business ran on. All
+            of it with analytics held behind consent.
           </p>
         </CS>
 
-        <CS id="built" title="What's in it">
-          <ul className="list-disc space-y-2 pl-5">
-            <li>
-              <strong>A five-act scroll narrative</strong> — the homepage is
-              structured as acts (hero, shift, reveal, advantage, CTA)
-              choreographed with GSAP ScrollTrigger, with a three.js
-              background loaded lazily and only on capable clients
-              (SSR-disabled dynamic import).
-            </li>
-            <li>
-              <strong>A real lead API</strong> — a 267-line server route
-              validates, rate-limits, and forwards leads to the platform
-              CRM over a service-token-authenticated internal endpoint. The
-              receiving side lives in the platform monorepo; this is a
-              genuine cross-service integration, not a form-to-nowhere.
-            </li>
-            <li>
-              <strong>Consent before tracking</strong> — a first-party
-              cookie-preferences framework gates Meta, Google, and X pixels;
-              nothing fires until the visitor opts in, and a
-              double-PageView bug got its own fix commit.
-            </li>
-            <li>
-              <strong>Content as data</strong> — pricing (646 lines of typed
-              data), FAQ with client-side search and highlighting, rules,
-              and a promo system whose featured offer is sourced live from
-              the platform.
-            </li>
-            <li>
-              <strong>Hand-written security headers</strong> — the live
-              response carries an enforcing CSP, HSTS, and a
-              permissions-policy, verifiable with{" "}
-              <code className="font-mono-technical text-[13px]">curl</code>.
-            </li>
-          </ul>
+        <CS id="experience" title="The product experience">
+          <p>
+            The homepage is a five-act scroll narrative (hero, shift, reveal,
+            advantage, call to action) choreographed to unfold at reading
+            pace on any screen. Pricing and evaluation pathways were typed
+            content, rules and FAQ were searchable rather than buried, and
+            policy pages carried the trust load. Every path converged on two
+            actions: start an evaluation or leave contact details.
+          </p>
+          <p>
+            Motion supports pacing rather than decoration: transitions carry
+            the reader between acts, and heavy visuals load lazily, only on
+            clients that can afford them.
+          </p>
+          <CaseStudyFigure
+            kind="image"
+            image={{
+              src: "/work/velocityfunds-site/homepage-overview.webp",
+              alt: "velocityfunds.io homepage hero with the Velocity Funds wordmark, launch headline, evaluation call to action, and the first-party cookie consent prompt in the corner",
+              width: 1600,
+              height: 1000,
+            }}
+            label="The live homepage"
+            caption="The public launch experience built for the 2026 evaluation offering. The consent prompt in the corner is the first-party framework doing its job."
+          />
+          <div className="mx-auto max-w-[320px]">
+            <CaseStudyFigure
+              kind="image"
+              image={{
+                src: "/work/velocityfunds-site/mobile-experience.webp",
+                alt: "velocityfunds.io mobile homepage with the launch headline, evaluation call to action, and account terms rendered for a phone-sized screen",
+                width: 780,
+                height: 1650,
+              }}
+              label="Mobile"
+              caption="The same story at phone width."
+            />
+          </div>
         </CS>
 
-        <CS id="perf" title="Performance work that shipped">
+        <CS id="decisions" title="Design and engineering decisions">
+          <CaseStudyDecisionList>
+            <CaseStudyDecision
+              number={1}
+              title="Story before specification"
+              summary="Visitors meet the product before the rulebook."
+              result="A complicated offer reads simply without hiding its terms."
+            >
+              <p>
+                The narrative explains what the offer is and why it matters
+                before pricing tables and rule detail appear. The dense
+                material stays one click away, as typed pricing data and a
+                searchable FAQ, instead of leading the page.
+              </p>
+            </CaseStudyDecision>
+            <CaseStudyDecision
+              number={2}
+              title="Motion tied to comprehension"
+              summary="One motion system paces the story instead of decorating it."
+              result="Cinematic on desktop, fast and calm on mobile."
+            >
+              <p>
+                GSAP ScrollTrigger drives the act transitions through a
+                shared section-pinning component, with Lenis smoothing the
+                scroll. The three.js background loads lazily with SSR
+                disabled, third-party scripts are deferred, a
+                background effect was reworked specifically to kill mobile
+                scroll jank, and the product demo video was cut from 76 MB
+                to 4 MB.
+              </p>
+              <CaseStudyFigure
+                kind="image"
+                image={{
+                  src: "/work/velocityfunds-site/product-story.webp",
+                  alt: "A mid-scroll act of velocityfunds.io showing the VI Debrief product panel beside a pinned heads-up display with pricing, rules, and account tiers, with act navigation on the left",
+                  width: 1600,
+                  height: 1000,
+                }}
+                caption="Mid-story: a product act pinned beside the live pricing and rules HUD, with the act navigation tracking scroll position."
+              />
+            </CaseStudyDecision>
+            <CaseStudyDecision
+              number={3}
+              title="Acquisition connected to operations"
+              summary="The lead form is real infrastructure, not a mailbox."
+              result="Marketing activity landed as operational records the business could act on."
+            >
+              <p>
+                A server-side route validates and rate-limits submissions,
+                then forwards them to the platform CRM over a
+                token-authenticated internal integration. The receiving side
+                lives in the platform itself, so a lead on the marketing
+                site becomes a record an operator can work.
+              </p>
+            </CaseStudyDecision>
+          </CaseStudyDecisionList>
+        </CS>
+
+        <CS id="integration" title="Acquisition and system integration">
           <p>
-            The commit log is the receipt: the product-demo video went from
-            76&nbsp;MB to 4&nbsp;MB and lazy-loads; Trustpilot and other
-            third-party scripts are deferred; a background-void effect was
-            reworked specifically to kill scroll jank on mobile; pixels
-            stopped double-firing. The animation stack is deliberate — one
-            motion library (GSAP), Lenis for scroll smoothing, and three.js
-            fenced off behind lazy loading rather than sprinkled everywhere.
+            Nothing tracks until the visitor decides: a first-party consent
+            framework gates the Meta, Google, and X pixels, and a
+            double-firing bug got its own fix. Real-user performance data
+            comes from Vercel Analytics and Speed Insights.
+          </p>
+          <CaseStudyFigure
+            kind="custom"
+            accessibleLabel="Acquisition path: visitor, consent choice, product story and pricing, lead capture, CRM record in the platform"
+            label="The acquisition path"
+            caption="Analytics fire only after opt-in; leads land as records in the operating platform."
+          >
+            <AcquisitionFlowDiagram />
+          </CaseStudyFigure>
+        </CS>
+
+        <CS id="outcome" title="Outcome">
+          <p>
+            The site shipped, carried the product&apos;s public launch, and
+            remains live at velocityfunds.io. Leads flowed directly into the
+            operating platform, and the marketing surface held the same
+            design language as the application, so the brand read as one
+            system from first visit to funded account.
+          </p>
+          <p>
+            One honest caveat: the evaluation operation the site marketed
+            was wound down in July 2026, and the live site still presents
+            the launch-era offer. Updating the public story to match the
+            company&apos;s pivot is on the list below.
           </p>
         </CS>
 
-        <CS id="notes" title="A different discipline">
+        <CS id="improve" title="What I would improve next">
           <p>
-            The marketing site exercises a different set of muscles than the
-            platform — motion design, art direction, and performance
-            budgets — while sharing the same engineering values: typed
-            content, a documented architecture, and disciplined commits.
+            Transition messaging first: the public story should track the
+            operating reality after the pivot. Then sharper conversion event
+            definitions, so consented analytics answer questions instead of
+            collecting motion, a formal accessibility pass over the animated
+            acts, and structured content experiments on the story itself.
           </p>
+        </CS>
+
+        <CS id="detail" title="Supporting technical detail">
+          <CaseStudyExpandable
+            title="Frontend architecture and motion"
+            summary="How the scroll narrative is built"
+          >
+            <p>
+              Next.js App Router with Tailwind CSS v4 design tokens. The
+              five acts are discrete components choreographed by GSAP
+              ScrollTrigger through a shared section-pinning wrapper, with
+              Lenis for scroll smoothing. Three.js scenes load through
+              SSR-disabled dynamic imports on capable clients only. Content
+              is typed data: pricing tables, rules, and a searchable FAQ. It
+              replaced an earlier hand-written static HTML site the brand
+              had outgrown.
+            </p>
+          </CaseStudyExpandable>
+          <CaseStudyExpandable
+            title="Lead capture and CRM integration"
+            summary="The server-side path from form to platform"
+          >
+            <p>
+              A dedicated server route validates payloads, applies rate
+              limiting, and forwards accepted leads to the operating
+              platform&apos;s CRM through a token-authenticated internal
+              integration, with explicit failure responses when the upstream
+              is unavailable. No third-party form vendor sits in the path.
+            </p>
+          </CaseStudyExpandable>
+          <CaseStudyExpandable
+            title="Analytics, consent, and security"
+            summary="Tracking that waits for permission"
+          >
+            <p>
+              A first-party cookie-preferences framework gates Meta, Google,
+              and X pixels behind explicit opt-in. The live responses carry
+              hand-written security headers, including an enforcing
+              Content-Security-Policy. Vercel Analytics and Speed Insights
+              provide aggregate, real-user performance visibility.
+            </p>
+          </CaseStudyExpandable>
         </CS>
 
         <EvidenceNote>
           <p>
-            The source repository is private; the shipped site is publicly
-            accessible at velocityfunds.io.
+            The website is publicly accessible at{" "}
+            <a
+              className="underline underline-offset-4 hover:text-accent-bright"
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              velocityfunds.io
+            </a>
+            . The source repository and the connected platform systems remain
+            private.
           </p>
         </EvidenceNote>
       </CaseStudyShell>

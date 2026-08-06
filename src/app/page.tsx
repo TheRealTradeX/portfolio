@@ -4,21 +4,30 @@ import { SkipLink } from "@/components/SkipLink";
 import { SiteFooter } from "@/components/SiteFooter";
 import { CommandPalette } from "@/components/CommandPalette";
 import { RevealObserver } from "@/components/Reveal";
-import { TilePointerEffect } from "@/components/TilePointer";
-import { ProjectCard } from "@/components/ProjectCard";
+import { ProjectShowcase } from "@/components/ProjectShowcase";
 import { ArchitectureField } from "@/components/ArchitectureField";
 import { CopyEmailButton } from "@/components/CopyEmail";
 import { velocityNodes, velocityEdges } from "@/data/architecture";
-import { projects, systemsShipped } from "@/data/projects";
+import { projects } from "@/data/projects";
 import { experience } from "@/data/experience";
-import { skills } from "@/data/skills";
+import { capabilities } from "@/data/capabilities";
 import { siteConfig } from "@/data/site";
 
-const proofPoints = [
-  { value: "237", label: "API route handlers in production" },
-  { value: "83", label: "Postgres tables · 120 RLS policies" },
-  { value: "878", label: "commits · sole engineer" },
-  { value: "2026-05-04", label: "production launch date" },
+const credibility = [
+  "Production fintech platform, launched and operated live",
+  "Payments, payouts, and reconciliation shipped",
+  "Internal operations software in daily use",
+  "Product, architecture, and deployment owned",
+];
+
+const buildProcess = [
+  { title: "Understand the operation", detail: "the business problem, firsthand" },
+  { title: "Define the requirement", detail: "as concrete product behavior" },
+  { title: "Map the system context", detail: "architecture, data flow, repo audit" },
+  { title: "Engineer the prompt", detail: "constraints and acceptance criteria" },
+  { title: "Review the diff", detail: "assumptions challenged, line by line" },
+  { title: "Test and verify", detail: "automated checks, real-app behavior" },
+  { title: "Observe and iterate", detail: "production feedback, next pass" },
 ];
 
 function personJsonLd() {
@@ -36,6 +45,8 @@ function personJsonLd() {
       "Financial technology",
       "Payments infrastructure",
       "Trading operations software",
+      "AI-assisted software development",
+      "Prompt engineering",
       "PostgreSQL",
       "TypeScript",
       "React",
@@ -55,7 +66,6 @@ export default function HomePage() {
       <SiteNav />
       <CommandPalette />
       <RevealObserver />
-      <TilePointerEffect />
 
       <main id="main">
         {/* ── Hero ── */}
@@ -81,21 +91,22 @@ export default function HomePage() {
             {siteConfig.availability} · {siteConfig.location}
           </p>
 
-          <h1 className="mt-8 font-display text-[clamp(2.9rem,8.5vw,6rem)] leading-[0.95] font-bold tracking-[-0.04em] text-balance">
-            Jefrey Peralta
-            <span className="block font-normal tracking-[-0.03em] text-ink-secondary">
-              Full-stack product engineer.
-            </span>
+          <p className="mt-8 font-mono-technical text-[12px] tracking-[0.16em] text-ink-secondary uppercase">
+            Jefrey Peralta · Full-Stack Product Engineer
+          </p>
+
+          <h1 className="mt-4 max-w-[24ch] font-display text-[clamp(2.35rem,6.8vw,4.6rem)] leading-[1.03] font-bold tracking-[-0.035em] text-balance">
+            I turn messy business operations into production software.
           </h1>
 
-          <p className="mt-7 max-w-[56ch] text-[clamp(1.05rem,2vw,1.25rem)] leading-relaxed text-ink-secondary">
-            I build the systems businesses actually run on —{" "}
+          <p className="mt-7 max-w-[58ch] text-[clamp(1.05rem,2vw,1.2rem)] leading-relaxed text-ink-secondary">
+            I spent years operating businesses that ran on spreadsheets, CRMs,
+            and duct tape. Now I build the software those operations deserve:{" "}
             <em className="font-medium text-ink not-italic">
-              payments, trading operations, internal CRMs, automation, and
-              AI-assisted analytics.
-            </em>{" "}
-            Technical founder turned engineer, with production systems to show
-            for it.
+              payment infrastructure, internal tools, automation, and
+              AI-assisted workflows
+            </em>
+            , shipped to production and debugged there too.
           </p>
 
           <div className="mt-9 flex flex-wrap gap-3">
@@ -103,7 +114,7 @@ export default function HomePage() {
               href="/#work"
               className="rounded-full bg-accent px-6 py-3.5 font-mono-technical text-[12.5px] font-medium text-white transition-colors hover:bg-accent-bright hover:text-background"
             >
-              View the work ↓
+              View selected work ↓
             </Link>
             <a
               href={siteConfig.links.resume}
@@ -111,70 +122,39 @@ export default function HomePage() {
             >
               Resume
             </a>
-            <a
-              href={siteConfig.links.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="glass rounded-full px-6 py-3.5 font-mono-technical text-[12.5px] text-ink transition-all hover:-translate-y-0.5 hover:border-edge-strong"
-            >
-              GitHub ↗
-            </a>
           </div>
         </header>
 
-        {/* ── Proof strip ── */}
-        <section aria-label="Production evidence" className="wrap">
-          <div className="rv grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-edge bg-edge lg:grid-cols-4">
-            {proofPoints.map((point) => (
-              <div key={point.label} className="bg-surface px-6 py-5">
-                <p className="font-display text-[clamp(1.45rem,6vw,1.875rem)] font-semibold tracking-tight whitespace-nowrap text-ink">
-                  {point.value}
-                </p>
-                <p className="mt-1 font-mono-technical text-[11px] leading-snug tracking-wide text-ink-muted">
-                  {point.label}
+        {/* ── Credibility strip ── */}
+        <section aria-label="Shipped scope" className="wrap">
+          <div className="rv grid gap-px overflow-hidden rounded-2xl border border-edge bg-edge sm:grid-cols-2 lg:grid-cols-4">
+            {credibility.map((item) => (
+              <div key={item} className="flex items-start gap-3 bg-surface px-6 py-5">
+                <span
+                  aria-hidden="true"
+                  className="mt-[7px] size-1.5 shrink-0 rounded-full bg-accent-bright"
+                />
+                <p className="text-[14px] leading-snug font-medium text-ink">
+                  {item}
                 </p>
               </div>
             ))}
           </div>
         </section>
 
-        {/* ── Featured work ── */}
+        {/* ── Selected work ── */}
         <section id="work" className="wrap py-[clamp(56px,9vh,104px)]">
-          <p className="eyebrow rv">Featured work</p>
+          <p className="eyebrow rv">Selected work</p>
           <h2 className="rv mt-6 font-display text-[clamp(1.75rem,4.4vw,2.9rem)] leading-tight font-semibold tracking-tight">
-            Systems I&apos;ve built and operated.
+            Three products built to run real operations.
           </h2>
-          <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-            {projects.map((project) => (
-              <ProjectCard key={project.slug} project={project} />
-            ))}
-          </div>
-        </section>
-
-        {/* ── Systems shipped ── */}
-        <section id="systems" className="wrap pb-[clamp(56px,9vh,104px)]">
-          <p className="eyebrow rv">Systems shipped</p>
-          <h2 className="rv mt-6 font-display text-[clamp(1.6rem,3.6vw,2.4rem)] leading-tight font-semibold tracking-tight">
-            The modules underneath the products.
-          </h2>
-          <div className="mt-9 grid gap-px overflow-hidden rounded-2xl border border-edge bg-edge sm:grid-cols-2">
-            {systemsShipped.map((system) => (
-              <div key={system.name} className="rv bg-surface p-6">
-                <div className="flex items-baseline justify-between gap-3">
-                  <h3 className="font-display text-[1.05rem] font-semibold tracking-tight">
-                    {system.name}
-                  </h3>
-                  <span className="shrink-0 font-mono-technical text-[10px] tracking-wide text-ink-muted">
-                    {system.project}
-                  </span>
-                </div>
-                <p className="mt-2.5 text-[13.5px] leading-relaxed text-ink-secondary">
-                  {system.description}
-                </p>
-                <p className="mt-3.5 font-mono-technical text-[10.5px] text-accent-soft/70">
-                  {system.stack.join(" · ")}
-                </p>
-              </div>
+          <div className="mt-12 space-y-[clamp(64px,10vh,112px)]">
+            {projects.map((project, i) => (
+              <ProjectShowcase
+                key={project.slug}
+                project={project}
+                reversed={i % 2 === 1}
+              />
             ))}
           </div>
         </section>
@@ -185,13 +165,11 @@ export default function HomePage() {
           <h2 className="rv mt-6 font-display text-[clamp(1.6rem,3.6vw,2.4rem)] leading-tight font-semibold tracking-tight">
             Operator first. Engineer because of it.
           </h2>
-          <div className="mt-10 space-y-0">
-            {experience.map((entry, i) => (
-              <article
+          <ol className="mt-10">
+            {experience.map((entry) => (
+              <li
                 key={entry.company}
-                className={`rv grid gap-4 py-8 md:grid-cols-[220px_1fr] md:gap-10 ${
-                  i > 0 ? "border-t border-edge" : ""
-                }`}
+                className="rv grid gap-2 border-t border-edge py-6 first:border-t-0 first:pt-4 md:grid-cols-[200px_1fr] md:gap-8"
               >
                 <div>
                   <p className="font-mono-technical text-[11.5px] tracking-wide text-ink-muted">
@@ -204,146 +182,118 @@ export default function HomePage() {
                   )}
                 </div>
                 <div>
-                  <h3 className="font-display text-xl font-semibold tracking-tight">
+                  <h3 className="font-display text-[1.05rem] font-semibold tracking-tight">
                     {entry.company}
                   </h3>
-                  <p className="mt-1 text-sm font-medium text-accent-soft">
+                  <p className="mt-0.5 text-[13px] font-medium text-accent-soft">
                     {entry.title}
-                    {entry.formalTitle && (
-                      <span className="ml-2 font-mono-technical text-[10.5px] font-normal text-ink-muted">
-                        (formal title: {entry.formalTitle})
-                      </span>
-                    )}
                   </p>
-                  <p className="mt-3 text-[14.5px] leading-relaxed text-ink-secondary">
-                    {entry.summary}
+                  <p className="mt-2 max-w-[68ch] text-[14px] leading-relaxed text-ink-secondary">
+                    {entry.brief}
                   </p>
-                  <ul className="mt-4 space-y-2">
-                    {entry.points.map((point) => (
-                      <li
-                        key={point}
-                        className="flex gap-2.5 text-[13.5px] leading-relaxed text-ink-secondary"
-                      >
-                        <span
-                          aria-hidden="true"
-                          className="mt-2 size-1 shrink-0 rounded-full bg-accent"
-                        />
-                        {point}
-                      </li>
-                    ))}
-                  </ul>
                 </div>
-              </article>
+              </li>
             ))}
+          </ol>
+          <div className="rv grid gap-2 border-t border-edge py-6 md:grid-cols-[200px_1fr] md:gap-8">
+            <p className="font-mono-technical text-[11.5px] tracking-wide text-ink-muted">
+              Education
+            </p>
+            <div className="space-y-1.5 text-[14px] leading-relaxed text-ink-secondary">
+              <p>
+                <span className="font-medium text-ink">
+                  Western Governors University
+                </span>
+                : B.S. and M.S. Computer Science pathway, enrolled, beginning
+                September 2026.
+              </p>
+              <p>
+                <span className="font-medium text-ink">Berkeley College</span>:
+                B.B.A. · Salesforce Certified Administrator
+              </p>
+            </div>
           </div>
         </section>
 
-        {/* ── Toolkit ── */}
-        <section id="toolkit" className="wrap pb-[clamp(56px,9vh,104px)]">
-          <p className="eyebrow rv">Technical toolkit</p>
+        {/* ── Capabilities ── */}
+        <section id="capabilities" className="wrap pb-[clamp(56px,9vh,104px)]">
+          <p className="eyebrow rv">Capabilities</p>
           <h2 className="rv mt-6 font-display text-[clamp(1.6rem,3.6vw,2.4rem)] leading-tight font-semibold tracking-tight">
-            Tools, tied to the systems that used them.
+            What I can build and own.
           </h2>
-          <div className="mt-9 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {skills.map((category) => (
-              <div key={category.label} className="rv glass rounded-2xl p-6">
-                <h3 className="font-mono-technical text-[10.5px] tracking-[0.18em] text-ink-muted uppercase">
-                  {category.label}
+          <div className="mt-10 grid gap-x-12 gap-y-9 sm:grid-cols-2">
+            {capabilities.map((capability) => (
+              <div key={capability.title} className="rv">
+                <h3 className="font-display text-[1.02rem] font-semibold tracking-tight">
+                  {capability.title}
                 </h3>
-                <ul className="mt-4 space-y-2.5">
-                  {category.items.map((item) => (
-                    <li key={item.name} className="text-[13.5px] leading-snug">
-                      <span className="text-ink">{item.name}</span>
-                      {item.usedIn && (
-                        <span className="block font-mono-technical text-[10px] text-ink-muted">
-                          {item.usedIn.join(" · ")}
-                        </span>
-                      )}
-                    </li>
-                  ))}
-                </ul>
+                <p className="mt-1.5 max-w-[52ch] text-[13.5px] leading-relaxed text-ink-secondary">
+                  {capability.description}
+                </p>
+                <p className="mt-2 font-mono-technical text-[10.5px] text-ink-muted">
+                  {capability.tools.join(" · ")}
+                </p>
               </div>
             ))}
           </div>
         </section>
 
-        {/* ── How I work ── */}
-        <section className="wrap pb-[clamp(56px,9vh,104px)]">
-          <div className="rv glass grid gap-0 overflow-hidden rounded-2xl md:grid-cols-2">
-            <div className="p-[clamp(24px,3.6vw,40px)]">
-              <h2 className="font-mono-technical text-[10.5px] tracking-[0.18em] text-ink-muted uppercase">
-                How I work
-              </h2>
-              <div className="mt-5 space-y-4 text-[14.5px] leading-relaxed text-ink-secondary">
-                <p>
-                  I build software where mistakes are expensive. That shapes
-                  everything: idempotent webhooks, cent-precision money math
-                  frozen at write time, pure decision functions that can be
-                  unit-tested without mocking the world, and migrations that
-                  are written down — not clicked together.
+        {/* ── How I build with AI ── */}
+        <section id="process" className="wrap pb-[clamp(56px,9vh,104px)]">
+          <p className="eyebrow rv">Process</p>
+          <h2 className="rv mt-6 font-display text-[clamp(1.6rem,3.6vw,2.4rem)] leading-tight font-semibold tracking-tight">
+            How I build with AI.
+          </h2>
+          <p className="rv mt-5 max-w-[62ch] text-[15px] leading-relaxed text-ink-secondary">
+            I don&apos;t hand an AI agent a vague feature request and accept
+            whatever it generates. I define the problem, provide the system
+            context, constrain the implementation, inspect the code, and
+            verify the result inside the real application.
+          </p>
+          <ol className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-7 lg:gap-5">
+            {buildProcess.map((step, i) => (
+              <li
+                key={step.title}
+                className="rv border-l border-edge pl-4 lg:border-l-0 lg:border-t lg:pt-4 lg:pl-0"
+              >
+                <p className="font-mono-technical text-[10.5px] text-accent-bright">
+                  {String(i + 1).padStart(2, "0")}
                 </p>
-                <p>
-                  I use modern AI development tools as force multipliers, but
-                  I own the product decisions, architecture, integrations,
-                  debugging, testing, and production outcomes.
+                <p className="mt-1.5 text-[13px] leading-snug font-medium text-ink">
+                  {step.title}
                 </p>
-              </div>
-            </div>
-            <div className="border-t border-edge p-[clamp(24px,3.6vw,40px)] md:border-t-0 md:border-l">
-              <h2 className="font-mono-technical text-[10.5px] tracking-[0.18em] text-ink-muted uppercase">
-                Education & continued development
-              </h2>
-              <ul className="mt-5 space-y-4 text-[14.5px] leading-relaxed text-ink-secondary">
-                <li>
-                  <span className="font-medium text-ink">
-                    Western Governors University
-                  </span>
-                  <br />
-                  B.S. Computer Science, accelerated B.S./M.S. pathway —
-                  enrolled, begins September 2026.
-                </li>
-                <li>
-                  <span className="font-medium text-ink">Berkeley College</span>
-                  <br />
-                  Bachelor of Business Administration.
-                </li>
-                <li>
-                  <span className="font-medium text-ink">
-                    App Brewery Full-Stack Bootcamp · Salesforce Certified
-                    Administrator
-                  </span>
-                </li>
-                <li>
-                  <span className="font-medium text-ink">
-                    Production, daily
-                  </span>
-                  <br />
-                  The fastest teacher has been operating live systems — launch
-                  days, incident write-ups, and the runbooks that came out of
-                  them.
-                </li>
-              </ul>
-            </div>
-          </div>
+                <p className="mt-1 text-[11.5px] leading-snug text-ink-muted">
+                  {step.detail}
+                </p>
+              </li>
+            ))}
+          </ol>
+          <p className="rv mt-10 max-w-[56ch] border-l-2 border-accent pl-5 text-[15px] leading-relaxed font-medium text-ink">
+            AI increases my speed. It does not replace my judgment, my
+            technical ownership, or my responsibility for what ships to
+            production.
+          </p>
         </section>
 
         {/* ── Contact ── */}
         <section id="contact" className="wrap pb-4">
           <div className="rv glass rounded-2xl px-[clamp(20px,4vw,40px)] py-[clamp(44px,7vw,70px)] text-center">
-            <h2 className="font-display text-[clamp(1.75rem,4.4vw,2.9rem)] font-semibold tracking-tight">
-              Hiring for product engineering?
+            <h2 className="font-display text-[clamp(1.75rem,4.4vw,2.9rem)] font-semibold tracking-tight text-balance">
+              Need an engineer who can own the messy parts?
             </h2>
-            <p className="mx-auto mt-4 max-w-[48ch] text-ink-secondary">
-              I&apos;m looking for product engineer, full-stack, or frontend
-              roles where owning outcomes matters. If that sounds like your
-              team, let&apos;s talk.
+            <p className="mx-auto mt-4 max-w-[54ch] text-ink-secondary">
+              I&apos;m looking for product engineer, full-stack, platform, or
+              business systems roles where the work touches money, operations,
+              internal tools, or AI-assisted workflows. I bring the domain
+              context, architect the system, direct the implementation, verify
+              the result, and take responsibility for what ships.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
               <a
                 href={`mailto:${siteConfig.email}`}
                 className="rounded-full bg-accent px-6 py-3.5 font-mono-technical text-[12.5px] font-medium text-white transition-colors hover:bg-accent-bright hover:text-background"
               >
-                {siteConfig.email}
+                Start a conversation
               </a>
               <CopyEmailButton className="glass cursor-pointer rounded-full px-6 py-3.5 font-mono-technical text-[12.5px] text-ink transition-all hover:-translate-y-0.5 hover:border-edge-strong" />
               <a
@@ -353,6 +303,12 @@ export default function HomePage() {
                 className="glass rounded-full px-6 py-3.5 font-mono-technical text-[12.5px] text-ink transition-all hover:-translate-y-0.5 hover:border-edge-strong"
               >
                 LinkedIn ↗
+              </a>
+              <a
+                href={siteConfig.links.resume}
+                className="glass rounded-full px-6 py-3.5 font-mono-technical text-[12.5px] text-ink transition-all hover:-translate-y-0.5 hover:border-edge-strong"
+              >
+                Resume
               </a>
             </div>
           </div>

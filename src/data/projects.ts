@@ -8,12 +8,31 @@ export const projects: Project[] = [
   {
     slug: "velocity",
     name: "Velocity Platform",
-    eyebrow: "Flagship",
+    eyebrow: "Financial operations platform",
     summary:
-      "An end-to-end futures trading evaluation platform: trader dashboards, payments, payouts, risk rules, an internal admin command center, and the infrastructure underneath. 878 commits, sole engineer, launched to production May 2026.",
-    status: "Private production system",
-    timeline: "Dec 2025 — Jul 2026 · launched 2026-05-04",
-    role: "Founding Product Engineer (sole engineer)",
+      "A futures evaluation firm run entirely on software I built: checkout, live trading dashboards, risk rules, payouts, and the admin back office. Launched May 2026 and operated in production with real customers and real money.",
+    problem:
+      "Running the evaluation business required checkout, trader accounts, market data, risk enforcement, payments, payouts, and internal operations to work as one system.",
+    outcome:
+      "One production platform handled the customer and operational lifecycle from signup through trading and payout review.",
+    status: "Operated in production, May to July 2026",
+    timeline: "Dec 2025 – Jul 2026 · launched May 4, 2026",
+    role: "Full-stack product engineer and founder",
+    visuals: [
+      {
+        src: "/work/velocity/command-center.webp",
+        alt: "Velocity admin Command Center showing revenue, trader accounts, pending payouts, risk flags, platform health, and daily operating priorities, populated with synthetic data",
+        width: 1600,
+        height: 775,
+        caption: "The admin Command Center, one operating view of the whole business. Synthetic data.",
+      },
+    ],
+    visualAreas: [
+      "Trader experience",
+      "Payments and payouts",
+      "Risk and account lifecycle",
+      "Admin operations",
+    ],
     stack: [
       "Next.js",
       "TypeScript",
@@ -33,41 +52,78 @@ export const projects: Project[] = [
     source: {
       kind: "private",
       note: "The production source is private because it contains proprietary business logic, financial integrations, and customer infrastructure. This case study documents the architecture, decisions, and systems I personally owned.",
-      overviewUrl: "https://github.com/TheRealTradeX/velocity-funds-platform",
     },
     featured: true,
   },
   {
     slug: "resolveos",
     name: "ResolveOS",
-    eyebrow: "Collections ops",
+    eyebrow: "Internal operations software",
     summary:
-      "A collections workspace that replaced the spreadsheet workflow my day job ran on — CSV-first imports, an age-based follow-up engine, a drag-and-drop status board, and a settlement pipeline with weighted forecasting. In production, used daily.",
-    status: "Production",
-    timeline: "Dec 2025 — present",
-    role: "Sole builder (self-initiated, alongside the collections work itself)",
+      "The collections job ran on spreadsheets and memory, so I replaced both. Messy CSV imports become prioritized queues, payment plans, and settlement forecasts. Built inside the workflow it serves and used every working day.",
+    problem:
+      "Collections work depended on spreadsheets, memory, fragmented follow-ups, and manual payment tracking.",
+    outcome:
+      "ResolveOS turned that workflow into a daily operating system for priorities, settlements, payment schedules, forecasting, and reconciliation.",
+    status: "Used daily in a live collections workflow",
+    timeline: "Dec 2025 – present",
+    role: "Product engineer, operator, and primary user",
+    visuals: [
+      {
+        src: "/work/resolveos/opportunity-pipeline.webp",
+        alt: "ResolveOS opportunity pipeline organizing settlement candidates by stage with amounts, funders, confidence weights, and next actions, populated with synthetic data",
+        width: 1600,
+        height: 792,
+        caption: "The settlement pipeline: offers tracked by stage before they become payment plans. Synthetic data.",
+      },
+    ],
+    visualAreas: [
+      "Account prioritization",
+      "Settlement pipeline",
+      "Payment schedules",
+      "Reconciliation",
+    ],
     stack: ["Next.js", "React", "Supabase", "Tailwind CSS"],
     highlights: [
-      "Hand-written CSV parser with fuzzy header mapping — 29 real-world spreadsheet header aliases",
+      "Hand-written CSV parser with fuzzy header mapping: 28 real-world spreadsheet header aliases",
       "Import deduplication via composite keys; append and replace modes",
       "Age-based follow-up prioritization ladder (P0–P3) encoding real cadence rules",
       "Month-end payment archival with denormalized history snapshots",
     ],
     source: {
       kind: "private",
-      note: "Private — a personal production tool in daily use, not a commercial product. All screenshots and examples on this site use synthetic data.",
+      note: "Private: a personal production tool in daily use, not a commercial product. All screenshots and examples on this site use synthetic data.",
     },
     featured: true,
   },
   {
     slug: "velocityfunds-site",
     name: "velocityfunds.io",
-    eyebrow: "Marketing site",
+    eyebrow: "Marketing and acquisition experience",
     summary:
-      "The public face of Velocity Funds: a scroll-driven cinematic launch site with a consent-gated analytics framework, a server-side lead API integrated with the platform CRM, and real shipped performance work.",
-    status: "Live",
-    timeline: "Mar 2026 — Jul 2026",
-    role: "Sole engineer & designer",
+      "The public face of Velocity Funds: a scroll-driven launch site that is also real infrastructure, with lead capture wired into the platform CRM and consent-gated analytics. Live, and you can click it.",
+    problem:
+      "The company needed a launch experience that could explain the product, capture leads, and connect acquisition activity to the operating platform.",
+    outcome:
+      "A responsive public product experience with CRM-connected lead capture and consent-aware analytics.",
+    status: "Live public website",
+    timeline: "Mar 2026 – Jul 2026",
+    role: "Product design and full-stack implementation",
+    visuals: [
+      {
+        src: "/work/velocityfunds-site/homepage-overview.webp",
+        alt: "velocityfunds.io homepage hero with the launch headline, evaluation call to action, and the first-party cookie consent prompt",
+        width: 1600,
+        height: 1000,
+        caption: "The live homepage hero, consent prompt included by design.",
+      },
+    ],
+    visualAreas: [
+      "Product storytelling",
+      "Lead capture",
+      "CRM integration",
+      "Consent-aware analytics",
+    ],
     stack: ["Next.js", "TypeScript", "Tailwind CSS", "GSAP", "three.js", "Vercel"],
     highlights: [
       "Five-act scroll-cinematic homepage with GSAP ScrollTrigger and lazy-loaded three.js",
@@ -95,14 +151,14 @@ export const systemsShipped: SystemShipped[] = [
   {
     name: "Payout eligibility engine",
     description:
-      "Qualification rules — qualifying days, caps, cooldowns, floors — computed as pure, unit-tested decision functions, with cent-precision amounts frozen at creation so history can never be silently rewritten.",
+      "Qualification rules for qualifying days, caps, cooldowns, and floors, computed as pure, unit-tested decision functions, with cent-precision amounts frozen at creation so history can never be silently rewritten.",
     project: "Velocity Platform",
     stack: ["TypeScript", "Supabase"],
   },
   {
     name: "Background job & queue layer",
     description:
-      "A dedicated worker service on Redis-backed queues for jobs that must not run inside a request — email sends, data rollups, scheduled work.",
+      "A dedicated worker service on Redis-backed queues for jobs that must not run inside a request: email sends, data rollups, scheduled work.",
     project: "Velocity Platform",
     stack: ["BullMQ", "Redis", "Railway"],
   },
@@ -116,14 +172,14 @@ export const systemsShipped: SystemShipped[] = [
   {
     name: "AI trader analytics (VI suite)",
     description:
-      "VI Pulse, Sentinel, and Debrief: performance scoring, configurable risk rules, and post-session analysis over real account data — 13 versioned prompt files, a model router, per-user usage caps, and SSE streaming.",
+      "VI Pulse, Sentinel, and Debrief: performance scoring, configurable risk rules, and post-session analysis over real account data, with 13 versioned prompt files, a model router, per-user usage caps, and SSE streaming.",
     project: "Velocity Platform",
     stack: ["OpenAI API", "TypeScript", "SSE"],
   },
   {
     name: "Discord operations bot",
     description:
-      "Community ops automation running the Discord gateway and a FastAPI webhook receiver on one asyncio event loop — engagement telemetry, scheduled weekly reports, ticketing, role gates.",
+      "Community ops automation running the Discord gateway and a FastAPI webhook receiver on one asyncio event loop: engagement telemetry, scheduled weekly reports, ticketing, role gates.",
     project: "VELOBOT",
     stack: ["Python", "discord.py", "FastAPI", "Railway"],
   },

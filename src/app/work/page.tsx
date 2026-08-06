@@ -11,8 +11,29 @@ import { projects } from "@/data/projects";
 export const metadata: Metadata = {
   title: "Work",
   description:
-    "Case studies: the Velocity trading platform, ResolveOS collections workspace, and the live velocityfunds.io marketing site.",
+    "Case studies: the Velocity financial operations platform, the ResolveOS collections workspace, and the live velocityfunds.io marketing site.",
   alternates: { canonical: "/work" },
+  openGraph: {
+    title: "Work · Jefrey Peralta",
+    description:
+      "Case studies: the Velocity financial operations platform, the ResolveOS collections workspace, and the live velocityfunds.io marketing site.",
+    url: "/work",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Jefrey Peralta · Full-Stack Product Engineer",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/opengraph-image"],
+    title: "Work · Jefrey Peralta",
+    description:
+      "Case studies: the Velocity financial operations platform, the ResolveOS collections workspace, and the live velocityfunds.io marketing site.",
+  },
 };
 
 export default function WorkPage() {

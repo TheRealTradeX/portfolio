@@ -303,6 +303,18 @@ html.rv-on .rv:not(.in) {
   }
 }
 
+/* ── Project showcase fallback visual ──────────────────────
+   Architecture-inspired backdrop for the pre-screenshot visual
+   summary: faint engineering grid + one cobalt glow. Static. */
+.showcase-visual {
+  background:
+    radial-gradient(120% 130% at 82% -10%, rgba(67, 97, 242, 0.16), transparent 55%),
+    linear-gradient(rgba(137, 166, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(137, 166, 255, 0.05) 1px, transparent 1px);
+  background-color: var(--surface);
+  background-size: auto, 34px 34px, 34px 34px;
+}
+
 /* ── Project card pointer refraction ───────────────────────── */
 .tile {
   transition:
@@ -331,6 +343,23 @@ html.rv-on .rv:not(.in) {
 .tile:hover::after,
 .tile:focus-within::after {
   opacity: 1;
+}
+
+/* ── Case-study expandable (native details) ────────────────────
+   Custom +/− indicator replaces the default disclosure triangle.
+   Closed disclosures do not render content in print; essential
+   facts must never live only inside one (authoring rule). */
+.cs-details > summary {
+  list-style: none;
+}
+.cs-details > summary::-webkit-details-marker {
+  display: none;
+}
+.cs-details .cs-details-marker::after {
+  content: "+";
+}
+.cs-details[open] .cs-details-marker::after {
+  content: "−";
 }
 
 /* ── Print (resume route) ──────────────────────────────────── */

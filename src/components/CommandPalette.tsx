@@ -1,34 +1,74 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  useSyncExternalStore,
+} from "react";
 import { useRouter } from "next/navigation";
 import { siteConfig } from "@/data/site";
+
+type CommandGroup = "Pages" | "Case studies" | "Links" | "Actions";
 
 type Command = {
   id: string;
   label: string;
-  hint?: string;
+  group: CommandGroup;
   keywords: string;
+  external?: boolean;
   run: () => void;
 };
 
-const OPEN_EVENT = "jp:open-palette";
+const GROUP_ORDER: CommandGroup[] = ["Pages", "Case studies", "Links", "Actions"];
 
-/** Dispatch from any visible trigger (e.g. the nav button on mobile). */
+const OPEN_EVENT = "jp:open-palette";
+const STATE_EVENT = "jp:palette-state";
+
+/** Dispatch from any visible trigger (e.g. the nav button). */
 export function openCommandPalette() {
   window.dispatchEvent(new CustomEvent(OPEN_EVENT));
 }
 
+/**
+ * Nav trigger for the site menu. Reads "Menu" on small screens and the
+ * platform shortcut on larger ones; tracks the palette's open state for
+ * aria-expanded via a window event.
+ */
+const noopSubscribe = () => () => {};
+
 export function CommandPaletteTrigger({ className }: { className?: string }) {
+  const [open, setOpen] = useState(false);
+  const isMac = useSyncExternalStore(
+    noopSubscribe,
+    () => /mac|iphone|ipad/i.test(navigator.platform),
+    () => false,
+  );
+
+  useEffect(() => {
+    function onState(e: Event) {
+      setOpen((e as CustomEvent).detail?.open === true);
+    }
+    window.addEventListener(STATE_EVENT, onState);
+    return () => window.removeEventListener(STATE_EVENT, onState);
+  }, []);
+
   return (
     <button
       type="button"
       className={className}
       onClick={() => openCommandPalette()}
       aria-haspopup="dialog"
+      aria-expanded={open}
+      aria-controls="site-menu"
+      aria-label="Menu"
     >
-      <span aria-hidden="true">⌘K</span>
-      <span className="sr-only">Open command menu</span>
+      <span className="sm:hidden">Menu</span>
+      <span className="hidden sm:inline" aria-hidden="true">
+        {isMac ? "⌘K" : "Ctrl K"}
+      </span>
     </button>
   );
 }
@@ -63,61 +103,88 @@ export function CommandPalette() {
   const commands = useMemo<Command[]>(
     () => [
       {
-        id: "work",
-        label: "Go to featured work",
-        hint: "W",
-        keywords: "work projects featured case studies",
+        id: "home",
+        label: "Home",
+        group: "Pages",
+        keywords: "home start top hero",
+        run: () => router.push("/"),
+      },
+      {
+        id: "selected-work",
+        label: "Selected work",
+        group: "Pages",
+        keywords: "selected work projects products showcase",
         run: () => router.push("/#work"),
       },
       {
-        id: "velocity",
-        label: "Read the Velocity case study",
-        keywords: "velocity prop firm trading platform case study",
-        run: () => router.push("/work/velocity"),
-      },
-      {
-        id: "resolveos",
-        label: "Read the ResolveOS case study",
-        keywords: "resolveos collections crm case study",
-        run: () => router.push("/work/resolveos"),
+        id: "work-index",
+        label: "Work",
+        group: "Pages",
+        keywords: "work index all case studies",
+        run: () => router.push("/work"),
       },
       {
         id: "about",
-        label: "Go to about",
-        hint: "A",
+        label: "About",
+        group: "Pages",
         keywords: "about background story",
         run: () => router.push("/about"),
       },
       {
-        id: "experience",
-        label: "Jump to experience",
-        keywords: "experience history jobs roles",
-        run: () => router.push("/#experience"),
+        id: "resume",
+        label: "Resume",
+        group: "Pages",
+        keywords: "resume cv download pdf",
+        run: () => router.push("/resume"),
       },
       {
-        id: "resume",
-        label: "Open resume",
-        hint: "R",
-        keywords: "resume cv download pdf",
-        run: () => window.open(siteConfig.links.resume, "_blank"),
+        id: "contact",
+        label: "Contact",
+        group: "Pages",
+        keywords: "contact email hire reach",
+        run: () => router.push("/#contact"),
+      },
+      {
+        id: "velocity",
+        label: "Velocity Platform",
+        group: "Case studies",
+        keywords: "velocity trading platform fintech case study",
+        run: () => router.push("/work/velocity"),
+      },
+      {
+        id: "resolveos",
+        label: "ResolveOS",
+        group: "Case studies",
+        keywords: "resolveos collections operations case study",
+        run: () => router.push("/work/resolveos"),
+      },
+      {
+        id: "velocityfunds-site",
+        label: "velocityfunds.io",
+        group: "Case studies",
+        keywords: "velocityfunds marketing site launch case study",
+        run: () => router.push("/work/velocityfunds-site"),
       },
       {
         id: "github",
-        label: "Open GitHub",
-        hint: "G",
+        label: "GitHub",
+        group: "Links",
+        external: true,
         keywords: "github code repositories source",
         run: () => window.open(siteConfig.links.github, "_blank", "noopener"),
       },
       {
         id: "linkedin",
-        label: "Open LinkedIn",
+        label: "LinkedIn",
+        group: "Links",
+        external: true,
         keywords: "linkedin profile connect",
         run: () => window.open(siteConfig.links.linkedin, "_blank", "noopener"),
       },
       {
         id: "email",
         label: "Copy email address",
-        hint: "C",
+        group: "Actions",
         keywords: "email contact copy mail",
         run: () => {
           navigator.clipboard
@@ -141,18 +208,20 @@ export function CommandPalette() {
     );
   }, [commands, query]);
 
-  // Global keyboard handling: ⌘K / Ctrl+K, single-key shortcuts, Escape.
-  useEffect(() => {
-    const shortcuts: Record<string, () => void> = {
-      w: () => router.push("/#work"),
-      a: () => router.push("/about"),
-      r: () => window.open(siteConfig.links.resume, "_blank"),
-      g: () => window.open(siteConfig.links.github, "_blank", "noopener"),
-      c: () => router.push("/#contact"),
-    };
+  const grouped = useMemo(
+    () =>
+      GROUP_ORDER.map((group) => ({
+        group,
+        items: filtered.filter((c) => c.group === group),
+      })).filter((g) => g.items.length > 0),
+    [filtered],
+  );
 
+  // Global keyboard handling: ⌘K / Ctrl+K toggle only.
+  useEffect(() => {
     function onKeyDown(e: KeyboardEvent) {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        if (isTypingTarget(e.target) && !open) return;
         e.preventDefault();
         setOpen((prev) => {
           if (!prev) {
@@ -160,15 +229,6 @@ export function CommandPalette() {
           }
           return !prev;
         });
-        return;
-      }
-      if (open) return;
-      if (isTypingTarget(e.target)) return;
-      if (e.metaKey || e.ctrlKey || e.altKey) return;
-      const fn = shortcuts[e.key.toLowerCase()];
-      if (fn) {
-        e.preventDefault();
-        fn();
       }
     }
 
@@ -183,7 +243,24 @@ export function CommandPalette() {
       window.removeEventListener("keydown", onKeyDown);
       window.removeEventListener(OPEN_EVENT, onOpenEvent);
     };
-  }, [open, router]);
+  }, [open]);
+
+  // Broadcast open state for trigger aria-expanded.
+  useEffect(() => {
+    window.dispatchEvent(
+      new CustomEvent(STATE_EVENT, { detail: { open } }),
+    );
+  }, [open]);
+
+  // Lock background scroll while the menu is open.
+  useEffect(() => {
+    if (!open) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previous;
+    };
+  }, [open]);
 
   useEffect(() => {
     if (open) inputRef.current?.focus();
@@ -235,7 +312,7 @@ export function CommandPalette() {
 
   return (
     <div
-      className="fixed inset-0 z-100 flex items-start justify-center px-4 pt-[14vh]"
+      className="fixed inset-0 z-100 flex items-start justify-center px-4 pt-[12vh]"
       role="presentation"
     >
       <div
@@ -245,9 +322,10 @@ export function CommandPalette() {
       />
       <div
         ref={dialogRef}
+        id="site-menu"
         role="dialog"
         aria-modal="true"
-        aria-label="Command menu"
+        aria-label="Site menu"
         className="glass relative w-full max-w-lg overflow-hidden rounded-2xl bg-surface-raised/95"
       >
         <div className="flex items-center border-b border-edge">
@@ -271,8 +349,8 @@ export function CommandPalette() {
                 runCommand(filtered[activeIndex]);
               }
             }}
-            placeholder="Type a command or search…"
-            aria-label="Search commands"
+            placeholder="Search pages and actions…"
+            aria-label="Search pages and actions"
             role="combobox"
             aria-expanded="true"
             aria-controls="palette-listbox"
@@ -293,36 +371,51 @@ export function CommandPalette() {
         <ul
           id="palette-listbox"
           role="listbox"
-          aria-label="Commands"
-          className="max-h-80 overflow-y-auto p-2"
+          aria-label="Pages and actions"
+          className="max-h-[min(60vh,420px)] overflow-y-auto p-2"
         >
           {filtered.length === 0 && (
             <li className="px-4 py-6 text-center text-sm text-ink-muted">
-              No matching commands
+              No matches
             </li>
           )}
-          {filtered.map((cmd, i) => (
-            <li key={cmd.id} role="presentation">
-              <button
-                type="button"
-                id={`cmd-${cmd.id}`}
-                role="option"
-                aria-selected={i === activeIndex}
-                onClick={() => runCommand(cmd)}
-                onMouseEnter={() => setActive(i)}
-                className={`flex w-full items-center justify-between rounded-lg px-4 py-2.5 text-left text-sm transition-colors ${
-                  i === activeIndex
-                    ? "bg-accent/15 text-ink"
-                    : "text-ink-secondary hover:bg-white/5"
-                }`}
+          {grouped.map(({ group, items }) => (
+            <li key={group} role="presentation">
+              <p
+                aria-hidden="true"
+                className="px-4 pt-3 pb-1.5 font-mono-technical text-[10px] tracking-[0.16em] text-ink-muted uppercase"
               >
-                <span>{cmd.label}</span>
-                {cmd.hint && (
-                  <kbd className="rounded border border-edge px-1.5 py-0.5 font-mono-technical text-[10px] text-ink-muted">
-                    {cmd.hint}
-                  </kbd>
-                )}
-              </button>
+                {group}
+              </p>
+              <ul role="presentation">
+                {items.map((cmd) => {
+                  const flatIndex = filtered.indexOf(cmd);
+                  return (
+                    <li key={cmd.id} role="presentation">
+                      <button
+                        type="button"
+                        id={`cmd-${cmd.id}`}
+                        role="option"
+                        aria-selected={flatIndex === activeIndex}
+                        onClick={() => runCommand(cmd)}
+                        onMouseEnter={() => setActive(flatIndex)}
+                        className={`flex w-full items-center justify-between rounded-lg px-4 py-2.5 text-left text-sm transition-colors ${
+                          flatIndex === activeIndex
+                            ? "bg-accent/15 text-ink"
+                            : "text-ink-secondary hover:bg-white/5"
+                        }`}
+                      >
+                        <span>
+                          {cmd.label}
+                          {cmd.external && (
+                            <span aria-hidden="true"> ↗</span>
+                          )}
+                        </span>
+                      </button>
+                    </li>
+                  );
+                })}
+              </ul>
             </li>
           ))}
         </ul>

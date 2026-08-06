@@ -2,12 +2,31 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { siteConfig } from "@/data/site";
 import { experience } from "@/data/experience";
+import { resumeSkills } from "@/data/skills";
 
 export const metadata: Metadata = {
   title: "Resume",
-  description:
-    "Resume of Jefrey Peralta — full-stack product engineer and technical founder.",
+  description: "Resume of Jefrey Peralta, full-stack product engineer.",
   alternates: { canonical: "/resume" },
+  openGraph: {
+    title: "Resume · Jefrey Peralta",
+    description: "Resume of Jefrey Peralta, full-stack product engineer.",
+    url: "/resume",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Jefrey Peralta · Full-Stack Product Engineer",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/opengraph-image"],
+    title: "Resume · Jefrey Peralta",
+    description: "Resume of Jefrey Peralta, full-stack product engineer.",
+  },
 };
 
 export default function ResumePage() {
@@ -35,7 +54,8 @@ export default function ResumePage() {
         </h1>
         <p className="mt-2 text-lg text-ink-secondary">{siteConfig.role}</p>
         <p className="mt-3 font-mono-technical text-[13px] text-ink-muted">
-          React · Next.js · TypeScript · Node.js · PostgreSQL · AI · FinTech
+          React · Next.js · TypeScript · Node.js · PostgreSQL · FinTech ·
+          AI-assisted engineering
         </p>
         <p className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-sm text-ink-secondary">
           <span>{siteConfig.location}</span>
@@ -66,12 +86,14 @@ export default function ResumePage() {
           Profile
         </h2>
         <p className="mt-4 text-[15px] leading-relaxed text-ink-secondary">
-          Product-focused software engineer and technical founder who has built
-          and operated production software from concept to launch — frontend,
-          backend, databases, authentication, payments, AI integrations, and
-          operational tooling. Seeking product engineer, full-stack engineer,
-          or frontend engineer roles where shipping high-quality software and
-          owning customer outcomes matter.
+          Full-stack product engineer who has taken production software from
+          concept to launch and operated it live: frontend, backend services,
+          PostgreSQL, payments, AI-assisted product features, and the internal
+          tooling behind them. I practice disciplined AI-assisted software
+          development, pairing engineering ownership with prompt and context
+          engineering, human-in-the-loop review, and automated verification.
+          Seeking product engineer, full-stack, or platform roles where owning
+          customer outcomes matters.
         </p>
       </section>
 
@@ -103,6 +125,22 @@ export default function ResumePage() {
         </div>
       </section>
 
+      <section className="border-b border-edge py-8">
+        <h2 className="font-mono-technical text-xs tracking-[0.2em] text-ink-muted uppercase">
+          Technical Skills
+        </h2>
+        <dl className="mt-4 space-y-2.5">
+          {resumeSkills.map((group) => (
+            <div key={group.label} className="text-sm leading-relaxed">
+              <dt className="inline font-medium text-ink">{group.label}: </dt>
+              <dd className="inline text-ink-secondary">
+                {group.items.join(", ")}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+
       <section className="py-8">
         <h2 className="font-mono-technical text-xs tracking-[0.2em] text-ink-muted uppercase">
           Education & Certification
@@ -111,12 +149,12 @@ export default function ResumePage() {
           <li>
             <span className="font-medium text-ink">
               Western Governors University
-            </span>{" "}
-            — B.S. Computer Science, accelerated B.S./M.S. pathway. Enrolled;
-            program begins September 2026.
+            </span>
+            : B.S. and M.S. Computer Science pathway, enrolled, beginning
+            September 2026.
           </li>
           <li>
-            <span className="font-medium text-ink">Berkeley College</span> —
+            <span className="font-medium text-ink">Berkeley College</span>:
             Bachelor of Business Administration.
           </li>
           <li>
@@ -125,9 +163,8 @@ export default function ResumePage() {
             </span>
           </li>
           <li>
-            <span className="font-medium text-ink">
-              The App Brewery — Complete Full-Stack Web Development Bootcamp
-            </span>
+            <span className="font-medium text-ink">The App Brewery</span>:
+            Complete Full-Stack Web Development Bootcamp
           </li>
         </ul>
       </section>

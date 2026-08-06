@@ -1,26 +1,23 @@
 import Link from "next/link";
 import type { Project } from "@/types/content";
 
-const STATUS_DOT: Record<string, string> = {
-  Live: "bg-success",
-  Production: "bg-success",
-  "Private production system": "bg-success",
-  "Internal tool": "bg-accent-bright",
-  "Active development": "bg-accent-bright",
-  "Archived case study": "bg-ink-muted",
+export const STATUS_DOT: Record<string, string> = {
+  "Live public website": "bg-success",
+  "Used daily in a live collections workflow": "bg-success",
+  "Operated in production, May to July 2026": "bg-ink-muted",
 };
 
 export function ProjectCard({ project }: { project: Project }) {
   return (
     <article className="tile glass rv flex flex-col p-6">
-      <div className="flex items-start justify-between gap-3">
+      <div className="flex flex-col gap-2">
         <p className="font-mono-technical text-[10.5px] tracking-[0.16em] text-accent-bright uppercase">
           {project.eyebrow}
         </p>
-        <p className="flex shrink-0 items-center gap-2 font-mono-technical text-[10.5px] tracking-wide text-ink-secondary">
+        <p className="flex items-center gap-2 font-mono-technical text-[10.5px] tracking-wide text-ink-secondary">
           <span
             aria-hidden="true"
-            className={`inline-block size-1.5 rounded-full ${STATUS_DOT[project.status] ?? "bg-ink-muted"}`}
+            className={`inline-block size-1.5 shrink-0 rounded-full ${STATUS_DOT[project.status] ?? "bg-ink-muted"}`}
           />
           {project.status}
         </p>
