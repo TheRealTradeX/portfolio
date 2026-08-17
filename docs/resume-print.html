@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Jefrey Peralta – Resume</title>
+<style>
+  :root {
+    --ink: #1a1d21;
+    --muted: #6b7280;
+    --soft: #8a93a3;
+    --rule: #d7dae0;
+    --bullet: #9aa4b5;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { -webkit-print-color-adjust: exact; }
+  body {
+    font-family: "Helvetica Neue", Helvetica, Arial, "Segoe UI", sans-serif;
+    font-size: 9.6pt;
+    line-height: 1.42;
+    color: var(--ink);
+  }
+  .page { max-width: 100%; }
+
+  /* Header */
+  h1 {
+    font-size: 21pt;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  .role { margin-top: 3pt; font-size: 11pt; font-weight: 700; }
+  .descriptor { margin-top: 2.5pt; font-size: 9.3pt; color: var(--muted); }
+  .contact { margin-top: 3pt; font-size: 8.2pt; color: var(--muted); white-space: nowrap; }
+  .contact b { font-weight: 500; color: var(--ink); }
+
+  /* Sections */
+  h2 {
+    margin-top: 13pt;
+    padding-bottom: 3pt;
+    border-bottom: 0.75pt solid var(--rule);
+    font-size: 8.6pt;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .section-body { margin-top: 7pt; }
+  p.body { color: #2a2e35; }
+
+  /* Bullets */
+  ul { list-style: none; }
+  li {
+    position: relative;
+    padding-left: 11pt;
+    margin-bottom: 4.2pt;
+    color: #2a2e35;
+  }
+  li::before {
+    content: "•";
+    position: absolute;
+    left: 1pt;
+    color: var(--bullet);
+  }
+  li b { font-weight: 700; color: var(--ink); }
+
+  /* Experience */
+  .job { margin-top: 9pt; }
+  .job:first-child { margin-top: 0; }
+  .job-head { font-size: 10pt; }
+  .job-head .co { font-weight: 700; }
+  .job-head .ti { font-weight: 400; }
+  .job-head .dates { font-weight: 400; color: var(--soft); font-size: 9pt; }
+  .job-sub { margin: 1.5pt 0 4.5pt; font-style: italic; color: var(--muted); font-size: 8.9pt; }
+  .job ul { margin-top: 3.5pt; }
+
+  /* Skills */
+  .skill-row { margin-bottom: 3.6pt; }
+  .skill-row b { font-weight: 700; }
+
+  /* Education */
+  .edu-label { font-weight: 700; margin: 5pt 0 2.5pt; }
+  .edu-line { margin-bottom: 2.5pt; }
+
+  .avoid-break { break-inside: avoid; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <h1>Jefrey Peralta</h1>
+  <p class="role">Forward Deployed / Applied AI Engineer</p>
+  <p class="descriptor">Production Software&ensp;·&ensp;AI Systems&ensp;·&ensp;Business Operations</p>
+  <p class="contact">New Jersey (Remote)&ensp;·&ensp;peraltajefrey@gmail.com&ensp;·&ensp;(908) 986-4555&ensp;·&ensp;linkedin.com/in/jefrey-peralta-203719139&ensp;·&ensp;github.com/TheRealTradeX</p>
+
+  <h2>Summary</h2>
+  <div class="section-body">
+    <p class="body">
+      After founding and running a software company, I know what kind of engineer I want to be: the kind
+      who works close to the business. As founder and sole engineer at Velocity Funds, I designed, shipped,
+      and operated a production fintech platform end to end &mdash; payments, realtime market data,
+      distributed backend services, AI features, and live production operations. At Advanced Recovery Group
+      I did the collections work myself, then built ResolveOS, the internal workspace the job now runs on
+      every working day. I&rsquo;m looking for forward deployed and applied AI engineering roles, where
+      translating a real operation into production software &mdash; and owning it after it ships &mdash; is the job.
+    </p>
+  </div>
+
+  <h2>Selected Engineering Highlights</h2>
+  <div class="section-body">
+    <ul>
+      <li>Architected, built, and operated a production fintech platform as the sole software engineer, from first commit through live customers.</li>
+      <li>Designed a production architecture spanning 237 API endpoints and 83 PostgreSQL tables.</li>
+      <li>Built resilient subscription billing, payment, payout, webhook, entitlement, and reconciliation systems.</li>
+      <li>Engineered distributed backend services on PostgreSQL, Redis, and BullMQ using asynchronous workers, idempotent processing, and optimistic concurrency.</li>
+      <li>Shipped applied-AI product surfaces for trader coaching, behavioral analytics, and market intelligence, with versioned prompts, model routing, usage caps, and streaming on OpenAI.</li>
+      <li>Built ResolveOS inside a live collections operation and deployed it into daily use, replacing the spreadsheets the workflow ran on.</li>
+      <li>Owned architecture, implementation, deployment, production incident response, and long-term platform evolution.</li>
+    </ul>
+  </div>
+
+  <h2>Experience</h2>
+  <div class="section-body">
+
+    <div class="job avoid-break">
+      <p class="job-head"><span class="co">Velocity Funds / Velocity Co.</span> &nbsp;·&nbsp; <span class="ti">Founder, Founding Product Engineer</span> <span class="dates">(2025 &ndash; Present)</span></p>
+      <p class="job-sub">A production fintech platform taken from concept to launch and operated live &mdash; designed, built, deployed, and maintained solo.</p>
+      <ul>
+        <li><b>Product.</b> Owned product direction, UX, and every technical decision. Built the customer-facing application &mdash; onboarding, dashboards, subscriptions, analytics &mdash; alongside the internal tooling that runs the business.</li>
+        <li><b>Architecture.</b> Implemented distributed services across 237 API endpoints and 83 PostgreSQL tables using TypeScript, React, Next.js, Supabase, Redis, and BullMQ.</li>
+        <li><b>Reliability.</b> Designed event-driven systems around observability, recoverability, and resilience: asynchronous workers, idempotent handlers, and optimistic concurrency control.</li>
+        <li><b>Payments.</b> Built subscription billing, recurring payments, payouts, webhook processing, entitlement gating, and financial reconciliation against live processors.</li>
+        <li><b>AI.</b> Built the Velocity Intelligence suite &mdash; trader coaching, behavioral analytics, and post-session review &mdash; on OpenAI, with versioned prompts, a model router, per-user usage caps, and streamed responses.</li>
+        <li><b>Operations.</b> Deployed and operated the platform on Vercel and Railway, handling production incident response, monitoring, and long-term platform evolution.</li>
+      </ul>
+    </div>
+
+    <div class="job avoid-break">
+      <p class="job-head"><span class="co">Advanced Recovery Group</span> &nbsp;·&nbsp; <span class="ti">Account Manager</span> <span class="dates">(2024 &ndash; Present)</span></p>
+      <ul>
+        <li>Manage commercial finance accounts, settlements, payment reconciliation, and legal coordination.</li>
+        <li>Built and deployed ResolveOS, the internal workspace the collections job now runs on &mdash; prioritized follow-up queues, a settlement pipeline, payment schedules, and month-end reconciliation.</li>
+        <li>Learned the workflow by doing it, then encoded its unwritten rules: follow-up cadence by account age, at-risk flagging, and imports that survive messy real-world spreadsheets.</li>
+      </ul>
+    </div>
+
+    <div class="job avoid-break">
+      <p class="job-head"><span class="co">Utopian Estate / Nova Resolutions Group</span> &nbsp;·&nbsp; <span class="ti">Founder &amp; Managing Partner</span> <span class="dates">(2021 &ndash; 2024)</span></p>
+      <ul>
+        <li>Built CRM-driven business systems supporting acquisitions, reporting, finance, and operations.</li>
+        <li>Designed scalable operational workflows and internal business tooling.</li>
+      </ul>
+    </div>
+
+    <div class="job avoid-break">
+      <p class="job-head"><span class="co">Leverage Companies (Private Equity)</span> &nbsp;·&nbsp; <span class="ti">Lead Acquisition Manager &amp; CRM Systems Developer</span> <span class="dates">(2019 &ndash; 2021)</span></p>
+      <ul>
+        <li>Designed, developed, and administered the company&rsquo;s Salesforce CRM.</li>
+        <li>Built workflow automations, dashboards, reporting systems, and lead management processes.</li>
+        <li>Supported company growth from approximately $50K to $500K in monthly recurring revenue through scalable CRM and operational systems.</li>
+        <li>Partnered directly with leadership to translate business requirements into software solutions.</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <h2>Technical Skills</h2>
+  <div class="section-body avoid-break">
+    <p class="skill-row"><b>Languages</b>&ensp;TypeScript, JavaScript, Python, SQL, HTML, CSS</p>
+    <p class="skill-row"><b>Application Engineering</b>&ensp;React, Next.js, Node.js, FastAPI, Tailwind CSS</p>
+    <p class="skill-row"><b>Data &amp; Distributed Systems</b>&ensp;PostgreSQL, Supabase, Redis, BullMQ, webhooks, realtime data pipelines</p>
+    <p class="skill-row"><b>Applied AI</b>&ensp;OpenAI APIs, LLM product integration, versioned prompt management, model routing, streaming, usage controls, AI-assisted engineering (Claude Code)</p>
+    <p class="skill-row"><b>Infrastructure</b>&ensp;Vercel, Railway, Docker, Cloudflare, Sentry, Git, GitHub</p>
+    <p class="skill-row"><b>Business Systems</b>&ensp;Salesforce, CRM architecture, workflow automation, Authorize.Net payments, subscription billing, reconciliation</p>
+  </div>
+
+  <h2>Education &amp; Certification</h2>
+  <div class="section-body avoid-break">
+    <p class="edu-label">Education:</p>
+    <p class="edu-line">Western Governors University &mdash; B.S./M.S. Computer Science, accelerated pathway (January 2026 &ndash; Present)</p>
+    <p class="edu-line">Berkeley College &mdash; Bachelor of Business Administration</p>
+    <p class="edu-label">Certifications:</p>
+    <p class="edu-line">Salesforce Certified Administrator</p>
+    <p class="edu-line">The App Brewery &mdash; Complete Full-Stack Web Development Bootcamp</p>
+  </div>
+
+</div>
+</body>
+</html>

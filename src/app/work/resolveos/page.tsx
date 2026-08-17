@@ -298,15 +298,14 @@ export default function ResolveOSCaseStudy() {
 
         <CS id="owned" title="Embedded ownership">
           <p>
-            This is the closest thing in my portfolio to forward deployed
-            work by another name: I was embedded in the operating
-            environment as its operator, and the software was built from
-            inside it. The business rules were unwritten. Which accounts get
-            touched today, when a settlement offer is worth comparing, what
-            counts as at risk: none of that existed as a spec. Discovering
-            those rules meant doing the job, and encoding them meant
-            translating how the work actually happens into a data model and
-            priority logic.
+            I was embedded in this operating environment in the most literal
+            sense: I do the collections work, and the software was built
+            from inside it. The business rules were unwritten. Which
+            accounts get touched today, when a settlement offer is worth
+            comparing, what counts as at risk, none of it existed as a spec.
+            Discovering the rules meant doing the job, and encoding them
+            meant translating how the work actually happens into a data
+            model and priority logic.
           </p>
           <CaseStudyFigure
             kind="custom"

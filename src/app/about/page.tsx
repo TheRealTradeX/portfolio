@@ -81,21 +81,19 @@ export default function AboutPage() {
             stay mine.
           </p>
           <p>
-            The direction from here is deliberate: forward deployed and
-            applied AI engineering. My titles have been founder, account
-            manager, CRM systems developer, and product engineer, but the
-            work underneath them has been consistent: embed in an operation,
-            find the real problem, translate ambiguous workflows into
-            requirements, architect the system, build it, deploy it into the
-            live environment, and iterate on what production teaches. That
-            is the work I&apos;m building my career around, now with AI
-            systems as a first-class part of what gets deployed.
+            The direction from here is deliberate. My titles have been
+            founder, account manager, CRM systems developer, and product
+            engineer, but the job underneath them barely changed: get inside
+            an operation, find the real problem, turn the workflow into
+            requirements, design the system, build it, deploy it, and keep
+            improving it against what production teaches. Forward deployed
+            and applied AI engineering is that same job with the right name
+            on it, and it&apos;s where I&apos;m taking my career.
           </p>
           <p>
-            I&apos;m also formalizing the foundations: Western Governors
-            University, B.S. and M.S. Computer Science pathway, enrolled,
-            beginning September 2026, layered on top of production
-            experience rather than preceding it.
+            I&apos;m also formalizing the foundations at Western Governors
+            University, where I&apos;ve been enrolled in the B.S. and M.S.
+            Computer Science pathway since January 2026.
           </p>
         </div>
 

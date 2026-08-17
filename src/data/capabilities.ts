@@ -12,7 +12,7 @@ export const capabilities: Capability[] = [
   {
     title: "Operational discovery and scoping",
     description:
-      "I have personally run the workflows I build for. Ambiguous operations become concrete requirements and measurable outcomes.",
+      "Requirements drawn from doing the work: I've run the collections, trading, and CRM workflows I build for.",
     tools: ["collections ops", "trading ops", "CRM ops"],
   },
   {

@@ -14,7 +14,7 @@ export const projects: Project[] = [
     problem:
       "Running the evaluation business required checkout, trader accounts, market data, risk enforcement, payments, payouts, and internal operations to work as one system.",
     outcome:
-      "One production platform handled the customer and operational lifecycle from signup through trading and payout review, with the founder as its operator and incident responder.",
+      "One production platform handled the customer and operational lifecycle from signup through trading and payout review.",
     status: "Operated in production, May to July 2026",
     timeline: "Dec 2025 – Jul 2026 · launched May 4, 2026",
     role: "Founder, system architect, and sole engineer",

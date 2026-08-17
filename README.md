@@ -15,6 +15,7 @@ npm run start      # serve the production build
 npm run lint       # eslint
 npm run typecheck  # tsc --noEmit
 npm run test       # vitest — content/data integrity tests
+npm run resume:pdf # regenerate public/resume.pdf from docs/resume-print.html
 ```
 
 ## Where content lives

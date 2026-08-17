@@ -16,16 +16,13 @@ import { capabilities } from "@/data/capabilities";
 import { siteConfig } from "@/data/site";
 
 const credibility = [
-  "Production fintech platform: built, launched, operated solo",
-  "Software deployed inside a live operation, used daily",
-  "Applied AI shipped: prompts, routing, streaming, usage caps",
-  "Owned from discovery through deployment, not tickets",
+  "Production fintech platform, launched and operated live",
+  "Payments, payouts, and reconciliation shipped",
+  "Internal operations software in daily use",
+  "AI features running in a real product",
 ];
 
-/**
- * The forward-deployed operating model. Stages, not tickets: the unit
- * of work is an outcome in a real operating environment.
- */
+/** The six-stage operating model rendered by the "How I deploy" section. */
 const deployStages = [
   {
     title: "Discover",
@@ -67,19 +64,19 @@ const appliedAI = [
   {
     name: "Trader analytics in production",
     detail:
-      "VI Pulse, Sentinel, and Debrief: performance scoring, configurable risk rules, and post-session analysis over real account data in the Velocity platform.",
+      "VI Pulse, Sentinel, and Debrief score trading performance, watch risk rules, and review sessions over real account data in the Velocity platform.",
     evidence: "OpenAI API · 13 versioned prompts · model router · SSE streaming",
   },
   {
-    name: "Operating AI like infrastructure",
+    name: "Behavioral intelligence for operators",
     detail:
-      "The unglamorous parts that make AI features shippable: prompt versioning, model routing, per-user usage caps, streaming delivery, and behavioral telemetry feeding operator worklists.",
-    evidence: "usage controls · retention signals · rate limiting",
+      "Retention Intelligence turns trader behavior into health scores and a ranked worklist, so an operator knows who needs attention today.",
+    evidence: "behavioral signals · health scoring · admin worklists",
   },
   {
-    name: "AI-assisted engineering discipline",
+    name: "AI-assisted engineering",
     detail:
-      "Agentic coding inside a constrained workflow: repository context, scoped task plans, line-by-line diff review, and verification in the running application.",
+      "I build with coding agents inside a disciplined loop: repository context, scoped plans, line-by-line diff review, and verification in the running app.",
     evidence: "Claude Code · context engineering · human-in-the-loop review",
   },
 ];
@@ -161,14 +158,14 @@ export default function HomePage() {
           </h1>
 
           <p className="mt-7 max-w-[58ch] text-[clamp(1.05rem,2vw,1.2rem)] leading-relaxed text-ink-secondary">
-            From discovery and architecture through deployment and iteration.
             I spent years operating businesses that ran on spreadsheets,
-            CRMs, and duct tape, so I build{" "}
+            CRMs, and duct tape. Now I build the software those operations
+            deserve:{" "}
             <em className="font-medium text-ink not-italic">
-              inside the operation, not next to it
+              payment infrastructure, internal tools, and AI systems
             </em>
-            : payment infrastructure, internal tools, AI systems, shipped to
-            production and debugged there too.
+            , carried from discovery and architecture through deployment and
+            operation.
           </p>
 
           <div className="mt-9 flex flex-wrap gap-3">
@@ -210,11 +207,6 @@ export default function HomePage() {
           <h2 className="rv mt-6 font-display text-[clamp(1.75rem,4.4vw,2.9rem)] leading-tight font-semibold tracking-tight">
             Systems built inside the operations they run.
           </h2>
-          <p className="rv mt-5 max-w-[62ch] text-[15px] leading-relaxed text-ink-secondary">
-            Not client work delivered over the wall: operations I was part
-            of, translated into software, deployed, and operated in
-            production.
-          </p>
           <div className="mt-12 space-y-[clamp(64px,10vh,112px)]">
             {featured.map((project, i) => (
               <ProjectShowcase
@@ -228,10 +220,6 @@ export default function HomePage() {
           {supporting.length > 0 && (
             <div className="mt-[clamp(64px,10vh,112px)]">
               <p className="eyebrow rv">Additional engineering work</p>
-              <p className="rv mt-4 max-w-[62ch] text-[14px] leading-relaxed text-ink-secondary">
-                Supporting builds that show breadth: performance,
-                integrations, security, analytics, and frontend craft.
-              </p>
               <div className="mt-8 grid gap-5 md:grid-cols-2">
                 {supporting.map((project) => (
                   <ProjectCard key={project.slug} project={project} />
@@ -248,9 +236,7 @@ export default function HomePage() {
             How I deploy.
           </h2>
           <p className="rv mt-5 max-w-[62ch] text-[15px] leading-relaxed text-ink-secondary">
-            The unit of work I own is an outcome in a live operating
-            environment, not a ticket. Every system in this portfolio went
-            through the same loop.
+            Every system in this portfolio went through the same six stages.
           </p>
           <ol className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-6 lg:gap-5">
             {deployStages.map((stage, i) => (
@@ -270,11 +256,6 @@ export default function HomePage() {
               </li>
             ))}
           </ol>
-          <p className="rv mt-10 max-w-[56ch] border-l-2 border-accent pl-5 text-[15px] leading-relaxed font-medium text-ink">
-            Discovery taught me what to build, deployment taught me what
-            breaks, and operating it taught me what matters. I own that
-            whole loop.
-          </p>
         </section>
 
         {/* ── Applied AI ── */}
@@ -284,10 +265,9 @@ export default function HomePage() {
             Applied AI, not AI demos.
           </h2>
           <p className="rv mt-5 max-w-[62ch] text-[15px] leading-relaxed text-ink-secondary">
-            My interest is models working inside real operational systems,
-            where reliability, permissions, data quality, cost, latency, and
-            user experience decide whether the feature survives contact with
-            production.
+            The AI work I care about runs inside real operational systems,
+            where reliability, permissions, data quality, cost, and latency
+            all have consequences.
           </p>
           <div className="mt-10 grid gap-x-12 gap-y-9 lg:grid-cols-3">
             {appliedAI.map((item) => (
@@ -305,9 +285,9 @@ export default function HomePage() {
             ))}
           </div>
           <p className="rv mt-10 max-w-[62ch] text-[13.5px] leading-relaxed text-ink-muted">
-            Building toward next: evaluation harnesses, retrieval over
-            operational data, and agent workflows deployed into business
-            operations. This section grows as that work ships, not before.
+            Evaluation harnesses, retrieval over operational data, and agent
+            workflows are next on my list. They&apos;ll appear here as case
+            studies once they ship.
           </p>
         </section>
 
@@ -317,11 +297,6 @@ export default function HomePage() {
           <h2 className="rv mt-6 font-display text-[clamp(1.6rem,3.6vw,2.4rem)] leading-tight font-semibold tracking-tight">
             Operator first. Engineer because of it.
           </h2>
-          <p className="rv mt-5 max-w-[62ch] text-[15px] leading-relaxed text-ink-secondary">
-            The through-line: operator, to systems builder, to product
-            engineer, to forward deployed and applied AI engineering. Every
-            role involved translating a live business workflow into software.
-          </p>
           <ol className="mt-10">
             {experience.map((entry) => (
               <li
@@ -361,9 +336,8 @@ export default function HomePage() {
                 <span className="font-medium text-ink">
                   Western Governors University
                 </span>
-                : B.S. and M.S. Computer Science pathway, enrolled, beginning
-                September 2026. Formal CS foundations layered on top of
-                production engineering experience, not instead of it.
+                : B.S. and M.S. Computer Science pathway, currently
+                enrolled, January 2026 – Present.
               </p>
               <p>
                 <span className="font-medium text-ink">Berkeley College</span>:
@@ -377,7 +351,7 @@ export default function HomePage() {
         <section id="capabilities" className="wrap pb-[clamp(56px,9vh,104px)]">
           <p className="eyebrow rv">Capabilities</p>
           <h2 className="rv mt-6 font-display text-[clamp(1.6rem,3.6vw,2.4rem)] leading-tight font-semibold tracking-tight">
-            What I can own, end to end.
+            What I can build and own.
           </h2>
           <div className="mt-10 grid gap-x-12 gap-y-9 sm:grid-cols-2">
             {capabilities.map((capability) => (
@@ -400,15 +374,15 @@ export default function HomePage() {
         <section id="contact" className="wrap pb-4">
           <div className="rv glass rounded-2xl px-[clamp(20px,4vw,40px)] py-[clamp(44px,7vw,70px)] text-center">
             <h2 className="font-display text-[clamp(1.75rem,4.4vw,2.9rem)] font-semibold tracking-tight text-balance">
-              Need an engineer who deploys into the problem?
+              Need an engineer who can own the messy parts?
             </h2>
             <p className="mx-auto mt-4 max-w-[58ch] text-ink-secondary">
-              I&apos;m targeting forward deployed, applied AI, solutions, and
-              customer engineering roles, and product engineering roles with
-              customer-facing technical ownership: work where the engineer
-              sits with the operation, architects the system, ships it, and
-              owns the outcome. Strong adjacent software engineering roles
-              are welcome too.
+              I&apos;m looking for forward deployed, applied AI, solutions,
+              and customer engineering roles, along with product engineering
+              roles that carry real customer-facing ownership. I bring the
+              domain context, architect the system, build it, deploy it, and
+              take responsibility for what ships. If your role is adjacent
+              to that, I&apos;m still interested.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
               <a

@@ -42,7 +42,7 @@ visible.
 |---|---|---|---|---|---|---|
 | `homepage-overview.webp` | 76 KB | 1600×1000 | Live public site capture | Dated promo banner removed before capture; first-party consent prompt intentionally retained | None (public site) | Homepage showcase; velocityfunds.io case study |
 | `product-story.webp` | 83 KB | 1600×1000 | Live public site capture, mid-scroll | Promo banner and consent dialog removed before capture | None (public site) | velocityfunds.io case study (Decisions) |
-| `mobile-experience.webp` | 76 KB | 780×1650 | Live public site, iPhone-sized viewport | Scrolled past the promo banner; consent dialog removed; clipped top strip cropped | None (public site) | velocityfunds.io case study |
+| `mobile-experience.webp` | 70 KB | 780×1650 | Live public site, iPhone-sized viewport (retaken 2026-08-16 with the WebGL background rendered) | Promo banner and consent dialog removed via DOM before capture; nav retained | None (public site) | velocityfunds.io case study |
 
 ## Deliberately omitted captures
 

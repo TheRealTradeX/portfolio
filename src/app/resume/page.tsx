@@ -155,8 +155,7 @@ export default function ResumePage() {
             <span className="font-medium text-ink">
               Western Governors University
             </span>
-            : B.S. and M.S. Computer Science pathway, enrolled, beginning
-            September 2026.
+            : B.S. and M.S. Computer Science pathway, January 2026 – Present.
           </li>
           <li>
             <span className="font-medium text-ink">Berkeley College</span>:

@@ -42,7 +42,7 @@ export const experience: ExperienceEntry[] = [
       "Translated a live collections workflow's unwritten rules (account cadence, settlement stages, payment plans) into working software while performing the work it supports.",
       "Built CSV-first onboarding tolerant of messy real spreadsheets: fuzzy header mapping, deduplication keys, and multi-format date normalization.",
       "Encoded the operational rules directly: age-based follow-up prioritization, at-risk flagging, and month-end payment archival.",
-      "Iterated terminology and behavior from daily use inside the operation, not from a spec.",
+      "Refined the software's terminology and behavior from daily use inside the operation.",
     ],
   },
   {

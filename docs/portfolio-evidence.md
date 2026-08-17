@@ -25,9 +25,11 @@ this pass traces to existing rows in this ledger (Python and FastAPI via
 VELOBOT, Cloudflare via the waitlist edge API and the live site, market
 data via the protobuf-over-WSS consumer); no new metrics or customers were
 claimed. `public/resume.pdf` provenance changed: it is now generated from
-the site's `/resume` route (print CSS, Playwright PDF export) so the
-downloadable resume matches the published positioning; the previous
-official upload remains in git history.
+`docs/resume-print.html` via `npm run resume:pdf` (Playwright PDF export),
+mirroring the structure of the original official resume (commit `935617d`)
+with the updated positioning; the original upload remains in git history.
+The phone number appears in the PDF only, matching the original resume;
+the site itself still omits it.
 
 ## Published claims
 
@@ -84,7 +86,7 @@ official upload remains in git history.
 | VELOBOT: Discord gateway + FastAPI webhook receiver on one asyncio loop | VELOBOT | `ARCHITECTURE.md` + `web/server.py`, `bot.py`; 2,547 LOC, 21 commits, 100% Jefrey; Railway config | VELOBOT | High | Yes | as stated, framed as community ops automation |
 | Waitlist edge API: Turnstile, IP-hash rate limiting, dedupe, UTM attribution | Velocity waitlist | `functions/api/waitlist.js` (239 LOC), `d1/waitlist.sql` (16-col schema) | waitlist_velocityfunds | High | Yes | as stated |
 | 86 registered platform users during the operating period | Velocity Platform | Admin Users screen census capture, 2026-08-04 22:40 ET; see the verification record below | VF-Client-Dashboard + production admin console | High | Yes | "86 registered platform users" / at-a-glance "Registered users: 86 during the operating period" |
-| Experience & education entries | — | Official `Jefrey_Peralta_Resume.pdf` (committed as `public/resume.pdf`) + repo evidence | resume PDF | Medium-High | Yes | WGU B.S. CS begins September 2026 — stated as enrolled/starting, never as in progress or completed |
+| Experience & education entries | — | Official `Jefrey_Peralta_Resume.pdf` (superseded; see repositioning note) + repo evidence | resume PDF | Medium-High | Yes | WGU B.S./M.S. CS pathway stated as currently enrolled, January 2026 – Present (corrected directly by Jefrey, 2026-08-16; earlier "begins September 2026" framing is obsolete) |
 | Salesforce CRM work at Leverage Companies | Experience | resume v4 + older html-resume | resume | Medium | Yes | qualitative only |
 | Contact: email, LinkedIn, location | — | user account email; html-resume Contact page; resume draft | html-resume `public/Contact me.html` | High | Yes (phone deliberately omitted) | as stated |
 
