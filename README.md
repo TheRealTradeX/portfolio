@@ -1,6 +1,7 @@
 # Jefrey Peralta · Portfolio
 
-Engineering portfolio for **Jefrey Peralta**, full-stack product engineer.
+Engineering portfolio for **Jefrey Peralta**, positioned around forward
+deployed / applied AI engineering on top of production full-stack work.
 Deployed at <https://jefrey-peralta.vercel.app>. Built with Next.js App
 Router, strict TypeScript, and Tailwind CSS v4. Fully static, zero runtime
 dependencies beyond React/Next, self-hosted fonts, no third-party requests.

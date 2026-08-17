@@ -120,8 +120,22 @@ export function CommandPalette() {
         id: "work-index",
         label: "Work",
         group: "Pages",
-        keywords: "work index all case studies",
+        keywords: "work index all case studies deployments",
         run: () => router.push("/work"),
+      },
+      {
+        id: "deploy",
+        label: "How I deploy",
+        group: "Pages",
+        keywords: "deploy approach process operating model discover scope architect",
+        run: () => router.push("/#deploy"),
+      },
+      {
+        id: "applied-ai",
+        label: "Applied AI",
+        group: "Pages",
+        keywords: "applied ai llm openai prompts model routing streaming",
+        run: () => router.push("/#applied-ai"),
       },
       {
         id: "about",

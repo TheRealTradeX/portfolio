@@ -16,6 +16,19 @@ the 34th), and the 878-commit note below normalized.
 **Confidence scale:** High = measured directly from files/history · Medium =
 stated in Jefrey's own docs and consistent with code · Low = unverifiable.
 
+**Repositioning note (2026-08-16).** The portfolio was repositioned around
+forward deployed / applied AI engineering as a career specialization. Rules
+enforced during that pass: "Forward Deployed Engineer" is never presented
+as a past formal job title (guarded by a test in
+`src/data/content.test.ts`); every technology added to the skill groups in
+this pass traces to existing rows in this ledger (Python and FastAPI via
+VELOBOT, Cloudflare via the waitlist edge API and the live site, market
+data via the protobuf-over-WSS consumer); no new metrics or customers were
+claimed. `public/resume.pdf` provenance changed: it is now generated from
+the site's `/resume` route (print CSS, Playwright PDF export) so the
+downloadable resume matches the published positioning; the previous
+official upload remains in git history.
+
 ## Published claims
 
 | Claim | Project | Evidence | Repository / File | Confidence | Publicly safe | Final wording |

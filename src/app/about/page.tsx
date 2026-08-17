@@ -7,22 +7,23 @@ import { CommandPalette } from "@/components/CommandPalette";
 import { RevealObserver } from "@/components/Reveal";
 import { siteConfig } from "@/data/site";
 
+const aboutDescription =
+  "How Jefrey Peralta went from operating businesses to building the production software they run on, and why forward deployed / applied AI engineering is the deliberate next step.";
+
 export const metadata: Metadata = {
   title: "About",
-  description:
-    "How Jefrey Peralta went from operating businesses to building the production software they run on.",
+  description: aboutDescription,
   alternates: { canonical: "/about" },
   openGraph: {
     title: "About · Jefrey Peralta",
-    description:
-      "How Jefrey Peralta went from operating businesses to building the production software they run on.",
+    description: aboutDescription,
     url: "/about",
     images: [
       {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Jefrey Peralta · Full-Stack Product Engineer",
+        alt: "Jefrey Peralta · Forward Deployed / Applied AI Engineer",
       },
     ],
   },
@@ -30,8 +31,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     images: ["/opengraph-image"],
     title: "About · Jefrey Peralta",
-    description:
-      "How Jefrey Peralta went from operating businesses to building the production software they run on.",
+    description: aboutDescription,
   },
 };
 
@@ -81,9 +81,21 @@ export default function AboutPage() {
             stay mine.
           </p>
           <p>
+            The direction from here is deliberate: forward deployed and
+            applied AI engineering. My titles have been founder, account
+            manager, CRM systems developer, and product engineer, but the
+            work underneath them has been consistent: embed in an operation,
+            find the real problem, translate ambiguous workflows into
+            requirements, architect the system, build it, deploy it into the
+            live environment, and iterate on what production teaches. That
+            is the work I&apos;m building my career around, now with AI
+            systems as a first-class part of what gets deployed.
+          </p>
+          <p>
             I&apos;m also formalizing the foundations: Western Governors
             University, B.S. and M.S. Computer Science pathway, enrolled,
-            beginning September 2026.
+            beginning September 2026, layered on top of production
+            experience rather than preceding it.
           </p>
         </div>
 

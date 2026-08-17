@@ -5,6 +5,8 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { CommandPalette } from "@/components/CommandPalette";
 import { RevealObserver } from "@/components/Reveal";
 import { ProjectShowcase } from "@/components/ProjectShowcase";
+import { ProjectCard } from "@/components/ProjectCard";
+import { TilePointerEffect } from "@/components/TilePointer";
 import { ArchitectureField } from "@/components/ArchitectureField";
 import { CopyEmailButton } from "@/components/CopyEmail";
 import { velocityNodes, velocityEdges } from "@/data/architecture";
@@ -14,20 +16,72 @@ import { capabilities } from "@/data/capabilities";
 import { siteConfig } from "@/data/site";
 
 const credibility = [
-  "Production fintech platform, launched and operated live",
-  "Payments, payouts, and reconciliation shipped",
-  "Internal operations software in daily use",
-  "Product, architecture, and deployment owned",
+  "Production fintech platform: built, launched, operated solo",
+  "Software deployed inside a live operation, used daily",
+  "Applied AI shipped: prompts, routing, streaming, usage caps",
+  "Owned from discovery through deployment, not tickets",
 ];
 
-const buildProcess = [
-  { title: "Understand the operation", detail: "the business problem, firsthand" },
-  { title: "Define the requirement", detail: "as concrete product behavior" },
-  { title: "Map the system context", detail: "architecture, data flow, repo audit" },
-  { title: "Engineer the prompt", detail: "constraints and acceptance criteria" },
-  { title: "Review the diff", detail: "assumptions challenged, line by line" },
-  { title: "Test and verify", detail: "automated checks, real-app behavior" },
-  { title: "Observe and iterate", detail: "production feedback, next pass" },
+/**
+ * The forward-deployed operating model. Stages, not tickets: the unit
+ * of work is an outcome in a real operating environment.
+ */
+const deployStages = [
+  {
+    title: "Discover",
+    detail:
+      "Understand users, workflows, constraints, the technical environment, and the business outcome that matters.",
+  },
+  {
+    title: "Scope",
+    detail:
+      "Reduce ambiguous problems into concrete requirements and measurable success criteria.",
+  },
+  {
+    title: "Architect",
+    detail:
+      "Design the data model, APIs, integrations, AI layer, infrastructure, security, and rollout.",
+  },
+  {
+    title: "Build",
+    detail:
+      "Implement across frontend, backend, data, integrations, infrastructure, and AI.",
+  },
+  {
+    title: "Deploy",
+    detail:
+      "Integrate into the real operating environment, observe usage, handle failures, iterate.",
+  },
+  {
+    title: "Measure & generalize",
+    detail:
+      "Evaluate adoption and impact; turn what worked into reusable components and systems.",
+  },
+];
+
+/**
+ * Verified applied-AI work only (docs/portfolio-evidence.md). Framed as
+ * models operating inside production systems, never as demos.
+ */
+const appliedAI = [
+  {
+    name: "Trader analytics in production",
+    detail:
+      "VI Pulse, Sentinel, and Debrief: performance scoring, configurable risk rules, and post-session analysis over real account data in the Velocity platform.",
+    evidence: "OpenAI API · 13 versioned prompts · model router · SSE streaming",
+  },
+  {
+    name: "Operating AI like infrastructure",
+    detail:
+      "The unglamorous parts that make AI features shippable: prompt versioning, model routing, per-user usage caps, streaming delivery, and behavioral telemetry feeding operator worklists.",
+    evidence: "usage controls · retention signals · rate limiting",
+  },
+  {
+    name: "AI-assisted engineering discipline",
+    detail:
+      "Agentic coding inside a constrained workflow: repository context, scoped task plans, line-by-line diff review, and verification in the running application.",
+    evidence: "Claude Code · context engineering · human-in-the-loop review",
+  },
 ];
 
 function personJsonLd() {
@@ -41,21 +95,26 @@ function personJsonLd() {
     address: { "@type": "PostalAddress", addressRegion: "NJ", addressCountry: "US" },
     sameAs: [siteConfig.links.github, siteConfig.links.linkedin],
     knowsAbout: [
+      "Forward deployed engineering",
+      "Applied AI engineering",
       "Full-stack web development",
       "Financial technology",
       "Payments infrastructure",
-      "Trading operations software",
-      "AI-assisted software development",
-      "Prompt engineering",
+      "Business process automation",
+      "LLM product integration",
       "PostgreSQL",
       "TypeScript",
       "React",
       "Next.js",
+      "Salesforce",
     ],
   };
 }
 
 export default function HomePage() {
+  const featured = projects.filter((p) => p.featured);
+  const supporting = projects.filter((p) => !p.featured);
+
   return (
     <>
       <SkipLink />
@@ -66,6 +125,7 @@ export default function HomePage() {
       <SiteNav />
       <CommandPalette />
       <RevealObserver />
+      <TilePointerEffect />
 
       <main id="main">
         {/* ── Hero ── */}
@@ -92,21 +152,23 @@ export default function HomePage() {
           </p>
 
           <p className="mt-8 font-mono-technical text-[12px] tracking-[0.16em] text-ink-secondary uppercase">
-            Jefrey Peralta · Full-Stack Product Engineer
+            Jefrey Peralta · {siteConfig.role}
           </p>
 
-          <h1 className="mt-4 max-w-[24ch] font-display text-[clamp(2.35rem,6.8vw,4.6rem)] leading-[1.03] font-bold tracking-[-0.035em] text-balance">
-            I turn messy business operations into production software.
+          <h1 className="mt-4 max-w-[26ch] font-display text-[clamp(2.35rem,6.8vw,4.6rem)] leading-[1.03] font-bold tracking-[-0.035em] text-balance">
+            I turn operational problems into production software and AI
+            systems.
           </h1>
 
           <p className="mt-7 max-w-[58ch] text-[clamp(1.05rem,2vw,1.2rem)] leading-relaxed text-ink-secondary">
-            I spent years operating businesses that ran on spreadsheets, CRMs,
-            and duct tape. Now I build the software those operations deserve:{" "}
+            From discovery and architecture through deployment and iteration.
+            I spent years operating businesses that ran on spreadsheets,
+            CRMs, and duct tape, so I build{" "}
             <em className="font-medium text-ink not-italic">
-              payment infrastructure, internal tools, automation, and
-              AI-assisted workflows
+              inside the operation, not next to it
             </em>
-            , shipped to production and debugged there too.
+            : payment infrastructure, internal tools, AI systems, shipped to
+            production and debugged there too.
           </p>
 
           <div className="mt-9 flex flex-wrap gap-3">
@@ -114,7 +176,7 @@ export default function HomePage() {
               href="/#work"
               className="rounded-full bg-accent px-6 py-3.5 font-mono-technical text-[12.5px] font-medium text-white transition-colors hover:bg-accent-bright hover:text-background"
             >
-              View selected work ↓
+              View deployments ↓
             </Link>
             <a
               href={siteConfig.links.resume}
@@ -144,12 +206,17 @@ export default function HomePage() {
 
         {/* ── Selected work ── */}
         <section id="work" className="wrap py-[clamp(56px,9vh,104px)]">
-          <p className="eyebrow rv">Selected work</p>
+          <p className="eyebrow rv">Deployments</p>
           <h2 className="rv mt-6 font-display text-[clamp(1.75rem,4.4vw,2.9rem)] leading-tight font-semibold tracking-tight">
-            Three products built to run real operations.
+            Systems built inside the operations they run.
           </h2>
+          <p className="rv mt-5 max-w-[62ch] text-[15px] leading-relaxed text-ink-secondary">
+            Not client work delivered over the wall: operations I was part
+            of, translated into software, deployed, and operated in
+            production.
+          </p>
           <div className="mt-12 space-y-[clamp(64px,10vh,112px)]">
-            {projects.map((project, i) => (
+            {featured.map((project, i) => (
               <ProjectShowcase
                 key={project.slug}
                 project={project}
@@ -157,6 +224,91 @@ export default function HomePage() {
               />
             ))}
           </div>
+
+          {supporting.length > 0 && (
+            <div className="mt-[clamp(64px,10vh,112px)]">
+              <p className="eyebrow rv">Additional engineering work</p>
+              <p className="rv mt-4 max-w-[62ch] text-[14px] leading-relaxed text-ink-secondary">
+                Supporting builds that show breadth: performance,
+                integrations, security, analytics, and frontend craft.
+              </p>
+              <div className="mt-8 grid gap-5 md:grid-cols-2">
+                {supporting.map((project) => (
+                  <ProjectCard key={project.slug} project={project} />
+                ))}
+              </div>
+            </div>
+          )}
+        </section>
+
+        {/* ── How I deploy ── */}
+        <section id="deploy" className="wrap pb-[clamp(56px,9vh,104px)]">
+          <p className="eyebrow rv">Operating model</p>
+          <h2 className="rv mt-6 font-display text-[clamp(1.6rem,3.6vw,2.4rem)] leading-tight font-semibold tracking-tight">
+            How I deploy.
+          </h2>
+          <p className="rv mt-5 max-w-[62ch] text-[15px] leading-relaxed text-ink-secondary">
+            The unit of work I own is an outcome in a live operating
+            environment, not a ticket. Every system in this portfolio went
+            through the same loop.
+          </p>
+          <ol className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-6 lg:gap-5">
+            {deployStages.map((stage, i) => (
+              <li
+                key={stage.title}
+                className="rv border-l border-edge pl-4 lg:border-l-0 lg:border-t lg:pt-4 lg:pl-0"
+              >
+                <p className="font-mono-technical text-[10.5px] text-accent-bright">
+                  {String(i + 1).padStart(2, "0")}
+                </p>
+                <p className="mt-1.5 text-[13px] leading-snug font-medium text-ink">
+                  {stage.title}
+                </p>
+                <p className="mt-1 text-[11.5px] leading-snug text-ink-muted">
+                  {stage.detail}
+                </p>
+              </li>
+            ))}
+          </ol>
+          <p className="rv mt-10 max-w-[56ch] border-l-2 border-accent pl-5 text-[15px] leading-relaxed font-medium text-ink">
+            Discovery taught me what to build, deployment taught me what
+            breaks, and operating it taught me what matters. I own that
+            whole loop.
+          </p>
+        </section>
+
+        {/* ── Applied AI ── */}
+        <section id="applied-ai" className="wrap pb-[clamp(56px,9vh,104px)]">
+          <p className="eyebrow rv">Applied AI</p>
+          <h2 className="rv mt-6 font-display text-[clamp(1.6rem,3.6vw,2.4rem)] leading-tight font-semibold tracking-tight">
+            Applied AI, not AI demos.
+          </h2>
+          <p className="rv mt-5 max-w-[62ch] text-[15px] leading-relaxed text-ink-secondary">
+            My interest is models working inside real operational systems,
+            where reliability, permissions, data quality, cost, latency, and
+            user experience decide whether the feature survives contact with
+            production.
+          </p>
+          <div className="mt-10 grid gap-x-12 gap-y-9 lg:grid-cols-3">
+            {appliedAI.map((item) => (
+              <div key={item.name} className="rv">
+                <h3 className="font-display text-[1.02rem] font-semibold tracking-tight">
+                  {item.name}
+                </h3>
+                <p className="mt-1.5 text-[13.5px] leading-relaxed text-ink-secondary">
+                  {item.detail}
+                </p>
+                <p className="mt-2 font-mono-technical text-[10.5px] text-ink-muted">
+                  {item.evidence}
+                </p>
+              </div>
+            ))}
+          </div>
+          <p className="rv mt-10 max-w-[62ch] text-[13.5px] leading-relaxed text-ink-muted">
+            Building toward next: evaluation harnesses, retrieval over
+            operational data, and agent workflows deployed into business
+            operations. This section grows as that work ships, not before.
+          </p>
         </section>
 
         {/* ── Experience ── */}
@@ -165,6 +317,11 @@ export default function HomePage() {
           <h2 className="rv mt-6 font-display text-[clamp(1.6rem,3.6vw,2.4rem)] leading-tight font-semibold tracking-tight">
             Operator first. Engineer because of it.
           </h2>
+          <p className="rv mt-5 max-w-[62ch] text-[15px] leading-relaxed text-ink-secondary">
+            The through-line: operator, to systems builder, to product
+            engineer, to forward deployed and applied AI engineering. Every
+            role involved translating a live business workflow into software.
+          </p>
           <ol className="mt-10">
             {experience.map((entry) => (
               <li
@@ -205,7 +362,8 @@ export default function HomePage() {
                   Western Governors University
                 </span>
                 : B.S. and M.S. Computer Science pathway, enrolled, beginning
-                September 2026.
+                September 2026. Formal CS foundations layered on top of
+                production engineering experience, not instead of it.
               </p>
               <p>
                 <span className="font-medium text-ink">Berkeley College</span>:
@@ -219,7 +377,7 @@ export default function HomePage() {
         <section id="capabilities" className="wrap pb-[clamp(56px,9vh,104px)]">
           <p className="eyebrow rv">Capabilities</p>
           <h2 className="rv mt-6 font-display text-[clamp(1.6rem,3.6vw,2.4rem)] leading-tight font-semibold tracking-tight">
-            What I can build and own.
+            What I can own, end to end.
           </h2>
           <div className="mt-10 grid gap-x-12 gap-y-9 sm:grid-cols-2">
             {capabilities.map((capability) => (
@@ -238,55 +396,19 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ── How I build with AI ── */}
-        <section id="process" className="wrap pb-[clamp(56px,9vh,104px)]">
-          <p className="eyebrow rv">Process</p>
-          <h2 className="rv mt-6 font-display text-[clamp(1.6rem,3.6vw,2.4rem)] leading-tight font-semibold tracking-tight">
-            How I build with AI.
-          </h2>
-          <p className="rv mt-5 max-w-[62ch] text-[15px] leading-relaxed text-ink-secondary">
-            I don&apos;t hand an AI agent a vague feature request and accept
-            whatever it generates. I define the problem, provide the system
-            context, constrain the implementation, inspect the code, and
-            verify the result inside the real application.
-          </p>
-          <ol className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-7 lg:gap-5">
-            {buildProcess.map((step, i) => (
-              <li
-                key={step.title}
-                className="rv border-l border-edge pl-4 lg:border-l-0 lg:border-t lg:pt-4 lg:pl-0"
-              >
-                <p className="font-mono-technical text-[10.5px] text-accent-bright">
-                  {String(i + 1).padStart(2, "0")}
-                </p>
-                <p className="mt-1.5 text-[13px] leading-snug font-medium text-ink">
-                  {step.title}
-                </p>
-                <p className="mt-1 text-[11.5px] leading-snug text-ink-muted">
-                  {step.detail}
-                </p>
-              </li>
-            ))}
-          </ol>
-          <p className="rv mt-10 max-w-[56ch] border-l-2 border-accent pl-5 text-[15px] leading-relaxed font-medium text-ink">
-            AI increases my speed. It does not replace my judgment, my
-            technical ownership, or my responsibility for what ships to
-            production.
-          </p>
-        </section>
-
         {/* ── Contact ── */}
         <section id="contact" className="wrap pb-4">
           <div className="rv glass rounded-2xl px-[clamp(20px,4vw,40px)] py-[clamp(44px,7vw,70px)] text-center">
             <h2 className="font-display text-[clamp(1.75rem,4.4vw,2.9rem)] font-semibold tracking-tight text-balance">
-              Need an engineer who can own the messy parts?
+              Need an engineer who deploys into the problem?
             </h2>
-            <p className="mx-auto mt-4 max-w-[54ch] text-ink-secondary">
-              I&apos;m looking for product engineer, full-stack, platform, or
-              business systems roles where the work touches money, operations,
-              internal tools, or AI-assisted workflows. I bring the domain
-              context, architect the system, direct the implementation, verify
-              the result, and take responsibility for what ships.
+            <p className="mx-auto mt-4 max-w-[58ch] text-ink-secondary">
+              I&apos;m targeting forward deployed, applied AI, solutions, and
+              customer engineering roles, and product engineering roles with
+              customer-facing technical ownership: work where the engineer
+              sits with the operation, architects the system, ships it, and
+              owns the outcome. Strong adjacent software engineering roles
+              are welcome too.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
               <a

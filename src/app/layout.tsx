@@ -30,6 +30,17 @@ export const metadata: Metadata = {
     template: `%s · ${siteConfig.name}`,
   },
   description: siteConfig.description,
+  keywords: [
+    "Forward Deployed Engineer",
+    "Applied AI Engineer",
+    "AI Engineer",
+    "AI Solutions Engineer",
+    "Product Engineer",
+    "Full-Stack Engineer",
+    "Technical Deployment",
+    "Production Systems",
+    "Jefrey Peralta",
+  ],
   alternates: { canonical: "/" },
   openGraph: {
     title: `${siteConfig.name} · ${siteConfig.role}`,

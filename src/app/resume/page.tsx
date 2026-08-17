@@ -4,20 +4,23 @@ import { siteConfig } from "@/data/site";
 import { experience } from "@/data/experience";
 import { resumeSkills } from "@/data/skills";
 
+const resumeDescription =
+  "Resume of Jefrey Peralta: forward deployed / applied AI engineering built on production full-stack systems, payments, and business operations.";
+
 export const metadata: Metadata = {
   title: "Resume",
-  description: "Resume of Jefrey Peralta, full-stack product engineer.",
+  description: resumeDescription,
   alternates: { canonical: "/resume" },
   openGraph: {
     title: "Resume · Jefrey Peralta",
-    description: "Resume of Jefrey Peralta, full-stack product engineer.",
+    description: resumeDescription,
     url: "/resume",
     images: [
       {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Jefrey Peralta · Full-Stack Product Engineer",
+        alt: "Jefrey Peralta · Forward Deployed / Applied AI Engineer",
       },
     ],
   },
@@ -25,7 +28,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     images: ["/opengraph-image"],
     title: "Resume · Jefrey Peralta",
-    description: "Resume of Jefrey Peralta, full-stack product engineer.",
+    description: resumeDescription,
   },
 };
 
@@ -54,8 +57,7 @@ export default function ResumePage() {
         </h1>
         <p className="mt-2 text-lg text-ink-secondary">{siteConfig.role}</p>
         <p className="mt-3 font-mono-technical text-[13px] text-ink-muted">
-          React · Next.js · TypeScript · Node.js · PostgreSQL · FinTech ·
-          AI-assisted engineering
+          {siteConfig.tagline}
         </p>
         <p className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-sm text-ink-secondary">
           <span>{siteConfig.location}</span>
@@ -86,14 +88,17 @@ export default function ResumePage() {
           Profile
         </h2>
         <p className="mt-4 text-[15px] leading-relaxed text-ink-secondary">
-          Full-stack product engineer who has taken production software from
-          concept to launch and operated it live: frontend, backend services,
-          PostgreSQL, payments, AI-assisted product features, and the internal
-          tooling behind them. I practice disciplined AI-assisted software
-          development, pairing engineering ownership with prompt and context
-          engineering, human-in-the-loop review, and automated verification.
-          Seeking product engineer, full-stack, or platform roles where owning
-          customer outcomes matters.
+          Engineer who works where software meets business operations. As a
+          founder and operator I discovered problems inside live workflows,
+          translated them into requirements, architected the systems, built
+          them full-stack, deployed them, and operated them in production:
+          payments and reconciliation, realtime market data, background
+          processing, applied AI features, and the internal tooling behind
+          them. I practice disciplined AI-assisted development, pairing
+          engineering ownership with context engineering, human-in-the-loop
+          review, and verification. Targeting forward deployed, applied AI,
+          solutions, and customer engineering roles, and product engineering
+          roles with customer-facing technical ownership.
         </p>
       </section>
 

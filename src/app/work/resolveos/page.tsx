@@ -17,22 +17,23 @@ import {
   EvidenceNote,
 } from "@/components/case-study";
 
+const resolveosDescription =
+  "An embedded deployment: I performed a commercial collections workflow myself, then translated its unwritten rules into software and deployed it into the operation, where it runs every working day.";
+
 export const metadata: Metadata = {
-  title: "ResolveOS · Internal operations case study",
-  description:
-    "How I turned a spreadsheet and memory-driven collections workflow into a daily operating system for priorities, settlements, payment schedules, forecasting, and reconciliation.",
+  title: "ResolveOS · Embedded deployment case study",
+  description: resolveosDescription,
   alternates: { canonical: "/work/resolveos" },
   openGraph: {
     title: "ResolveOS case study · Jefrey Peralta",
-    description:
-      "How I turned a spreadsheet and memory-driven collections workflow into a daily operating system for priorities, settlements, payment schedules, forecasting, and reconciliation.",
+    description: resolveosDescription,
     url: "/work/resolveos",
     images: [
       {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Jefrey Peralta · Full-Stack Product Engineer",
+        alt: "Jefrey Peralta · Forward Deployed / Applied AI Engineer",
       },
     ],
   },
@@ -40,8 +41,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     images: ["/opengraph-image"],
     title: "ResolveOS case study · Jefrey Peralta",
-    description:
-      "How I turned a spreadsheet and memory-driven collections workflow into a daily operating system for priorities, settlements, payment schedules, forecasting, and reconciliation.",
+    description: resolveosDescription,
   },
 };
 
@@ -52,6 +52,15 @@ const dailyLoop = [
   "Work follow-ups and settlements",
   "Log actions and payments",
   "Reconcile expected against actual",
+];
+
+const embeddedLoop = [
+  "Observed",
+  "Scoped",
+  "Modeled",
+  "Built",
+  "Deployed",
+  "Iterated",
 ];
 
 const dataFlow = [
@@ -69,6 +78,25 @@ const ladder = [
   { bucket: "P2", age: "61 to 179 days", cadence: "touch every 3 days" },
   { bucket: "P3", age: "180+ days", cadence: "touch every 3 days" },
 ];
+
+function EmbeddedLoopDiagram() {
+  return (
+    <ol className="flex flex-wrap items-center gap-x-2 gap-y-2.5 p-5 sm:p-6">
+      {embeddedLoop.map((step, i) => (
+        <li key={step} className="flex items-center gap-2">
+          <span className="rounded-lg border border-edge bg-white/[0.02] px-3 py-1.5 text-[12.5px] leading-snug text-ink-secondary">
+            {step}
+          </span>
+          {i < embeddedLoop.length - 1 && (
+            <span aria-hidden="true" className="text-[12px] text-ink-muted">
+              →
+            </span>
+          )}
+        </li>
+      ))}
+    </ol>
+  );
+}
 
 function DailyLoopDiagram() {
   return (
@@ -144,21 +172,24 @@ export default function ResolveOSCaseStudy() {
       <RevealObserver />
       <CaseStudyShell>
         <CaseStudyHeader
-          eyebrow="Case study · Internal operations software"
+          eyebrow="Case study · Embedded deployment · Commercial collections"
           title="ResolveOS"
-          summary="A collections workspace that turns fragmented spreadsheets, payment records, follow-up notes, and settlement opportunities into one prioritized daily operating system."
+          summary="I performed the collections workflow before writing software for it. ResolveOS is what came out: the workflow's unwritten rules translated into a prioritized daily operating system, deployed into the operation it serves."
         />
 
         <CaseStudyAtAGlance
           facts={[
             { label: "Product type", value: "Internal collections operating system" },
             { label: "Status", value: "Used daily in a live collections workflow" },
-            { label: "Role", value: "Product engineer, operator, and primary user" },
+            { label: "Role", value: "Embedded engineer, operator, and primary user" },
+            {
+              label: "Deployment model",
+              value: "Built, deployed, and iterated inside the live workflow",
+            },
             {
               label: "Operating context",
               value: "Account management and commercial collections",
             },
-            { label: "Primary user", value: "One active operator" },
             {
               label: "Core workflows",
               value:
@@ -265,13 +296,33 @@ export default function ResolveOSCaseStudy() {
           </CaseStudyFigure>
         </CS>
 
-        <CS id="owned" title="What I owned">
+        <CS id="owned" title="Embedded ownership">
           <p>
-            Product definition from doing the work, interface and workflow
-            design, import normalization, the data model, priority logic,
-            payment scheduling, settlement forecasting, reconciliation,
-            deployment, and maintenance. Because I am also the primary user,
-            weak assumptions show up immediately in the next working day.
+            This is the closest thing in my portfolio to forward deployed
+            work by another name: I was embedded in the operating
+            environment as its operator, and the software was built from
+            inside it. The business rules were unwritten. Which accounts get
+            touched today, when a settlement offer is worth comparing, what
+            counts as at risk: none of that existed as a spec. Discovering
+            those rules meant doing the job, and encoding them meant
+            translating how the work actually happens into a data model and
+            priority logic.
+          </p>
+          <CaseStudyFigure
+            kind="custom"
+            accessibleLabel="Embedded build loop: observed the workflow, scoped the problem, modeled the data, built the system, deployed it into the operation, iterated from daily use"
+            label="The embedded loop"
+            caption="Observed as the operator, scoped from the bottlenecks, modeled and built, deployed into the live workflow, iterated from daily use."
+          >
+            <EmbeddedLoopDiagram />
+          </CaseStudyFigure>
+          <p>
+            I owned product definition from doing the work, interface and
+            workflow design, import normalization, the data model, priority
+            logic, payment scheduling, settlement forecasting,
+            reconciliation, deployment, and maintenance. Because I am also
+            the primary user, weak assumptions show up immediately in the
+            next working day.
           </p>
         </CS>
 

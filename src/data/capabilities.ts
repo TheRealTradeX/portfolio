@@ -1,24 +1,31 @@
 import type { Capability } from "@/types/content";
 
 /**
- * Capability-first replacement for the technology directory. Each
- * statement is backed by shipped work recorded in
+ * Capability-first replacement for the technology directory, ordered as
+ * the forward-deployed arc: discover, architect, build, integrate,
+ * deploy. Each statement is backed by shipped work recorded in
  * docs/portfolio-evidence.md or by confirmed daily workflow; tools are
  * supporting evidence, not the content. Rendered by the homepage
  * capabilities section.
  */
 export const capabilities: Capability[] = [
   {
-    title: "Product interfaces and design systems",
+    title: "Operational discovery and scoping",
     description:
-      "Dashboards, admin surfaces, and design systems that people work in all day.",
-    tools: ["React", "Next.js", "Tailwind CSS"],
+      "I have personally run the workflows I build for. Ambiguous operations become concrete requirements and measurable outcomes.",
+    tools: ["collections ops", "trading ops", "CRM ops"],
   },
   {
-    title: "Backend services and APIs",
+    title: "System architecture and integration boundaries",
     description:
-      "Typed APIs, service contracts, and the background workers behind them.",
-    tools: ["Node.js", "TypeScript", "Zod"],
+      "Data models, service boundaries, queues, webhooks, and third-party integrations designed as one topology.",
+    tools: ["PostgreSQL", "BullMQ", "webhooks"],
+  },
+  {
+    title: "Full-stack application engineering",
+    description:
+      "Dashboards, admin surfaces, and typed APIs that people work in all day.",
+    tools: ["React", "Next.js", "Node.js", "TypeScript"],
   },
   {
     title: "Payments and financial workflows",
@@ -27,31 +34,25 @@ export const capabilities: Capability[] = [
     tools: ["Authorize.Net", "PostgreSQL", "Redis"],
   },
   {
-    title: "Internal tools and operational automation",
-    description:
-      "Operations software shaped by doing the work it supports.",
-    tools: ["Salesforce", "Supabase", "BullMQ"],
-  },
-  {
     title: "Data modeling and PostgreSQL systems",
     description:
       "Schemas written as migrations, row-level security, money in integer cents.",
     tools: ["PostgreSQL", "Supabase", "SQL"],
   },
   {
-    title: "AI-native product engineering",
+    title: "Applied AI systems",
     description:
-      "AI features and agent workflows shipped in real products, with architecture, data flow, and security owned.",
+      "LLM features shipped inside real products: versioned prompts, model routing, usage caps, and streaming.",
     tools: ["OpenAI API", "SSE streaming", "versioned prompts", "model routing"],
   },
   {
-    title: "Prompt and context engineering",
+    title: "Business systems and integrations",
     description:
-      "Ambiguous requirements turned into structured context, constraints, acceptance criteria, and verification loops.",
-    tools: ["Claude Code", "repository context", "structured prompting", "diff review"],
+      "Salesforce and CRM architecture, email infrastructure, market data, and the automation between them.",
+    tools: ["Salesforce", "Resend", "protobuf over WSS"],
   },
   {
-    title: "Production delivery and reliability",
+    title: "Deployment, operations, and reliability",
     description:
       "Deploys, monitoring, incident response, and the runbooks that follow.",
     tools: ["Vercel", "Railway", "Docker", "Sentry"],

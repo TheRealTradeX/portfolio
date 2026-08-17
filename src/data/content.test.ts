@@ -53,8 +53,12 @@ describe("copy hygiene", () => {
 });
 
 describe("projects", () => {
-  it("has exactly three featured projects", () => {
-    expect(projects.filter((p) => p.featured)).toHaveLength(3);
+  it("features the two deployment case studies and keeps supporting work demoted", () => {
+    const featured = projects.filter((p) => p.featured).map((p) => p.slug);
+    expect(featured).toEqual(["velocity", "resolveos"]);
+    expect(projects.filter((p) => !p.featured).map((p) => p.slug)).toEqual([
+      "velocityfunds-site",
+    ]);
   });
 
   it("every project has required fields and a unique slug", () => {
@@ -116,6 +120,21 @@ describe("projects", () => {
     for (const slug of ["velocity", "resolveos", "velocityfunds-site"]) {
       expect(getProject(slug)).toBeDefined();
     }
+  });
+});
+
+describe("positioning integrity", () => {
+  it("never claims Forward Deployed Engineer as a past job title", () => {
+    for (const entry of experience) {
+      expect(entry.title).not.toMatch(/forward deployed/i);
+      expect(entry.formalTitle ?? "").not.toMatch(/forward deployed/i);
+    }
+  });
+
+  it("site identity carries the forward deployed / applied AI positioning", () => {
+    expect(siteConfig.role).toMatch(/Forward Deployed/);
+    expect(siteConfig.role).toMatch(/Applied AI/);
+    expect(siteConfig.tagline.length).toBeGreaterThan(10);
   });
 });
 

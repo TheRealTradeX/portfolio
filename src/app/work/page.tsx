@@ -8,22 +8,23 @@ import { TilePointerEffect } from "@/components/TilePointer";
 import { ProjectCard } from "@/components/ProjectCard";
 import { projects } from "@/data/projects";
 
+const workDescription =
+  "Deployment case studies: the Velocity financial operations platform, the embedded ResolveOS collections deployment, and the live velocityfunds.io acquisition site.";
+
 export const metadata: Metadata = {
   title: "Work",
-  description:
-    "Case studies: the Velocity financial operations platform, the ResolveOS collections workspace, and the live velocityfunds.io marketing site.",
+  description: workDescription,
   alternates: { canonical: "/work" },
   openGraph: {
     title: "Work · Jefrey Peralta",
-    description:
-      "Case studies: the Velocity financial operations platform, the ResolveOS collections workspace, and the live velocityfunds.io marketing site.",
+    description: workDescription,
     url: "/work",
     images: [
       {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Jefrey Peralta · Full-Stack Product Engineer",
+        alt: "Jefrey Peralta · Forward Deployed / Applied AI Engineer",
       },
     ],
   },
@@ -31,8 +32,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     images: ["/opengraph-image"],
     title: "Work · Jefrey Peralta",
-    description:
-      "Case studies: the Velocity financial operations platform, the ResolveOS collections workspace, and the live velocityfunds.io marketing site.",
+    description: workDescription,
   },
 };
 
@@ -50,7 +50,8 @@ export default function WorkPage() {
           Case studies
         </h1>
         <p className="rv mt-4 max-w-[54ch] text-ink-secondary">
-          The problem, the architecture, what failed, and what shipped.
+          Deployment stories: the operating problem, the architecture, what
+          failed in production, and what shipped.
         </p>
         <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {projects.map((project) => (

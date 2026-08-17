@@ -32,7 +32,7 @@ export const metadata: Metadata = {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Jefrey Peralta · Full-Stack Product Engineer",
+        alt: "Jefrey Peralta · Forward Deployed / Applied AI Engineer",
       },
     ],
   },
@@ -83,7 +83,7 @@ export default function VelocitySiteCaseStudy() {
       <RevealObserver />
       <CaseStudyShell>
         <CaseStudyHeader
-          eyebrow="Case study · Marketing and acquisition experience"
+          eyebrow="Case study · Supporting work · Marketing and acquisition"
           title="velocityfunds.io"
           summary="A responsive public product experience designed to explain the offer, guide prospects through the launch story, capture leads, and connect acquisition activity to the operating platform."
         />

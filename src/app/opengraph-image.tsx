@@ -51,11 +51,12 @@ export default function OgImage() {
               fontSize: 30,
               color: "#a5afbd",
               marginTop: 30,
-              maxWidth: 940,
+              maxWidth: 980,
               lineHeight: 1.35,
             }}
           >
-            I turn messy business operations into production software.
+            I turn operational problems into production software and AI
+            systems.
           </div>
         </div>
         <div
@@ -66,10 +67,10 @@ export default function OgImage() {
             color: "#79859a",
           }}
         >
-          <span>Payments</span>
-          <span>Internal tools</span>
-          <span>Automation</span>
-          <span>AI-assisted workflows</span>
+          <span>Production systems</span>
+          <span>Applied AI</span>
+          <span>Deployment</span>
+          <span>Business operations</span>
         </div>
       </div>
     ),

@@ -1,52 +1,61 @@
 import type { ResumeSkillGroup } from "@/types/content";
 
 /**
- * Skill groups for the HTML resume route (/resume). Mirrors the
- * official PDF's categories, corrected and extended: every technology
- * is backed by repository evidence (docs/portfolio-evidence.md) or
- * confirmed daily workflow. The homepage presents capabilities
- * (src/data/capabilities.ts) instead of a technology directory.
+ * Skill groups for the HTML resume route (/resume), organized around
+ * forward-deployed / applied-AI capabilities rather than a flat
+ * technology directory. Every technology is backed by repository
+ * evidence (docs/portfolio-evidence.md) or confirmed daily workflow:
+ * Python and FastAPI via VELOBOT, Cloudflare via the D1 waitlist API
+ * and the live site, market data via the protobuf-over-WSS consumer.
+ * The homepage presents capabilities (src/data/capabilities.ts).
  */
 export const resumeSkills: ResumeSkillGroup[] = [
   {
     label: "Languages",
-    items: ["TypeScript", "JavaScript", "SQL", "HTML", "CSS"],
+    items: ["TypeScript", "JavaScript", "Python", "SQL", "HTML", "CSS"],
   },
   {
-    label: "Frontend",
-    items: ["React", "Next.js", "Tailwind CSS"],
+    label: "Application engineering",
+    items: ["React", "Next.js", "Node.js", "FastAPI", "Tailwind CSS"],
   },
   {
-    label: "Backend",
-    items: ["Node.js", "PostgreSQL", "Supabase", "Redis", "BullMQ", "REST APIs & webhooks"],
+    label: "Data & distributed systems",
+    items: [
+      "PostgreSQL",
+      "Supabase",
+      "Redis",
+      "BullMQ queues",
+      "webhooks",
+      "realtime data pipelines",
+    ],
+  },
+  {
+    label: "Applied AI",
+    items: [
+      "OpenAI APIs",
+      "LLM product integration",
+      "versioned prompt management",
+      "model routing",
+      "SSE streaming",
+      "usage controls",
+      "AI-assisted engineering (Claude Code, context engineering, human-in-the-loop review)",
+    ],
   },
   {
     label: "Infrastructure",
-    items: ["Vercel", "Railway", "Docker", "Git & GitHub"],
+    items: ["Vercel", "Railway", "Docker", "Cloudflare", "Sentry", "Git & GitHub"],
   },
   {
-    label: "FinTech",
+    label: "Business systems & integrations",
     items: [
-      "Authorize.Net",
-      "payment processing",
+      "Salesforce",
+      "CRM architecture",
+      "workflow automation",
+      "Authorize.Net payments",
       "subscription billing",
-      "payment webhooks",
       "reconciliation",
+      "transactional email",
+      "market data feeds",
     ],
-  },
-  {
-    label: "AI-assisted engineering",
-    items: [
-      "Prompt engineering",
-      "Context engineering",
-      "Claude Code",
-      "Agentic development workflows",
-      "Human-in-the-loop review",
-      "Automated verification",
-    ],
-  },
-  {
-    label: "Business systems",
-    items: ["Salesforce", "CRM architecture", "workflow automation"],
   },
 ];

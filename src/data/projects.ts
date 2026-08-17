@@ -8,16 +8,16 @@ export const projects: Project[] = [
   {
     slug: "velocity",
     name: "Velocity Platform",
-    eyebrow: "Financial operations platform",
+    eyebrow: "Production deployment · Financial operations",
     summary:
       "A futures evaluation firm run entirely on software I built: checkout, live trading dashboards, risk rules, payouts, and the admin back office. Launched May 2026 and operated in production with real customers and real money.",
     problem:
       "Running the evaluation business required checkout, trader accounts, market data, risk enforcement, payments, payouts, and internal operations to work as one system.",
     outcome:
-      "One production platform handled the customer and operational lifecycle from signup through trading and payout review.",
+      "One production platform handled the customer and operational lifecycle from signup through trading and payout review, with the founder as its operator and incident responder.",
     status: "Operated in production, May to July 2026",
     timeline: "Dec 2025 – Jul 2026 · launched May 4, 2026",
-    role: "Full-stack product engineer and founder",
+    role: "Founder, system architect, and sole engineer",
     visuals: [
       {
         src: "/work/velocity/command-center.webp",
@@ -58,16 +58,16 @@ export const projects: Project[] = [
   {
     slug: "resolveos",
     name: "ResolveOS",
-    eyebrow: "Internal operations software",
+    eyebrow: "Embedded deployment · Commercial collections",
     summary:
-      "The collections job ran on spreadsheets and memory, so I replaced both. Messy CSV imports become prioritized queues, payment plans, and settlement forecasts. Built inside the workflow it serves and used every working day.",
+      "I performed the collections workflow myself, then built the software that replaced its spreadsheets and memory. Messy CSV imports become prioritized queues, payment plans, and settlement forecasts. Deployed into the workflow it serves and used every working day.",
     problem:
-      "Collections work depended on spreadsheets, memory, fragmented follow-ups, and manual payment tracking.",
+      "Collections work depended on spreadsheets, memory, unwritten follow-up rules, and manual payment tracking.",
     outcome:
       "ResolveOS turned that workflow into a daily operating system for priorities, settlements, payment schedules, forecasting, and reconciliation.",
     status: "Used daily in a live collections workflow",
     timeline: "Dec 2025 – present",
-    role: "Product engineer, operator, and primary user",
+    role: "Embedded engineer, operator, and primary user",
     visuals: [
       {
         src: "/work/resolveos/opportunity-pipeline.webp",
@@ -99,7 +99,7 @@ export const projects: Project[] = [
   {
     slug: "velocityfunds-site",
     name: "velocityfunds.io",
-    eyebrow: "Marketing and acquisition experience",
+    eyebrow: "Supporting work · Marketing and acquisition",
     summary:
       "The public face of Velocity Funds: a scroll-driven launch site that is also real infrastructure, with lead capture wired into the platform CRM and consent-gated analytics. Live, and you can click it.",
     problem:
@@ -136,7 +136,7 @@ export const projects: Project[] = [
       note: "Source private; the shipped result is publicly inspectable at velocityfunds.io.",
     },
     liveUrl: "https://www.velocityfunds.io",
-    featured: true,
+    featured: false,
   },
 ];
 

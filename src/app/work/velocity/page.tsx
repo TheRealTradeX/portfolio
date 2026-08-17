@@ -32,7 +32,7 @@ export const metadata: Metadata = {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Jefrey Peralta · Full-Stack Product Engineer",
+        alt: "Jefrey Peralta · Forward Deployed / Applied AI Engineer",
       },
     ],
   },
@@ -205,16 +205,16 @@ export default function VelocityCaseStudy() {
       <RevealObserver />
       <CaseStudyShell>
         <CaseStudyHeader
-          eyebrow="Case study · Financial operations platform"
+          eyebrow="Case study · Production deployment · Financial operations"
           title="Velocity Platform"
-          summary="A production platform that connected customer signup, checkout, trader accounts, realtime market data, risk enforcement, payouts, and the internal back office required to operate a futures evaluation business."
+          summary="A complex financial workflow translated into one production platform: signup, checkout, trader accounts, realtime market data, risk enforcement, payouts, and the internal back office, designed, deployed, and operated end to end."
         />
 
         <CaseStudyAtAGlance
           facts={[
             { label: "Product type", value: "Financial operations platform" },
             { label: "Status", value: "Operated in production, May to July 2026" },
-            { label: "Role", value: "Full-stack product engineer and founder" },
+            { label: "Role", value: "Founder, system architect, and sole engineer" },
             { label: "Timeline", value: "Designed, launched, and operated during 2026" },
             {
               label: "Operating context",
