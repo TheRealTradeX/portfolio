@@ -5,7 +5,7 @@ import { experience } from "@/data/experience";
 import { resumeSkills } from "@/data/skills";
 
 const resumeDescription =
-  "Resume of Jefrey Peralta: forward deployed / applied AI engineering built on production full-stack systems, payments, and business operations.";
+  "Resume of Jefrey Peralta: software engineering across production full-stack systems, payments, operational tooling, and applied AI.";
 
 export const metadata: Metadata = {
   title: "Resume",
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Jefrey Peralta · Forward Deployed / Applied AI Engineer",
+        alt: `Jefrey Peralta · ${siteConfig.role}`,
       },
     ],
   },
@@ -96,9 +96,9 @@ export default function ResumePage() {
           processing, applied AI features, and the internal tooling behind
           them. I practice disciplined AI-assisted development, pairing
           engineering ownership with context engineering, human-in-the-loop
-          review, and verification. Targeting forward deployed, applied AI,
-          solutions, and customer engineering roles, and product engineering
-          roles with customer-facing technical ownership.
+          review, and verification. Targeting software, full-stack, product,
+          and application engineering roles, including applied AI and
+          forward-deployed opportunities.
         </p>
       </section>
 
