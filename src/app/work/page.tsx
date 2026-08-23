@@ -24,7 +24,7 @@ export const metadata: Metadata = {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Jefrey Peralta · Forward Deployed / Applied AI Engineer",
+        alt: "Jefrey Peralta · Software Engineer · Full-Stack Systems · Applied AI",
       },
     ],
   },

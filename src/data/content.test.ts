@@ -131,8 +131,9 @@ describe("positioning integrity", () => {
     }
   });
 
-  it("site identity carries the forward deployed / applied AI positioning", () => {
-    expect(siteConfig.role).toMatch(/Forward Deployed/);
+  it("site identity leads with software engineering and preserves applied AI", () => {
+    expect(siteConfig.role).toMatch(/Software Engineer/);
+    expect(siteConfig.role).toMatch(/Full-Stack Systems/);
     expect(siteConfig.role).toMatch(/Applied AI/);
     expect(siteConfig.tagline.length).toBeGreaterThan(10);
   });
@@ -169,9 +170,13 @@ describe("capabilities", () => {
 });
 
 describe("navigation", () => {
-  it("links are internal anchors or routes", () => {
+  it("links are valid internal routes or explicitly marked external URLs", () => {
     for (const link of navLinks) {
-      expect(link.href).toMatch(/^\//);
+      if ("external" in link && link.external) {
+        expect(link.href).toMatch(/^https:\/\//);
+      } else {
+        expect(link.href).toMatch(/^\//);
+      }
     }
   });
 });

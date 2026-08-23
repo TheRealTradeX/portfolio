@@ -77,7 +77,7 @@ const appliedAI = [
     name: "AI-assisted engineering",
     detail:
       "I build with coding agents inside a disciplined loop: repository context, scoped plans, line-by-line diff review, and verification in the running app.",
-    evidence: "Claude Code · context engineering · human-in-the-loop review",
+    evidence: "OpenAI Codex · Claude Code · context engineering · human-in-the-loop review",
   },
 ];
 
@@ -180,6 +180,14 @@ export default function HomePage() {
               className="glass rounded-full px-6 py-3.5 font-mono-technical text-[12.5px] text-ink transition-all hover:-translate-y-0.5 hover:border-edge-strong"
             >
               Resume
+            </a>
+            <a
+              href={siteConfig.links.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="glass rounded-full px-6 py-3.5 font-mono-technical text-[12.5px] text-ink transition-all hover:-translate-y-0.5 hover:border-edge-strong"
+            >
+              View GitHub ↗
             </a>
           </div>
         </header>
@@ -377,12 +385,11 @@ export default function HomePage() {
               Need an engineer who can own the messy parts?
             </h2>
             <p className="mx-auto mt-4 max-w-[58ch] text-ink-secondary">
-              I&apos;m looking for forward deployed, applied AI, solutions,
-              and customer engineering roles, along with product engineering
-              roles that carry real customer-facing ownership. I bring the
+              I&apos;m looking for software, full-stack, and product engineering
+              roles where I can build reliable systems and keep growing,
+              including applied AI and forward-deployed work. I bring the
               domain context, architect the system, build it, deploy it, and
-              take responsibility for what ships. If your role is adjacent
-              to that, I&apos;m still interested.
+              take responsibility for what ships.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
               <a
@@ -399,6 +406,14 @@ export default function HomePage() {
                 className="glass rounded-full px-6 py-3.5 font-mono-technical text-[12.5px] text-ink transition-all hover:-translate-y-0.5 hover:border-edge-strong"
               >
                 LinkedIn ↗
+              </a>
+              <a
+                href={siteConfig.links.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="glass rounded-full px-6 py-3.5 font-mono-technical text-[12.5px] text-ink transition-all hover:-translate-y-0.5 hover:border-edge-strong"
+              >
+                GitHub ↗
               </a>
               <a
                 href={siteConfig.links.resume}

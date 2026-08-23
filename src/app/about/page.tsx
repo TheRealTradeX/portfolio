@@ -8,7 +8,7 @@ import { RevealObserver } from "@/components/Reveal";
 import { siteConfig } from "@/data/site";
 
 const aboutDescription =
-  "How Jefrey Peralta went from operating businesses to building the production software they run on, and why forward deployed / applied AI engineering is the deliberate next step.";
+  "How Jefrey Peralta went from operating businesses to building the production full-stack software and applied AI systems they run on.";
 
 export const metadata: Metadata = {
   title: "About",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Jefrey Peralta · Forward Deployed / Applied AI Engineer",
+        alt: `Jefrey Peralta · ${siteConfig.role}`,
       },
     ],
   },
@@ -76,19 +76,19 @@ export default function AboutPage() {
             discipline I apply to everything else in engineering. I structure
             the repository context, define constraints and acceptance criteria
             before implementation, review every diff, and verify the result in
-            the running application. Claude Code makes me faster; the
-            architecture, the judgment, and the responsibility for production
-            stay mine.
+            the running application. Coding agents make me faster; the
+            architecture, judgment, and responsibility for production stay
+            mine.
           </p>
           <p>
             The direction from here is deliberate. My titles have been
             founder, account manager, CRM systems developer, and product
-            engineer, but the job underneath them barely changed: get inside
-            an operation, find the real problem, turn the workflow into
-            requirements, design the system, build it, deploy it, and keep
-            improving it against what production teaches. Forward deployed
-            and applied AI engineering is that same job with the right name
-            on it, and it&apos;s where I&apos;m taking my career.
+            engineer, but the job underneath them barely changed: find the
+            real problem, turn the workflow into requirements, design the
+            system, build it, deploy it, and improve it against what production
+            teaches. I&apos;m now bringing that ownership into a software
+            engineering team, with full-stack systems and applied AI as my
+            strongest areas of focus.
           </p>
           <p>
             I&apos;m also formalizing the foundations at Western Governors

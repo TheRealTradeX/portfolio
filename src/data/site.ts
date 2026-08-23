@@ -5,20 +5,19 @@
  * NEXT_PUBLIC_SITE_URL may override the URL at deploy time (e.g. on
  * Vercel); the fallback is the canonical production deployment.
  *
- * Positioning note: "Forward Deployed / Applied AI Engineer" is the
- * career specialization this portfolio is built around. It is never
- * presented as a past formal job title; past titles remain accurate in
- * src/data/experience.ts.
+ * Positioning note: the site leads with the broad software-engineering role
+ * Jefrey is applying for now while preserving full-stack systems and applied
+ * AI as differentiators. Past titles remain accurate in src/data/experience.ts.
  */
 export const siteConfig = {
   name: "Jefrey Peralta",
-  role: "Forward Deployed / Applied AI Engineer",
-  tagline: "Production Software · AI Systems · Business Operations",
+  role: "Software Engineer · Full-Stack Systems · Applied AI",
+  tagline: "Production Software · Full-Stack Systems · Applied AI",
   description:
-    "Forward deployed / applied AI engineer who turns complex operational problems into production software and AI systems, from discovery and architecture through deployment and iteration.",
+    "Software engineer who turns complex operational problems into production full-stack software and applied AI systems, from architecture through deployment and iteration.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://jefrey-peralta.vercel.app",
   location: "New Jersey, USA",
-  availability: "Open to forward deployed and applied AI roles",
+  availability: "Open to software, product, and applied AI engineering roles",
   email: "peraltajefrey@gmail.com",
   links: {
     github: "https://github.com/TheRealTradeX",

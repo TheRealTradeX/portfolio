@@ -38,7 +38,7 @@ export const resumeSkills: ResumeSkillGroup[] = [
       "model routing",
       "SSE streaming",
       "usage controls",
-      "AI-assisted engineering (Claude Code, context engineering, human-in-the-loop review)",
+      "AI-assisted engineering (OpenAI Codex, Claude Code, context engineering, human-in-the-loop review)",
     ],
   },
   {

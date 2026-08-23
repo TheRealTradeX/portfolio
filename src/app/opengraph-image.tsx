@@ -67,10 +67,10 @@ export default function OgImage() {
             color: "#79859a",
           }}
         >
-          <span>Production systems</span>
+          <span>Software engineering</span>
+          <span>Full-stack systems</span>
           <span>Applied AI</span>
-          <span>Deployment</span>
-          <span>Business operations</span>
+          <span>Production ownership</span>
         </div>
       </div>
     ),

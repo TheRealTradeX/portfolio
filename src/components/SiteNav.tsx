@@ -17,9 +17,11 @@ export function SiteNav() {
             <Link
               key={link.href}
               href={link.href}
+              target={"external" in link && link.external ? "_blank" : undefined}
+              rel={"external" in link && link.external ? "noopener noreferrer" : undefined}
               className="hidden rounded-full px-3 py-2 font-mono-technical text-[11.5px] tracking-[0.1em] text-ink-muted uppercase transition-colors hover:bg-white/5 hover:text-ink sm:inline-block"
             >
-              {link.label}
+              {link.label}{"external" in link && link.external ? " ↗" : ""}
             </Link>
           ))}
           <CommandPaletteTrigger className="rounded-full border border-edge px-3.5 py-2 font-mono-technical text-[11.5px] tracking-[0.08em] text-ink-muted uppercase transition-colors hover:border-edge-strong hover:text-ink" />
